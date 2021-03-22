@@ -22,23 +22,6 @@ public class LoaderTableView extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		
-		/*
-		try {
-			
-		
-			//Parent root = FXMLLoader.load(getClass().getResource("/res/Sample.fxml"));
-			//final FXMLLoader loader = new FXMLLoader(getClass().getResource("res/layouts/Sample.fxml"));
-			final FXMLLoader loader = new FXMLLoader(getClass().getResource("../res/layouts/Sample.fxml"));
-			
-			final Parent root = loader.load();
-	        primaryStage.setTitle("Table Top View");
-	        primaryStage.setScene(new Scene(root, 800, 420));
-	        primaryStage.show();
-		}catch (Exception e) {
-			e.printStackTrace();
-		}
-		*/
-		
 		try {
             final FXMLLoader loader = new FXMLLoader(getClass().getResource("/layouts/Sample.fxml"));
             //final FXMLLoader loader = new FXMLLoader(ClassLoader.getSystemResource("layouts/prova.fxml"));

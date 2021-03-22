@@ -8,7 +8,7 @@
       <VBox>
          <children>
             <fx:include source="datepicker.fxml" />
-            <fx:include source="table.fxml" />
+            <fx:include source="MappaTavoli.fxml" />
          </children>
       </VBox>
    </children>
