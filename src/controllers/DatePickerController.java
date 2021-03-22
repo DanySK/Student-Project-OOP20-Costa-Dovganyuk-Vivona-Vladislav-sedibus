@@ -10,16 +10,23 @@ import javafx.scene.control.DatePicker;
 
 public class DatePickerController implements Initializable {
 
+	@FXML private DatePicker datePicker;
+	private LocalDate ld = LocalDate.now();
+	
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         System.out.println("Date Picker is aviable!!!");
+        this.datePicker.setValue(ld);
+        //prelevo la data corrente
+        this.ld = datePicker.getValue();
+    	System.out.println(ld.toString());
     }
     
     
-    @FXML private DatePicker datePicker;
+    
     
     public void dateHandler() {
-    	LocalDate ld = datePicker.getValue();
+    	this.ld = datePicker.getValue();
     	
     	System.out.println(ld.toString());
     	
