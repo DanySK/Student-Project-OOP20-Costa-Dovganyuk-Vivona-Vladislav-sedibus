@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 public class AdminUserSelectionController {
 	
 	@FXML 
-	public void LoadAdminLogin(ActionEvent event)  throws Exception {
+	public void loadAdminLogin(ActionEvent event)  throws Exception { 
 		
 		       Parent root = FXMLLoader.load(getClass().getResource("/layouts/AdminLogin.fxml"));
 		    
@@ -23,7 +23,7 @@ public class AdminUserSelectionController {
 		    }
 	
 	@FXML
-	public void LoadUserDecision(ActionEvent event) throws Exception {
+	public void loadUserDecision(ActionEvent event) throws Exception {
 		
 		Parent root = FXMLLoader.load(getClass().getResource("/layouts/UserDecision.fxml"));
 	    
