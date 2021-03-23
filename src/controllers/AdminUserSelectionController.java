@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 public class AdminUserSelectionController {
 	
 	@FXML 
-	public void AdvanceToLogin(ActionEvent event)  throws Exception {
+	public void LoadAdminLogin(ActionEvent event)  throws Exception {
 		
 		       Parent root = FXMLLoader.load(getClass().getResource("/layouts/AdminLogin.fxml"));
 		    
@@ -21,4 +21,17 @@ public class AdminUserSelectionController {
 		        stage.setScene(scene);
 		        stage.show();
 		    }
+	
+	@FXML
+	public void LoadUserDecision(ActionEvent event) throws Exception {
+		
+		Parent root = FXMLLoader.load(getClass().getResource("/layouts/UserDecision.fxml"));
+	    
+        Scene scene = new Scene(root, 600, 500);
+        Stage stage = new Stage();
+    
+        stage.setTitle("Sedibus");
+        stage.setScene(scene);
+        stage.show();
+	}
 	}
