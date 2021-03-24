@@ -1,6 +1,6 @@
 package model;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public interface Prenotazione {
 
@@ -27,7 +27,7 @@ public interface Prenotazione {
 	 * 
 	 * @return data della prenotazione
 	 */
-	Date getDataPrenotazione();
+	LocalDate getDataPrenotazione();
 	
 	/**
 	 * 
@@ -35,4 +35,9 @@ public interface Prenotazione {
 	 */
 	Periodo getPeriodo();
 	
+	/**
+	 * 
+	 * @return il numero di posti prenotati
+	 */
+	int getPostiPrenotati();
 }

@@ -8,5 +8,6 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/JavaFX"/>
 	<classpathentry kind="con" path="org.eclipse.fx.ide.jdt.core.JAVAFX_CONTAINER"/>
+	<classpathentry kind="lib" path="F:/Users/Rostic/Documents/Università/2 ANNO/1-Semestre/Programmazione ad oggetti/Progetto_Esame/gson-jdk/gson-2.8.2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

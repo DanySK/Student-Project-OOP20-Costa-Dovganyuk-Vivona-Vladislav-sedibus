@@ -1,21 +1,23 @@
 package model;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class ImplPrenotazione implements Prenotazione {
 
 	private Cliente cliente;
 	private Tavolo tavolo;
 	private String codicePrenotazione;
-	private Date dataPrenotazione;
+	private LocalDate dataPrenotazione;
 	private Periodo periodo;
+	private int postiPrenotati;
 	
-	public ImplPrenotazione(Cliente cliente, Tavolo tavolo, String codice, Date data, Periodo periodo) {
+	public ImplPrenotazione(Periodo periodo, LocalDate data,String codice, Cliente cliente, Tavolo tavolo, int postiPrenotati) {
 		this.cliente = cliente;
 		this.tavolo = tavolo;
 		this.codicePrenotazione = codice;
 		this.dataPrenotazione = data;
 		this.periodo = periodo;
+		this.postiPrenotati = postiPrenotati;
 	}
 	
 	
@@ -35,7 +37,7 @@ public class ImplPrenotazione implements Prenotazione {
 	}
 
 	@Override
-	public Date getDataPrenotazione() {
+	public LocalDate getDataPrenotazione() {
 		return this.dataPrenotazione;
 	}
 
@@ -43,6 +45,12 @@ public class ImplPrenotazione implements Prenotazione {
 	@Override
 	public Periodo getPeriodo() {
 		return this.periodo;
+	}
+
+
+	@Override
+	public int getPostiPrenotati() {
+		return this.postiPrenotati;
 	}
 
 }
