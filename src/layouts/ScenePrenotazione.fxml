@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ControllerPrenotazione">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <left>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
@@ -55,17 +55,17 @@
    <bottom>
       <AnchorPane prefHeight="99.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="bottonePrenota" layoutX="70.0" layoutY="20.0" mnemonicParsing="false" onAction="#prenota" prefHeight="35.0" prefWidth="100.0" text="PRENOTA">
+            <Button fx:id="bottonePrenota" layoutX="70.0" layoutY="20.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="100.0" text="PRENOTA">
                <font>
                   <Font size="15.0" />
                </font>
             </Button>
-            <Button fx:id="bottoneReset" layoutX="250.0" layoutY="20.0" mnemonicParsing="false" onAction="#azzeraCampi" prefHeight="35.0" prefWidth="100.0" text="RESETTA">
+            <Button fx:id="bottoneReset" layoutX="250.0" layoutY="20.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="100.0" text="RESETTA">
                <font>
                   <Font size="15.0" />
                </font>
             </Button>
-            <Button fx:id="bottoneAnnulla" layoutX="430.0" layoutY="20.0" mnemonicParsing="false" onAction="#annullaPrenotazione" prefHeight="35.0" prefWidth="100.0" text="ANNULLA">
+            <Button fx:id="bottoneAnnulla" layoutX="430.0" layoutY="20.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="100.0" text="ANNULLA">
                <font>
                   <Font size="15.0" />
                </font>
