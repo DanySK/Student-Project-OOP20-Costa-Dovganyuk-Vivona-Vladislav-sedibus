@@ -1,17 +1,30 @@
 package view;
 
 import java.io.IOException;
+import java.time.LocalDate;
 
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.*;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
-//la classe carica il file fxml nel costruttore e mette a disposizione i getter per i campi e i bottoni;
-//più avanti dovrò aggiungere anche i setter per i campi TextField -> MODIFICA PRENOTAZIONE
 public class ViewPrenotazione {
 	
 	private FXMLLoader loader;
+	@FXML private TextField testoNome;
+	@FXML private TextField testoCognome;
+	@FXML private TextField testoEmail;
+	@FXML private TextField testoTelefono;
+	@FXML private DatePicker testoData;
+	@FXML private ToggleGroup turno;
+	@FXML private TextField testoPosti;
+	@FXML private Button bottonePiuPosti;
+	@FXML private Button bottoneMenoPosti;
+	@FXML private Button bottonePrenota;
+	@FXML private Button bottoneReset;
+	@FXML private Button bottoneAnnulla;
+	
 	
 	public ViewPrenotazione(Stage primaryStage) {
 		try {
@@ -26,53 +39,79 @@ public class ViewPrenotazione {
 		}
 	}
 	
-	public Button getBottonePrenota() {
-		return (Button)this.loader.getNamespace().get("bottonePrenota");
+	public String getCampoNome() {
+		return this.testoNome.getText();
 	}
 	
-	public Button getBottoneReset() {
-		return (Button)this.loader.getNamespace().get("bottoneReset");
+	public void setCampoNome(String nome) {
+		this.testoNome.setText(nome);
 	}
 	
-	public Button getBottoneAnnulla() {
-		return (Button)this.loader.getNamespace().get("bottoneAnnulla");
+	public String getCampoCognome() {
+		return this.testoCognome.getText();
 	}
 	
-	public TextField getCampoNome() {
-		return (TextField)this.loader.getNamespace().get("testoNome");
+	public void setCampoCognome(String cognome) {
+		this.testoCognome.setText(cognome);
 	}
 	
-	public TextField getCampoCognome() {
-		return (TextField)this.loader.getNamespace().get("testoCognome");
+	public String getCampoEmail() {
+		return this.testoEmail.getText();
 	}
 	
-	public TextField getCampoEmail() {
-		return (TextField)this.loader.getNamespace().get("testoEmail");
+	public void setCampoEmail(String email) {
+		this.testoEmail.setText(email);
 	}
 	
-	public TextField getCampoTelefono() {
-		return (TextField)this.loader.getNamespace().get("testoTelefono");
+	public String getCampoTelefono() {
+		return this.testoTelefono.getText();
 	}
 	
-	public DatePicker getCampoData() {
-		return (DatePicker)this.loader.getNamespace().get("testoData");
+	public void setCampoTelefono(String telefono) {
+		this.testoTelefono.setText(telefono);
+	}
+	
+	public String getCampoData() {
+		return this.testoData.getValue().toString();
+	}
+	
+	public void setCampoData(LocalDate data) {
+		this.testoData.setValue(data);
+	}
+	
+	public String getBottoneTurno() {
+		RadioButton bottoneSelezionato = (RadioButton) turno.getSelectedToggle();
+		return bottoneSelezionato.getText();
+	}
+	
+	public String getCampoPosti() {
+		return this.testoPosti.getText();
+	}
+	
+	public void setCampoPosti(String nPosti) {
+		this.testoPosti.setText(nPosti);
 	}
 	
 	public Button getBottonePiuPosti() {
-		return (Button)this.loader.getNamespace().get("bottonePiuPosti");
+		return this.bottonePiuPosti;
 	}
 	
 	public Button getBottoneMenoPosti() {
-		return (Button)this.loader.getNamespace().get("bottoneMenoPosti");
+		return this.bottoneMenoPosti;
 	}
 	
-	public RadioButton getBottoneTurno() {
-		ToggleGroup tg = (ToggleGroup)this.loader.getNamespace().get("turno");
-		return (RadioButton)tg.getSelectedToggle();
+	public Button getBottonePrenota() {
+		return this.bottonePrenota;
 	}
 	
-	public TextField getCampoNposti() {
-		return (TextField)this.loader.getNamespace().get("testoPosti");
+	public Button getBottoneReset() {
+		return this.bottoneReset;
 	}
+	
+	public Button getBottoneAnnulla() {
+		return this.bottoneAnnulla;
+	}
+	
+	
 	
 }
