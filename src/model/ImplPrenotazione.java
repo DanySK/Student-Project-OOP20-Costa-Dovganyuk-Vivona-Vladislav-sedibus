@@ -1,29 +1,30 @@
 package model;
 
-import java.time.LocalDate;
 
-public class ImplPrenotazione implements Prenotazione {
+public class ImplPrenotazione implements PrenotazioneBase, java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private String codicePrenotazione;
 	private Cliente cliente;
 	private Tavolo tavolo;
-	private String codicePrenotazione;
-	private LocalDate dataPrenotazione;
-	private Periodo periodo;
-	private int postiPrenotati;
+	private int nPostiPrenotati;
+
 	
-	public ImplPrenotazione(Periodo periodo, LocalDate data,String codice, Cliente cliente, Tavolo tavolo, int postiPrenotati) {
+	
+	public ImplPrenotazione(String codicePrenotazione, Cliente cliente, Tavolo tavolo, int nPostiPrenotati) {
+		super();
+		this.codicePrenotazione = codicePrenotazione;
 		this.cliente = cliente;
 		this.tavolo = tavolo;
-		this.codicePrenotazione = codice;
-		this.dataPrenotazione = data;
-		this.periodo = periodo;
-		this.postiPrenotati = postiPrenotati;
-	}
-	
-	
+		this.nPostiPrenotati = nPostiPrenotati;
+	}	
+
 	@Override
-	public Tavolo getTavolo() {
-		return this.tavolo;
+	public String getCodicePrenotazione() {
+		return this.codicePrenotazione;
 	}
 
 	@Override
@@ -32,25 +33,15 @@ public class ImplPrenotazione implements Prenotazione {
 	}
 
 	@Override
-	public String getCodicePrenotazione() {
-		return this.codicePrenotazione;
+	public Tavolo getTavolo() {
+		return this.tavolo;
 	}
-
-	@Override
-	public LocalDate getDataPrenotazione() {
-		return this.dataPrenotazione;
-	}
-
-
-	@Override
-	public Periodo getPeriodo() {
-		return this.periodo;
-	}
-
 
 	@Override
 	public int getPostiPrenotati() {
-		return this.postiPrenotati;
+		return this.nPostiPrenotati;
 	}
 
+
+	
 }

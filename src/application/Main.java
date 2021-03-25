@@ -1,16 +1,21 @@
 package application;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import dataBaseModel.GestoreDB;
 import dataBaseModel.ImplGestoreDB;
 import model.Cliente;
 import model.ClienteImpl;
 import model.ImplPrenotazione;
-import model.ImplTavolo;
+import model.ImplPrenotazioneCompleta;
+import model.ImplRistorante;
 import model.Periodo;
-import model.Prenotazione;
+import model.PrenotazioneBase;
+import model.PrenotazioneCompleta;
+import model.Ristorante;
 import model.Tavolo;
+import model.ImplTavolo;
 
 
 public class Main {
@@ -21,18 +26,25 @@ public class Main {
 	//create gli oggetti nel main sottostante e provate se funziona 
 	
 	public static void main(String[] args) {
-		
+		/*
 		LocalDate data = LocalDate.now();
 		
 		Cliente cliente = new ClienteImpl("Mirko", "Viroli", "marco.viroli@gmail.com", "3258621104");
-		Tavolo tavolo1 = new ImplTavolo(1, 8);
+		ImplTavolo tavolo1 = new ImplTavolo(1, 8);
 		
-		
-		Prenotazione p1 = new ImplPrenotazione(Periodo.CENA, data, "ABCD", cliente, tavolo1, 8);
+		PrenotazioneBase pbase = new ImplPrenotazione("ABC", cliente, tavolo1, 8);
+		PrenotazioneCompleta pcomp1 = new ImplPrenotazioneCompleta(data, Periodo.CENA, pbase);
 		
 
 		GestoreDB db = new ImplGestoreDB();
-		db.creazionePrenotazione(p1);
+		db.creazionePrenotazione(pcomp1);
+		
+		Ristorante r = new ImplRistorante();
+		List<Tavolo> list = r.tavoliRistorante();
+		list.forEach(l ->{
+			System.out.println(l.getName()+ " "+l.getMaxPosti());
+		});
+		*/
 		
 	}
 
