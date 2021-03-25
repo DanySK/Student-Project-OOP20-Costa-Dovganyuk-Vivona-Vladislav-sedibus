@@ -1,6 +1,6 @@
 package dataBaseModel;
 
-import model.Prenotazione;
+import model.PrenotazioneCompleta;
 
 public interface GestoreDB {
 
@@ -8,7 +8,7 @@ public interface GestoreDB {
 	 * 
 	 * @return true se l'inserimento nel DB e andato a buon fine
 	 */
-	boolean creazionePrenotazione(Prenotazione p);
+	boolean creazionePrenotazione(PrenotazioneCompleta p);
 
 	
 	
