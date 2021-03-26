@@ -27,6 +27,10 @@ public class ModelPrenotazione {
 		}
 	}
 
+	
+	
+	
+	
 	private String generaCodice() {
 		this.numeroCod++;
 		return this.lettereCod.charAt(this.rand.nextInt(this.lettereCod.length())) + String.valueOf(this.numeroCod);

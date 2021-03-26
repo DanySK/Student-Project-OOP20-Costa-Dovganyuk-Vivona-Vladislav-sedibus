@@ -3,7 +3,6 @@ package view;
 import java.io.IOException;
 import java.time.LocalDate;
 
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.*;
 import javafx.scene.control.*;
@@ -12,18 +11,18 @@ import javafx.stage.Stage;
 public class ViewPrenotazione {
 	
 	private FXMLLoader loader;
-	@FXML private TextField testoNome;
-	@FXML private TextField testoCognome;
-	@FXML private TextField testoEmail;
-	@FXML private TextField testoTelefono;
-	@FXML private DatePicker testoData;
-	@FXML private ToggleGroup turno;
-	@FXML private TextField testoPosti;
-	@FXML private Button bottonePiuPosti;
-	@FXML private Button bottoneMenoPosti;
-	@FXML private Button bottonePrenota;
-	@FXML private Button bottoneReset;
-	@FXML private Button bottoneAnnulla;
+	private TextField testoNome;
+	private TextField testoCognome;
+	private TextField testoEmail;
+	private TextField testoTelefono;
+	private DatePicker testoData;
+	private ToggleGroup turno;
+	private Label testoPosti;
+	private Button bottonePiuPosti;
+	private Button bottoneMenoPosti;
+	private Button bottonePrenota;
+	private Button bottoneReset;
+	private Button bottoneAnnulla;
 	
 	
 	public ViewPrenotazione(Stage primaryStage) {
@@ -37,6 +36,18 @@ public class ViewPrenotazione {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		this.testoNome = (TextField) this.loader.getNamespace().get("testoNome");
+		this.testoCognome = (TextField) this.loader.getNamespace().get("testoCognome");
+		this.testoEmail = (TextField) this.loader.getNamespace().get("testoEmail");
+		this.testoTelefono = (TextField) this.loader.getNamespace().get("testoTelefono");
+		this.testoData = (DatePicker) this.loader.getNamespace().get("testoData");
+		this.turno = (ToggleGroup) this.loader.getNamespace().get("turno");
+		this.testoPosti = (Label) this.loader.getNamespace().get("testoPosti");
+		this.bottonePiuPosti = (Button) this.loader.getNamespace().get("bottonePiuPosti");
+		this.bottoneMenoPosti = (Button) this.loader.getNamespace().get("bottoneMenoPosti");
+		this.bottonePrenota = (Button) this.loader.getNamespace().get("bottonePrenota");;
+		this.bottoneReset = (Button) this.loader.getNamespace().get("bottoneReset");
+		this.bottoneAnnulla = (Button) this.loader.getNamespace().get("bottoneAnnulla");;
 	}
 	
 	public String getCampoNome() {
@@ -80,7 +91,7 @@ public class ViewPrenotazione {
 	}
 	
 	public String getBottoneTurno() {
-		RadioButton bottoneSelezionato = (RadioButton) turno.getSelectedToggle();
+		RadioButton bottoneSelezionato = (RadioButton) this.turno.getSelectedToggle();
 		return bottoneSelezionato.getText();
 	}
 	
@@ -111,7 +122,5 @@ public class ViewPrenotazione {
 	public Button getBottoneAnnulla() {
 		return this.bottoneAnnulla;
 	}
-	
-	
 	
 }

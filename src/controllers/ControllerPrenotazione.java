@@ -21,6 +21,7 @@ public class ControllerPrenotazione {
 		
 		this.vista.getBottoneMenoPosti().setOnAction(e -> {
 			this.modello.togliPosto();
+			//this.vista.setCampoPosti(Integer.toString(this.modello.getNumeroPosti()));
 		});
 		
 		this.vista.getBottonePrenota().setOnAction(e -> {
