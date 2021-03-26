@@ -18,6 +18,7 @@ public class ImplRistorante implements Ristorante {
 	private static String FILE_PATH = "res/restourant-conf/tavoli.txt";
 	private List<Tavolo> tavoli = new ArrayList<>();
 	
+	
 	public ImplRistorante() {
 		try {
 			loadTavolifromFile();
@@ -25,8 +26,6 @@ public class ImplRistorante implements Ristorante {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		System.out.println(tavoli.size());
 		
 	}
 	
@@ -42,7 +41,6 @@ public class ImplRistorante implements Ristorante {
 			FileReader f = new FileReader(FILE_PATH);
 		    BufferedReader b = new BufferedReader(f);
 		    String s;
-
 		    while(true) {
 		    	s = b.readLine();
 		    	if(s == null) {
@@ -50,19 +48,20 @@ public class ImplRistorante implements Ristorante {
 		    	}
 		    	tavoli.add(new ImplTavolo(Integer.parseInt(s.split(",")[0]),Integer.parseInt(s.split(",")[1])));
 		    }
-
+		    b.close();
+		    
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-		
-		
-		
 	}
 	
 	@Override
 	public List<Tavolo> tavoliPrenotati(LocalDate date) {
-		// TODO Auto-generated method stub
-		return null;
+		System.out.println("Tavoli prenotati per la data..." + date);
+		//popolo la lista
+		List<Tavolo> list = new ArrayList<>();
+		//list.add(new ImplTavolo(2,8));
+		return list;
 	}
 
 	@Override
