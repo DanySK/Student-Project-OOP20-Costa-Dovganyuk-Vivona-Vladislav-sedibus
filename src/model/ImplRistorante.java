@@ -56,8 +56,8 @@ public class ImplRistorante implements Ristorante {
 	}
 	
 	@Override
-	public List<Tavolo> tavoliPrenotati(LocalDate date) {
-		System.out.println("Tavoli prenotati per la data..." + date);
+	public List<Tavolo> tavoliPrenotati(LocalDate date, Periodo p) {
+		System.out.println("[ImplRistorante] Tavoli prenotati per la data..." + date + " e periodo " + p);
 		//popolo la lista
 		List<Tavolo> list = new ArrayList<>();
 		//list.add(new ImplTavolo(2,8));
@@ -65,7 +65,7 @@ public class ImplRistorante implements Ristorante {
 	}
 
 	@Override
-	public List<Map<LocalDate, List<PrenotazioneCompleta>>> tuttePrenotazioni(Periodo p) {
+	public Map<LocalDate, List<PrenotazioneCompleta>> tuttePrenotazioni(Periodo p) {
 		// TODO Auto-generated method stub
 		return null;
 	}

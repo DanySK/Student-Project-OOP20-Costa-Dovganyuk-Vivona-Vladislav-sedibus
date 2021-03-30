@@ -17,13 +17,13 @@ public interface Ristorante {
 	 * @param date
 	 * @return la lista dei tavoli prenotati per quella data
 	 */
-	List<Tavolo> tavoliPrenotati(LocalDate date);
+	List<Tavolo> tavoliPrenotati(LocalDate date, Periodo p);
 	
 	/**
 	 * @param p
 	 * @return la lista di tutte le prenotazioni
 	 */
-	List<Map<LocalDate,List<PrenotazioneCompleta>>> tuttePrenotazioni(Periodo p);
+	Map<LocalDate,List<PrenotazioneCompleta>> tuttePrenotazioni(Periodo p);
 	
 	/**
 	 * 
