@@ -12,9 +12,11 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.MenuButton;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import model.ImplMainTableModel;
 import model.MainTableModel;
 import model.Periodo;
+import view.LoaderAdminUserSelection;
 
 public class Controller implements Initializable {
 
@@ -51,6 +53,9 @@ public class Controller implements Initializable {
     	this.paneTavoli.getChildren().forEach(e -> {
         	Button b = (Button)e;
         	b.getStylesheets().add(TAVOLO_VERDE_STYLE_PATH);
+        	b.setOnAction(a->{
+        		System.out.println("Stato premuto il Tavolo " + b.getId());
+        	});
         	this.listButton.add(b);
         });
     }
@@ -62,7 +67,7 @@ public class Controller implements Initializable {
     }
     
     private void getIDTavoliPrenotati(LocalDate data, Periodo p) {
-    	System.out.println("Vado a richiamare la model per farmi ritornare Gli ID dei Tavoli prenotati");
+    	System.out.print("ID dei Tavoli prenotati");
     	System.out.println("Per la data " + data + " e Periodo: " + p);
     	this.model.tavoliPrenotati(ld, periodo);
     }
@@ -82,7 +87,14 @@ public class Controller implements Initializable {
     }
     
     public void tornaIndietroHandler() {
-    	System.out.println("Torna indietro...[Viene ricaricata la pagina iniziale]");
+    	LoaderAdminUserSelection view = new LoaderAdminUserSelection();
+    	Stage currentStage = (Stage) this.datePicker.getScene().getWindow();
+    	try {
+			view.start(new Stage());
+			currentStage.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
     }
     
 

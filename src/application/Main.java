@@ -17,6 +17,7 @@ import model.PrenotazioneBase;
 import model.PrenotazioneCompleta;
 import model.Ristorante;
 import model.Tavolo;
+import view.LoaderAdminUserSelection;
 import view.LoaderTableView;
 import model.ImplTavolo;
 import model.MainTableModel;
@@ -62,8 +63,10 @@ public class Main {
 		 * Variante 2):	
 		 * 			Carico la view, e lei si occupa di caricare il controller
 		 */
+		
 		LoaderTableView view = new LoaderTableView();
 		view.loadView();
+		
 		
 		
 		
