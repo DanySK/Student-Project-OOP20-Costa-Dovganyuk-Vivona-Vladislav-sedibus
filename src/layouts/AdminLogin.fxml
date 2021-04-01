@@ -5,15 +5,19 @@
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" 
-xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AdminLoginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AdminLoginController">
    <children> 
-      <Label layoutX="183.0" layoutY="154.0" text="Utente:" />
-      <TextField layoutX="226.0" layoutY="150.0" />
-      <Label layoutX="169.0" layoutY="192.0" text="Password:" />
-      <PasswordField layoutX="226.0" layoutY="188.0" />
-      <Button layoutX="307.0" layoutY="232.0" mnemonicParsing="false" text="Conferma" onAction="#loadTableView" />
+      <Label id="userLabel" layoutX="183.0" layoutY="154.0" text="Utente:" />
+      <TextField fx:id="user" layoutX="226.0" layoutY="150.0" />
+      <Label id="passLabel" layoutX="169.0" layoutY="192.0" text="Password:" />
+      <PasswordField fx:id="pass" layoutX="226.0" layoutY="188.0" />
+      <Button layoutX="307.0" layoutY="232.0" mnemonicParsing="false" onAction="#loadTableView" text="Conferma" />
+      <Label fx:id="failedLabel" layoutX="196.0" layoutY="272.0" prefHeight="19.0" prefWidth="186.0" text="" textFill="#e41919">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
