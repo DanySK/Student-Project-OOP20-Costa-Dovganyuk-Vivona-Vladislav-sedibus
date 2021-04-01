@@ -24,7 +24,6 @@ public class ViewPrenotazione {
 	private Button bottoneReset;
 	private Button bottoneAnnulla;
 	
-	
 	public ViewPrenotazione(Stage primaryStage) {
 		try {
 			this.loader = new FXMLLoader(getClass().getResource("/layouts/ScenePrenotazione.fxml"));
@@ -45,9 +44,9 @@ public class ViewPrenotazione {
 		this.testoPosti = (Label) this.loader.getNamespace().get("testoPosti");
 		this.bottonePiuPosti = (Button) this.loader.getNamespace().get("bottonePiuPosti");
 		this.bottoneMenoPosti = (Button) this.loader.getNamespace().get("bottoneMenoPosti");
-		this.bottonePrenota = (Button) this.loader.getNamespace().get("bottonePrenota");;
+		this.bottonePrenota = (Button) this.loader.getNamespace().get("bottonePrenota");
 		this.bottoneReset = (Button) this.loader.getNamespace().get("bottoneReset");
-		this.bottoneAnnulla = (Button) this.loader.getNamespace().get("bottoneAnnulla");;
+		this.bottoneAnnulla = (Button) this.loader.getNamespace().get("bottoneAnnulla");
 	}
 	
 	public String getCampoNome() {
@@ -121,6 +120,15 @@ public class ViewPrenotazione {
 	
 	public Button getBottoneAnnulla() {
 		return this.bottoneAnnulla;
+	}
+	
+	public void pulisciCampi() {  //potrebbe andare nel controller
+		this.testoNome.clear();
+		this.testoCognome.clear();
+		this.testoEmail.clear();
+		this.testoTelefono.clear();
+		this.testoData.getEditor().clear();
+		this.turno.getSelectedToggle().setSelected(false);
 	}
 	
 }

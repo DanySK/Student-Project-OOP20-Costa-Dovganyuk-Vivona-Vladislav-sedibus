@@ -1,6 +1,8 @@
 package model;
 
 import java.util.Random;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class ModelPrenotazione {
 	
@@ -8,8 +10,14 @@ public class ModelPrenotazione {
 	private Random rand = new Random();
 	private int numeroCod = 0;
 	private final String lettereCod = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	private Pattern pattern;
+	private Matcher matcher;
 	
 	public ModelPrenotazione() {
+		this.azzeraPosti();
+	}
+	
+	public void azzeraPosti() {
 		this.nPosti = 0;
 	}
 	
@@ -27,7 +35,11 @@ public class ModelPrenotazione {
 		}
 	}
 
-	
+	public boolean controllaDati(String nome, String cognome, String email, String telefono) {
+		
+		
+		return false;
+	}
 	
 	
 	

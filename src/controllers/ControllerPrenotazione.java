@@ -16,25 +16,32 @@ public class ControllerPrenotazione {
 	public void assegnaGestori() {
 		this.vista.getBottonePiuPosti().setOnAction(e -> {
 			this.modello.aggiungiPosto();
-			//this.vista.setCampoPosti(Integer.toString(this.modello.getNumeroPosti()));
+			this.aggiornaVista();
 		});
 		
 		this.vista.getBottoneMenoPosti().setOnAction(e -> {
 			this.modello.togliPosto();
-			//this.vista.setCampoPosti(Integer.toString(this.modello.getNumeroPosti()));
+			this.aggiornaVista();
 		});
 		
 		this.vista.getBottonePrenota().setOnAction(e -> {
-			
+			//
+			this.aggiornaVista();
 		});
 		
 		this.vista.getBottoneReset().setOnAction(e -> {
-			
+			this.vista.pulisciCampi();
+			this.modello.azzeraPosti();
+			this.aggiornaVista();
 		});
 		
 		this.vista.getBottoneAnnulla().setOnAction(e -> {
-			
+			//ritorna alla gui dei tavoli
 		});
+	}
+	
+	private void aggiornaVista() {
+		this.vista.setCampoPosti(Integer.toString(this.modello.getNumeroPosti()));
 	}
 	
 }
