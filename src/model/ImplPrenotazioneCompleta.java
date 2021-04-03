@@ -6,6 +6,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class ImplPrenotazioneCompleta implements PrenotazioneCompleta {
 
+	
 	private LocalDate data;
 	private Periodo periodo;
 	@SerializedName("Prenotazione")

@@ -31,4 +31,7 @@ public interface PrenotazioneBase {
 	 * @return il numero di posti prenotati
 	 */
 	int getPostiPrenotati();
+	
+	public PrenotazioneBase prenotazioneBase();
+	
 }

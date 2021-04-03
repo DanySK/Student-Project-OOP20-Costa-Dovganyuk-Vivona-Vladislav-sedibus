@@ -43,5 +43,10 @@ public class ImplPrenotazione implements PrenotazioneBase, java.io.Serializable 
 	}
 
 
+	//ritorna la prenotazione base corrente
+	public PrenotazioneBase prenotazioneBase() {
+			return new ImplPrenotazione(getCodicePrenotazione(),getCliente(), getTavolo(), getPostiPrenotati());
+	}
+
 	
 }

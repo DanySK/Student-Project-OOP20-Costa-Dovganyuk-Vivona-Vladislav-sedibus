@@ -1,12 +1,20 @@
 package dataBaseModel;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
 import java.time.LocalDate;
-
+import java.util.List;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonIOException;
+import com.google.gson.stream.JsonWriter;
 
 import model.Cliente;
 import model.ClienteImpl;
@@ -14,6 +22,7 @@ import model.ImplPrenotazione;
 import model.Periodo;
 import model.PrenotazioneBase;
 import model.PrenotazioneCompleta;
+import model.PrenotazioneEstesa;
 import model.ImplTavolo;
 
 public class ImplGestoreDB implements GestoreDB, java.io.Serializable{
@@ -23,32 +32,61 @@ public class ImplGestoreDB implements GestoreDB, java.io.Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	private Gson gson = new Gson();
-	private FileWriter fw;
-	
+	private String PRANZO_FILE_PATH = "res/pranzo.json";
+	private String CENA_FILE_PATH = "res/cena.json";
+	private OutputStreamWriter streamWriter ;
+	private JsonWriter writer;
+	private File file;
+    
+			
+			
 	
 	public ImplGestoreDB() {
-		try {
-			this.fw = new FileWriter("res/prenotazione.json");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
+		
 	}
 	
 	
 	@Override
-	public boolean creazionePrenotazione(PrenotazioneCompleta p) {
+	public boolean creazionePrenotazione(PrenotazioneEstesa p) {
 		
-		/*
-		try {
-			gson.toJson(p,fw);
-			System.out.println("Stampa avvenuta");
-		} catch (JsonIOException e) {
+		//scelta del file sul quale scrivere
+		System.out.println("Periodo prenotazione: " + p.getPeriodo());
+		
+		
+		try {		
+			impostaJsonWriter(p.getPeriodo());
+			writer.beginArray();
+			writer.beginObject();
+			writer.name("data").value(p.getLocalData());
+			//writer.name("prenotazione").jsonValue(gson.toJson(p.prenotazioneBase()));
+			
+			writer.name("prenotazione");
+			
+			writer.beginArray();
+			
+			//writer.beginObject();
+			//writer.name("prenotazioneinterna").jsonValue(gson.toJson(p.prenotazioneBase()));
+			writer.jsonValue(gson.toJson(p.prenotazioneBase()));
+			
+			//writer.endObject();
+			
+			writer.endArray();
+			
+			
+			writer.endObject();
+			writer.endArray();
+			
+			writer.close();
+			
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} 
-		*/
+		}
 		
-		
+	    //gson.toJson(p,p.getClass(),writer);
+	    
 		System.out.println(gson.toJson(p));
 		/*
 		Periodo periodo = p.getPeriodo();
@@ -70,5 +108,30 @@ public class ImplGestoreDB implements GestoreDB, java.io.Serializable{
 		
 		return false;
 	}
+	
+	private void impostaJsonWriter(Periodo p) throws UnsupportedEncodingException, FileNotFoundException {
+		//imposto anche la variabile file, per vedere se il file esiste effettivamente
+		String PATH = "";
+		if(p.equals(Periodo.PRANZO)) {
+			PATH = PRANZO_FILE_PATH;
+		}else {
+			PATH = CENA_FILE_PATH;
+		}
+		streamWriter = new OutputStreamWriter(new FileOutputStream(PATH),"UTF-8");
+		file = new File(PATH);
+		writer = new JsonWriter(streamWriter);
+		
+	}
+
+
+
+	
+	
+	@Override
+	public List<PrenotazioneBase> listaPrenotazioni(Periodo periodo, LocalDate data) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 
 }

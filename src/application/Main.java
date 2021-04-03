@@ -15,6 +15,7 @@ import model.ImplRistorante;
 import model.Periodo;
 import model.PrenotazioneBase;
 import model.PrenotazioneCompleta;
+import model.PrenotazioneEstesa;
 import model.Ristorante;
 import model.Tavolo;
 import view.CercaPrenotazione;
@@ -69,9 +70,24 @@ public class Main {
 		LoaderTableView view = new LoaderTableView();
 		view.loadView();
 		*/
+		/*
 		CercaPrenotazione p = new CercaPrenotazioneImpl();
 		p.inizia();
+		*/
 		
+		//prove del DB
+		//prenotazione prelevata dalla form
+		Cliente cliente = new ClienteImpl("Mario", "Draghi", "draghi.mario@ita.com", "3265984578");
+		Ristorante risto = new ImplRistorante();
+		List<Tavolo> tavoli = risto.tavoliRistorante();
+		LocalDate data = LocalDate.now();
+		GestoreDB db = new ImplGestoreDB();
+		
+		
+		PrenotazioneBase p = new ImplPrenotazione("AA11", cliente, tavoli.get(2), 8);
+		
+		PrenotazioneEstesa prenotazione1 = new PrenotazioneEstesa(Periodo.PRANZO,data, "AA11", cliente, tavoli.get(2), 8);
+		db.creazionePrenotazione(prenotazione1);
 		
 		
 		
