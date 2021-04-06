@@ -19,18 +19,8 @@ public interface Ristorante {
 	 */
 	List<Tavolo> tavoliPrenotati(LocalDate date, Periodo p);
 	
-	/**
-	 * @param p
-	 * @return la lista di tutte le prenotazioni
-	 */
-	Map<LocalDate,List<PrenotazioneCompleta>> tuttePrenotazioni(Periodo p);
+	public void nuovaPrenotazione(PrenotazioneEstesa prenotazione);
 	
-	/**
-	 * 
-	 * @param date
-	 * @param p
-	 * @return la lista di prenotazioni in una certa data e in un certo periodo
-	 */
-	List<PrenotazioneBase> prenotazioniInData(LocalDate date, Periodo p);
+	public Map<String,List<Prenotazione>> getPrenotazioni(Periodo p);
 	
 }

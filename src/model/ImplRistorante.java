@@ -12,11 +12,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import dataBaseModel.GestoreDB;
+import dataBaseModel.ImplGestoreDB;
+
 public class ImplRistorante implements Ristorante {
 
 	
 	private static String FILE_PATH = "res/restourant-conf/tavoli.txt";
 	private List<Tavolo> tavoli = new ArrayList<>();
+	private GestoreDB getsoreDB =  new ImplGestoreDB();
+	
 	
 	
 	public ImplRistorante() {
@@ -28,6 +33,18 @@ public class ImplRistorante implements Ristorante {
 		}
 		
 	}
+	
+	
+	public void nuovaPrenotazione(PrenotazioneEstesa prenotazione) {
+		//db.loadOnFile(prenotazioneEstesa);
+		this.getsoreDB.addToFile(prenotazione);
+	}
+	
+	
+	public Map<String,List<Prenotazione>> getPrenotazioni(Periodo p){
+		return this.getsoreDB.getMapPrenotazioni(p);
+	}
+	
 	
 	
 	@Override
@@ -54,26 +71,11 @@ public class ImplRistorante implements Ristorante {
 			e.printStackTrace();
 		}
 	}
-	
+
+
 	@Override
 	public List<Tavolo> tavoliPrenotati(LocalDate date, Periodo p) {
-		System.out.println("[ImplRistorante] Tavoli prenotati per la data..." + date + " e periodo " + p);
-		//popolo la lista
-		List<Tavolo> list = new ArrayList<>();
-		//list.add(new ImplTavolo(2,8));
-		return list;
-	}
-
-	@Override
-	public Map<LocalDate, List<PrenotazioneCompleta>> tuttePrenotazioni(Periodo p) {
-		// TODO Auto-generated method stub
 		return null;
 	}
-
-	@Override
-	public List<PrenotazioneBase> prenotazioniInData(LocalDate date, Periodo p) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	
 }

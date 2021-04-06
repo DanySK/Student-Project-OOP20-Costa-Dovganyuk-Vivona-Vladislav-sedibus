@@ -1,1 +1,18 @@
-[{"data":"2021-04-03","prenotazione":[{"codicePrenotazione":"AA11","cliente":{"nome":"Mario","cognome":"Draghi","email":"draghi.mario@ita.com","nTelefono":"3265984578"},"tavolo":{"name":3,"maxPosti":12},"nPostiPrenotati":8}]}]
+{
+  "2021-04-07": [
+    {
+      "codicePrenotazione": "AA1100",
+      "cliente": {
+        "nome": "Mirko",
+        "cognome": "Viroli",
+        "email": "mirko.viroli@unibo.it",
+        "nTelefono": "326598485"
+      },
+      "tavolo": {
+        "name": 2,
+        "maxPosti": 10
+      },
+      "nPostiPrenotati": 8
+    }
+  ]
+}

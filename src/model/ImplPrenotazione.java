@@ -1,12 +1,8 @@
 package model;
 
 
-public class ImplPrenotazione implements PrenotazioneBase, java.io.Serializable {
+public class ImplPrenotazione implements Prenotazione {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 	private String codicePrenotazione;
 	private Cliente cliente;
 	private Tavolo tavolo;
@@ -43,10 +39,7 @@ public class ImplPrenotazione implements PrenotazioneBase, java.io.Serializable 
 	}
 
 
-	//ritorna la prenotazione base corrente
-	public PrenotazioneBase prenotazioneBase() {
-			return new ImplPrenotazione(getCodicePrenotazione(),getCliente(), getTavolo(), getPostiPrenotati());
-	}
+	
 
 	
 }
