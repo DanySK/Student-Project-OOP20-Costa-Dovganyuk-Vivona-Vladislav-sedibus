@@ -23,7 +23,6 @@ public class ImplMainTableModel implements MainTableModel {
 			listaID.add(t.getName());
 		});*/
 		ristorante.tavoliPrenotati(date, p).forEach(t ->{
-			System.out.println("ID tavolo: " + t.getName() );
 			listaID.add(t.getName());
 		});
 		
