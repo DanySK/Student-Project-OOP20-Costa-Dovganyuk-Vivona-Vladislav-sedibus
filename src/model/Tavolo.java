@@ -1,19 +1,27 @@
 package model;
 
-public interface Tavolo {
+
+
+public class Tavolo  {
+	
+	private static final long serialVersionUID = 1L;
+	private int name;
+	private int maxPosti;
+	
+	public Tavolo(int name, int maxPosti) {
+		this.name = name;
+		this.maxPosti = maxPosti;
+	}
 
 	
-	/**
-	* 
-	* @return il "nome" numerico del tavolo
-	*/
-	public int getName();
-		
-		
-	/**
-	* 
-	* @return il massimo numero di posti per quel tavolo
-	*/
-	public int getMaxPosti();
+	public int getName() {
+		return this.name;
+	}
+
 	
+	public int getMaxPosti() {
+		return this.maxPosti;
+	}
+	
+
 }

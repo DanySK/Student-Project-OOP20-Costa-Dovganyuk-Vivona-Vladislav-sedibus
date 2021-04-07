@@ -9,8 +9,14 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
+
+import com.google.gson.Gson;
 
 import dataBaseModel.GestoreDB;
 import dataBaseModel.ImplGestoreDB;
@@ -21,8 +27,8 @@ public class ImplRistorante implements Ristorante {
 	private static String FILE_PATH = "res/restourant-conf/tavoli.txt";
 	private List<Tavolo> tavoli = new ArrayList<>();
 	private GestoreDB getsoreDB =  new ImplGestoreDB();
-	
-	
+	private Optional<Periodo> periodoAttuale = Optional.empty();
+	Map<String,List<Prenotazione>> prenotazioni = new HashMap<>();
 	
 	public ImplRistorante() {
 		try {
@@ -36,7 +42,6 @@ public class ImplRistorante implements Ristorante {
 	
 	
 	public void nuovaPrenotazione(PrenotazioneEstesa prenotazione) {
-		//db.loadOnFile(prenotazioneEstesa);
 		this.getsoreDB.addToFile(prenotazione);
 	}
 	
@@ -63,7 +68,7 @@ public class ImplRistorante implements Ristorante {
 		    	if(s == null) {
 		    		break;
 		    	}
-		    	tavoli.add(new ImplTavolo(Integer.parseInt(s.split(",")[0]),Integer.parseInt(s.split(",")[1])));
+		    	tavoli.add(new Tavolo(Integer.parseInt(s.split(",")[0]),Integer.parseInt(s.split(",")[1])));
 		    }
 		    b.close();
 		    
@@ -74,8 +79,43 @@ public class ImplRistorante implements Ristorante {
 
 
 	@Override
-	public List<Tavolo> tavoliPrenotati(LocalDate date, Periodo p) {
-		return null;
+	public List<Tavolo> tavoliPrenotati(LocalDate data, Periodo p) {
+		
+		var mappa = getPrenotazioni(p);
+		List<Tavolo> list = new ArrayList<>();
+		
+		if(!mappa.isEmpty()) {
+			mappa.keySet().forEach(k -> {
+				if(k.equals(data.toString())) {
+					mappa.get(k).forEach(e -> {
+						list.add(e.getTavolo());
+					});
+				}
+			});
+		}
+		
+		
+		return list;
+		
+	}
+	
+	private List<Prenotazione> prenotazioni(LocalDate data, Periodo p){
+		
+		if(this.periodoAttuale.isEmpty()) {
+			this.prenotazioni = getPrenotazioni(p);
+			this.periodoAttuale = Optional.of(p);
+		}
+		
+		
+		
+		for (var entry : prenotazioni.entrySet()) {
+			if(entry.getKey().equals(data.toString())) {
+				return entry.getValue();
+				
+			}
+		}
+		
+		return new ArrayList<Prenotazione>();
 	}
 	
 }

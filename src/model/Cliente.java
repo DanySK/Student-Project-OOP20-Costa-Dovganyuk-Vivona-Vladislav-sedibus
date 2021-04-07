@@ -1,29 +1,34 @@
 package model;
 
-public interface Cliente {
+public class Cliente  {
 
-	/**
-	 * 
-	 * @return il nome del cliente
-	 */
-	String getNome();
+	private String nome;
+	private String cognome;
+	private String email;
+	private String nTelefono;
 	
-	/**
-	 * 
-	 * @return il cognome del cliente
-	 */
-	String getCognome();
+	public Cliente(String nomeCliente, String cognomeCliente, String emailCliente, String telefonoCliente) {
+		this.nome = nomeCliente;
+		this.cognome = cognomeCliente;
+		this.email = emailCliente;
+		this.nTelefono = telefonoCliente;
+	}
 	
-	/**
-	 * 
-	 * @return l'email del cliente
-	 */
-	String getEmail();
 	
-	/**
-	 * 
-	 * @return il numero di telefono del cliente
-	 */
-	String getTelefono();
+	public String getNome() {
+		return this.nome;
+	}
 	
+	public String getCognome() {
+		return this.cognome;
+	}
+	
+	public String getEmail() {
+		return this.email;
+	}
+
+	public String getTelefono() {
+		return this.nTelefono;
+	}
+
 }

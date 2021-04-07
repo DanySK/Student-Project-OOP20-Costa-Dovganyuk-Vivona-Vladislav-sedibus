@@ -19,8 +19,18 @@ public interface Ristorante {
 	 */
 	List<Tavolo> tavoliPrenotati(LocalDate date, Periodo p);
 	
+	/**
+	 * 
+	 * @param prenotazione
+	 * va a richiamare la funzione del gestore db per l'aggiunta della prenotazione al DB
+	 */
 	public void nuovaPrenotazione(PrenotazioneEstesa prenotazione);
 	
+	/**
+	 * 
+	 * @param p
+	 * @return la mappa delle prenotazioni di un certo Periodo p
+	 */
 	public Map<String,List<Prenotazione>> getPrenotazioni(Periodo p);
 	
 }

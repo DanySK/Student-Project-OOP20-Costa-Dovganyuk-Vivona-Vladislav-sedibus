@@ -3,7 +3,7 @@ package model;
 import java.time.LocalDate;
 
 
-public class PrenotazioneEstesa extends ImplPrenotazione {
+public class PrenotazioneEstesa extends Prenotazione {
 
 	private String data;
 	private Periodo periodo;
@@ -24,8 +24,5 @@ public class PrenotazioneEstesa extends ImplPrenotazione {
 	}
 	
 	
-	//ritorna la prenotazione base corrente
-	public Prenotazione getPrenotazione() {
-			return new ImplPrenotazione(getCodicePrenotazione(),getCliente(), getTavolo(), getPostiPrenotati());
-	}
+	
 }
