@@ -1,18 +1,34 @@
 {
   "2021-04-07": [
     {
-      "codicePrenotazione": "AA4433",
+      "codicePrenotazione": "AA2200",
       "cliente": {
-        "nome": "Roberta",
-        "cognome": "Lelli",
-        "email": "robbyLelli@gmail.com",
-        "nTelefono": "659845213"
+        "nome": "Mirko",
+        "cognome": "Viroli",
+        "email": "mirko.viroli@unibo.it",
+        "nTelefono": "326598485"
       },
       "tavolo": {
         "name": 3,
         "maxPosti": 4
       },
-      "nPostiPrenotati": 2
+      "nPostiPrenotati": 8
+    }
+  ],
+  "2021-04-08": [
+    {
+      "codicePrenotazione": "AA3200",
+      "cliente": {
+        "nome": "Mirko",
+        "cognome": "Viroli",
+        "email": "mirko.viroli@unibo.it",
+        "nTelefono": "326598485"
+      },
+      "tavolo": {
+        "name": 3,
+        "maxPosti": 4
+      },
+      "nPostiPrenotati": 8
     }
   ]
 }

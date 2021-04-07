@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 import model.ImplMainTableModel;
 import model.MainTableModel;
 import model.Periodo;
+import model.Utente;
 import view.LoaderAdminUserSelection;
 
 public class Controller implements Initializable {
@@ -29,36 +30,71 @@ public class Controller implements Initializable {
 	@FXML private AnchorPane paneTavoli;
 	private LocalDate ld = LocalDate.now();
 	private List<Button> listButton = new ArrayList<>();
+	private List<Button> listRedButton = new ArrayList<>();
 	private MainTableModel model = new ImplMainTableModel();
 	private Periodo periodo;
 	private boolean primaChiamata = true;
-
+	//boolean per la visualizzazione dei tavoli ROSSI
+	private boolean admin = false;
+	
 	
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-    	//setta la data del DatePicker = a quella corrente
     	
     	
     	setPeriodBox();
     	this.datePicker.setValue(ld);
     	
     	getIDTavoliPrenotati(ld, periodo);
+    	handlerTavolo();
     	
-    	//prelevare i bottoni dal fxml e colorarli di verde
-    	coloraTavoli();
+    	
         
     }
     
-    private void coloraTavoli() {
+   
+    
+    private void coloraTavoli(List<Integer> l) {
+  
     	this.paneTavoli.getChildren().forEach(e -> {
         	Button b = (Button)e;
-        	b.getStylesheets().add(TAVOLO_VERDE_STYLE_PATH);
-        	b.setOnAction(a->{
-        		System.out.println("Stato premuto il Tavolo " + b.getId());
-        	});
+        	
+        	b.getStylesheets().clear();
+        	this.listRedButton.clear();
+        	
+        	if(l.contains(Integer.parseInt(b.getId()))) {
+        		b.getStylesheets().add(TAVOLO_ROSSO_STYLE_PATH);
+        		listRedButton.add(b);
+        		
+        		if(!admin) {
+        			b.setDisable(true);
+        		}
+        		
+        	}else {
+        		b.setDisable(false);
+        		b.getStylesheets().add(TAVOLO_VERDE_STYLE_PATH);
+        	}
+        
+        	
         	this.listButton.add(b);
         });
     }
+    
+    private void handlerTavolo() {
+    	this.listButton.forEach(b -> {
+    		b.setOnAction(e -> {
+    			System.out.println("Stato premuto il Tavolo " + b.getId());
+    			
+    			if(this.listRedButton.contains(b) && admin) {
+    				//apro la view dell'admin
+    			}else {
+    				
+    			}
+    			
+    		});
+    	});
+    }
+   
     
     private void setPeriodBox() {
     	this.periodBox.getItems().addAll( Periodo.PRANZO, Periodo.CENA);
@@ -66,10 +102,13 @@ public class Controller implements Initializable {
     	this.periodo = this.periodBox.getValue();
     }
     
+    
+    
     private void getIDTavoliPrenotati(LocalDate data, Periodo p) {
-    	System.out.print("ID dei Tavoli prenotati");
+    	System.out.print("ID dei Tavoli prenotati - ");
     	System.out.println("Per la data " + data + " e Periodo: " + p);
-    	this.model.tavoliPrenotati(ld, periodo);
+    	//this.model.tavoliPrenotati(ld, periodo);
+    	coloraTavoli(this.model.tavoliPrenotati(ld, periodo));
     }
     
     public void dateHandler() {
@@ -79,11 +118,13 @@ public class Controller implements Initializable {
     
     public void handlerPeriodo() {
     	if(!this.primaChiamata) {
-	    	this.periodo = this.periodBox.getValue();
+	    	this.periodo = periodBox.getValue();
+	    	System.out.println("Valore del periodo scelto = " + this.periodo);
 	    	getIDTavoliPrenotati(ld, periodo);
     	}else {
     		this.primaChiamata = false;
     	}
+    	
     }
     
     public void tornaIndietroHandler() {

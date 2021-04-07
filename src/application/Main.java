@@ -1,6 +1,7 @@
 package application;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import dataBaseModel.GestoreDB;
@@ -8,8 +9,8 @@ import dataBaseModel.ImplGestoreDB;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import model.Cliente;
-import model.ClienteImpl;
-import model.ImplPrenotazione;
+import model.Cliente;
+import model.Prenotazione;
 import model.ImplRistorante;
 import model.Periodo;
 import model.Prenotazione;
@@ -21,7 +22,7 @@ import view.CercaPrenotazione;
 import view.CercaPrenotazioneImpl;
 import view.LoaderAdminUserSelection;
 import view.LoaderTableView;
-import model.ImplTavolo;
+import model.Tavolo;
 import model.MainTableModel;
 
 
@@ -66,8 +67,8 @@ public class Main {
 		 * 			Carico la view, e lei si occupa di caricare il controller
 		 */
 		
-		//LoaderTableView view = new LoaderTableView();
-		//view.loadView(Utente.ADMIN);
+		LoaderTableView view = new LoaderTableView();
+		view.loadView(Utente.ADMIN);
 		
 		/*
 		CercaPrenotazione p = new CercaPrenotazioneImpl();
@@ -90,23 +91,38 @@ public class Main {
 		db.creazionePrenotazione(prenotazione1);
 		*/
 		
+		
+		
 		GestoreDB db = new ImplGestoreDB();
 				
 		Ristorante risto = new ImplRistorante();
+		List<Cliente> list = new ArrayList<>();
 		
-		Cliente p1 = new ClienteImpl("Mirko", "Viroli", "mirko.viroli@unibo.it","326598485");
-		Cliente p2 = new ClienteImpl("Roberta", "Lelli", "robbyLelli@gmail.com","659845213");
-		Cliente p3 = new ClienteImpl("Franco", "Renzi", "RenziFranco@gmail.com","2130548787");
 		
-		Tavolo t1 = new ImplTavolo(1, 8);
-		Tavolo t2 = new ImplTavolo(2,10);
-		Tavolo t3 = new ImplTavolo(3, 4);
+		Cliente p1 = new Cliente("Mirko", "Viroli", "mirko.viroli@unibo.it","326598485");
+		Cliente p2 = new Cliente("Roberta", "Lelli", "robbyLelli@gmail.com","659845213");
+		Cliente p3 = new Cliente("Franco", "Renzi", "RenziFranco@gmail.com","2130548787");
+		list.add(p1);
+		list.add(p2);
+		list.add(p3);
 		
-		LocalDate data = LocalDate.parse("2021-04-07");
+		//System.out.println(list.toString());
 		
-		PrenotazioneEstesa prenotazione1 = new PrenotazioneEstesa(Periodo.PRANZO, data,"AA1100", p1, t2, 8);
+		Tavolo t1 = new Tavolo(1, 8);
+		Tavolo t2 = new Tavolo(2,10);
+		Tavolo t3 = new Tavolo(3, 4);
 		
-		risto.nuovaPrenotazione(prenotazione1);
+		LocalDate data = LocalDate.parse("2021-04-08");
+		
+		PrenotazioneEstesa prenotazione1 = new PrenotazioneEstesa(Periodo.CENA, data,"AA3200", p1, t3, 8);
+		
+		//risto.nuovaPrenotazione(prenotazione1);
+		
+		//db.getMapPrenotazioni(Periodo.PRANZO);
+		
+		
+		
+		//risto.nuovaPrenotazione(prenotazione1);
 		
 		
 	}
