@@ -19,9 +19,14 @@ public class ImplMainTableModel implements MainTableModel {
 	@Override
 	public List<Integer> tavoliPrenotati(LocalDate date, Periodo p) {
 		List<Integer> listaID = new ArrayList<>();
-		ristorante.tavoliPrenotati(date, p).forEach(t -> {
+		/*ristorante.tavoliPrenotati(date, p).forEach(t -> {
+			listaID.add(t.getName());
+		});*/
+		ristorante.tavoliPrenotati(date, p).forEach(t ->{
+			System.out.println("ID tavolo: " + t.getName() );
 			listaID.add(t.getName());
 		});
+		
 		return listaID;
 	}
 

@@ -9,6 +9,7 @@ import java.util.Set;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import model.MainTableModel;
+import model.Utente;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -20,8 +21,16 @@ import javafx.fxml.FXMLLoader;
 public class LoaderTableView extends Application {
 	
 	private static final int PROPORTION = 2;
+	private static Utente utente;
 	
-	public void loadView() {
+	/*
+	public LoaderTableView(Utente utente) {
+		this.utente = utente;
+	}
+	*/
+	
+	public void loadView(Utente utente) {
+		this.utente = utente;
 		launch();
 	}
 	
@@ -38,7 +47,7 @@ public class LoaderTableView extends Application {
             final Scene scene = new Scene(root);
             
             //final Scene scene = new Scene(root, sw / PROPORTION, sh / PROPORTION);
-            primaryStage.setTitle("Table Top View");
+            primaryStage.setTitle("Visione Tavoli-" + this.utente);
 	        primaryStage.setScene(scene);
 	        primaryStage.show();
 	        
