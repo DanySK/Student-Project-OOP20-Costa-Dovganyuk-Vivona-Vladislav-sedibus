@@ -13,9 +13,9 @@
          <children>
             <AnchorPane fx:id="paneData" style="-fx-background-color: White; -fx-border-color: Grey;">
                <children>
-                  <DatePicker fx:id="datePicker" editable="false" layoutX="14.0" onAction="#dateHandler" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <DatePicker fx:id="datePicker" editable="false" layoutX="14.0" onAction="#topMenuHandler" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0" />
                   <Button layoutX="692.0" mnemonicParsing="false" onAction="#tornaIndietroHandler" text="Torna Indietro" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                  <ChoiceBox fx:id="periodBox" layoutX="330.0" onAction="#handlerPeriodo" prefWidth="150.0" AnchorPane.topAnchor="0.0" />
+                  <ChoiceBox fx:id="periodBox" layoutX="330.0" onAction="#topMenuHandler" prefWidth="150.0" AnchorPane.topAnchor="0.0" />
                </children>
                <padding>
                   <Insets bottom="10.0" left="8.0" right="5.0" top="10.0" />

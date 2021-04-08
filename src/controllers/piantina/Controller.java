@@ -28,7 +28,7 @@ public class Controller implements Initializable {
 	@FXML private DatePicker datePicker;
 	@FXML private ChoiceBox<Periodo> periodBox;
 	@FXML private AnchorPane paneTavoli;
-	private LocalDate ld = LocalDate.now();
+	private LocalDate localDate = LocalDate.now() ;
 	private List<Button> listButton = new ArrayList<>();
 	private List<Button> listRedButton = new ArrayList<>();
 	private MainTableModel model = new ImplMainTableModel();
@@ -38,18 +38,18 @@ public class Controller implements Initializable {
 	private boolean admin = false;
 	
 	
+	public Controller() {
+		
+	}
+	
     @Override
     public void initialize(URL location, ResourceBundle resources) {
     	
-    	
     	setPeriodBox();
-    	this.datePicker.setValue(ld);
-    	
-    	getIDTavoliPrenotati(ld, periodo);
+    	this.datePicker.setValue(localDate);
+    	getIDTavoliPrenotati(this.localDate, this.periodo);
     	handlerTavolo();
-    	
-    	
-        
+
     }
     
    
@@ -96,8 +96,18 @@ public class Controller implements Initializable {
     }
    
     
+    public void topMenuHandler() {
+    	if(this.primaChiamata) {
+    		this.primaChiamata = false;
+    	}else {
+    		this.periodo = this.periodBox.getValue();
+	    	this.localDate = this.datePicker.getValue() == null ? LocalDate.now() : this.datePicker.getValue();
+	    	getIDTavoliPrenotati(localDate, periodo);
+    	}
+    }
+    
     private void setPeriodBox() {
-    	this.periodBox.getItems().addAll( Periodo.PRANZO, Periodo.CENA);
+    	this.periodBox.getItems().addAll(Periodo.PRANZO, Periodo.CENA);
     	this.periodBox.setValue(Periodo.PRANZO);
     	this.periodo = this.periodBox.getValue();
     }
@@ -107,25 +117,15 @@ public class Controller implements Initializable {
     private void getIDTavoliPrenotati(LocalDate data, Periodo p) {
     	System.out.print("ID dei Tavoli prenotati - ");
     	System.out.println("Per la data " + data + " e Periodo: " + p);
-    	//this.model.tavoliPrenotati(ld, periodo);
-    	coloraTavoli(this.model.tavoliPrenotati(ld, periodo));
-    }
-    
-    public void dateHandler() {
-    	this.ld = datePicker.getValue();
-    	getIDTavoliPrenotati(ld, periodo);
-    }
-    
-    public void handlerPeriodo() {
-    	if(!this.primaChiamata) {
-	    	this.periodo = periodBox.getValue();
-	    	System.out.println("Valore del periodo scelto = " + this.periodo);
-	    	getIDTavoliPrenotati(ld, periodo);
+    	
+    	if(primaChiamata) {
+    		primaChiamata = false;
     	}else {
-    		this.primaChiamata = false;
+    		coloraTavoli(this.model.tavoliPrenotati(localDate, periodo));	
     	}
     	
     }
+    
     
     public void tornaIndietroHandler() {
     	LoaderAdminUserSelection view = new LoaderAdminUserSelection();

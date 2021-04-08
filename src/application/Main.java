@@ -89,7 +89,7 @@ public class Main {
 		*/
 		
 		
-		
+		/*
 		GestoreDB db = new ImplGestoreDB();
 				
 		Ristorante risto = new ImplRistorante();
@@ -112,6 +112,7 @@ public class Main {
 		LocalDate data = LocalDate.parse("2021-04-08");
 		
 		PrenotazioneEstesa prenotazione1 = new PrenotazioneEstesa(Periodo.CENA, data,"AA3200", p1, t3, 8);
+		*/
 		
 		//risto.nuovaPrenotazione(prenotazione1);
 		
