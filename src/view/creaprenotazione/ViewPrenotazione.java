@@ -1,4 +1,4 @@
-package view;
+package view.creaprenotazione;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -30,7 +30,7 @@ public class ViewPrenotazione {
 			Parent root = loader.load();
 			Scene scene = new Scene(root);
 			primaryStage.setScene(scene);
-			primaryStage.setResizable(false);  //così non si trascinano più i bordi
+			primaryStage.setResizable(false);  //cosï¿½ non si trascinano piï¿½ i bordi
 			primaryStage.show();
 		} catch (IOException e) {
 			e.printStackTrace();

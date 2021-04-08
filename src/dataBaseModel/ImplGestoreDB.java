@@ -26,13 +26,11 @@ import com.google.gson.JsonIOException;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonWriter;
 
-import model.Cliente;
-import model.Cliente;
-import model.Prenotazione;
-import model.Periodo;
-import model.Prenotazione;
-import model.PrenotazioneEstesa;
-import model.Tavolo;
+import model.utili.Cliente;
+import model.piantina.Prenotazione;
+import model.utili.Periodo;
+import model.piantina.PrenotazioneEstesa;
+import model.piantina.Tavolo;
 
 public class ImplGestoreDB implements GestoreDB {
 
@@ -84,11 +82,11 @@ public class ImplGestoreDB implements GestoreDB {
 		return p.equals(Periodo.PRANZO) ? PRANZO_FILE_PATH : CENA_FILE_PATH;
 	}
 
-	// ritorna la mappa dove la chiave è la data(in formato Stringa) e la lista
+	// ritorna la mappa dove la chiave ï¿½ la data(in formato Stringa) e la lista
 	// associata alla data
 	public Map<String, List<Prenotazione>> getMapPrenotazioni(Periodo p) {
 
-		// variabile "nuova" che conterrà la mappa aggiornata
+		// variabile "nuova" che conterrï¿½ la mappa aggiornata
 		Map<String, List<Prenotazione>> mappa = new HashMap<>();
 		
 		
@@ -105,7 +103,7 @@ public class ImplGestoreDB implements GestoreDB {
 			//Type type = new TypeToken<Map<String, List<Prenotazione>>>(){}.getType();
 			Type type = new TypeToken<Map<String, List<Prenotazione>>>(){}.getType();
 			Map<String, List<Prenotazione>> map =  gson.fromJson(reader, type) ;
-			//se il file è vuoto il map sara null e non empty
+			//se il file ï¿½ vuoto il map sara null e non empty
 			mappa = map == null ? mappa : map;
 
 			reader.close();
@@ -149,7 +147,7 @@ public class ImplGestoreDB implements GestoreDB {
 			map.get(prenotazione.getLocalData()).add(prenotazione.getPrenotazione());
 		}
 		
-		// nel set delle chiavi controllo se non è gia presente la data della
+		// nel set delle chiavi controllo se non ï¿½ gia presente la data della
 		// prenotazione
 		/*
 		 * if(map.keySet().contains(prenotazione.getData())) { //se la
@@ -222,11 +220,11 @@ public class ImplGestoreDB implements GestoreDB {
 	 * PRANZO_FILE_PATH : CENA_FILE_PATH; }
 	 * 
 	 * 
-	 * // ritorna la mappa dove la chiave è la data(in formato Stringa) e la lista
+	 * // ritorna la mappa dove la chiave ï¿½ la data(in formato Stringa) e la lista
 	 * // associata alla data public Map<String, List<Prenotazione>>
 	 * getMapPrenotazioni(Periodo p) {
 	 * 
-	 * // variabile "nuova" che conterrà la mappa aggiornata Map<String,
+	 * // variabile "nuova" che conterrï¿½ la mappa aggiornata Map<String,
 	 * List<Prenotazione>> mappa = new HashMap<>();
 	 * 
 	 * 
@@ -246,7 +244,7 @@ public class ImplGestoreDB implements GestoreDB {
 	 * 
 	 * Map<String, List<Prenotazione>> map = gson.fromJson(reader, new
 	 * TypeToken<Map<String, List<ImplPrenotazione>>>(){}.getType()) ; //se il file
-	 * è vuoto il map sara null e non empty mappa = map == null ? mappa : map;
+	 * ï¿½ vuoto il map sara null e non empty mappa = map == null ? mappa : map;
 	 * 
 	 * 
 	 * 
@@ -265,7 +263,7 @@ public class ImplGestoreDB implements GestoreDB {
 	 * Type type = new TypeToken<Map<String, List<Prenotazione>>>(){}.getType();
 	 * 
 	 * Map<String, List<Prenotazione>> map = gson.fromJson(reader, type); //se il
-	 * file è vuoto il map sara null e non empty mappa = map == null ? mappa : map;
+	 * file ï¿½ vuoto il map sara null e non empty mappa = map == null ? mappa : map;
 	 * 
 	 * reader.close();
 	 * 

@@ -1,4 +1,4 @@
-package view;
+package view.piantina;
 	
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -8,8 +8,8 @@ import java.util.Set;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
-import model.MainTableModel;
-import model.Utente;
+import model.piantina.MainTableModel;
+import model.utili.Utente;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;

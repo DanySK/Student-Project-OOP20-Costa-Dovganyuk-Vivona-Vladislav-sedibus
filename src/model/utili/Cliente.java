@@ -1,4 +1,4 @@
-package model;
+package model.utili;
 
 public class Cliente  {
 

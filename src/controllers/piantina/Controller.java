@@ -1,4 +1,4 @@
-package controllers;
+package controllers.piantina;
 
 import java.net.URL;
 import java.time.LocalDate;
@@ -13,11 +13,11 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.MenuButton;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import model.ImplMainTableModel;
-import model.MainTableModel;
-import model.Periodo;
-import model.Utente;
-import view.LoaderAdminUserSelection;
+import model.piantina.ImplMainTableModel;
+import model.piantina.MainTableModel;
+import model.utili.Periodo;
+import model.utili.Utente;
+import view.adminuser.LoaderAdminUserSelection;
 
 public class Controller implements Initializable {
 

@@ -1,4 +1,4 @@
-package model;
+package model.creaprenotazione;
 
 import java.util.Random;
 import java.util.regex.Matcher;

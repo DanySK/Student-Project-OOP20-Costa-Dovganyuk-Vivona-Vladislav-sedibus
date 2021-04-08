@@ -8,22 +8,19 @@ import dataBaseModel.GestoreDB;
 import dataBaseModel.ImplGestoreDB;
 import javafx.application.Application;
 import javafx.stage.Stage;
-import model.Cliente;
-import model.Cliente;
-import model.Prenotazione;
-import model.ImplRistorante;
-import model.Periodo;
-import model.Prenotazione;
-import model.PrenotazioneEstesa;
-import model.Ristorante;
-import model.Tavolo;
-import model.Utente;
-import view.CercaPrenotazione;
-import view.CercaPrenotazioneImpl;
-import view.LoaderAdminUserSelection;
-import view.LoaderTableView;
-import model.Tavolo;
-import model.MainTableModel;
+import model.utili.Cliente;
+import model.piantina.Prenotazione;
+import model.piantina.ImplRistorante;
+import model.utili.Periodo;
+import model.piantina.PrenotazioneEstesa;
+import model.piantina.Ristorante;
+import model.piantina.Tavolo;
+import model.utili.Utente;
+import view.cercaprenotazione.CercaPrenotazione;
+import view.cercaprenotazione.CercaPrenotazioneImpl;
+import view.adminuser.LoaderAdminUserSelection;
+import view.piantina.LoaderTableView;
+import model.piantina.MainTableModel;
 
 
 public class Main {

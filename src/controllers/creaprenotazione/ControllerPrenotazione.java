@@ -1,7 +1,7 @@
-package controllers;
+package controllers.creaprenotazione;
 
-import model.ModelPrenotazione;
-import view.ViewPrenotazione;
+import model.creaprenotazione.ModelPrenotazione;
+import view.creaprenotazione.ViewPrenotazione;
 
 public class ControllerPrenotazione {
 	
