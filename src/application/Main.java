@@ -68,6 +68,7 @@ public class Main {
 		 */
 		
 		LoaderTableView view = new LoaderTableView();
+		view.setUser(Utente.ADMIN);
 		view.loadView(Utente.ADMIN);
 		
 		/*
