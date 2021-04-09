@@ -1,4 +1,4 @@
-package controllers;
+package controllers.adminuser;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;

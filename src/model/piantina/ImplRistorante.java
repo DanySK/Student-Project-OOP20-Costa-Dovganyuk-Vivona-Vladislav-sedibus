@@ -1,4 +1,4 @@
-package model;
+package model.piantina;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -20,6 +20,7 @@ import com.google.gson.Gson;
 
 import dataBaseModel.GestoreDB;
 import dataBaseModel.ImplGestoreDB;
+import model.utili.Periodo;
 
 public class ImplRistorante implements Ristorante {
 

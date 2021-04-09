@@ -4,10 +4,9 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
-import model.Prenotazione;
-import model.Periodo;
-import model.Prenotazione;
-import model.PrenotazioneEstesa;
+import model.piantina.Prenotazione;
+import model.utili.Periodo;
+import model.piantina.PrenotazioneEstesa;
 
 public interface GestoreDB {
 

@@ -1,4 +1,4 @@
-package model;
+package model.cercaprenotazione;
 
 public class ModelCercaPrenotazioneImpl implements ModelCercaPrenotazione {
 

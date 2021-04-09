@@ -1,7 +1,7 @@
-package controllers;
+package controllers.cercaprenotazione;
 
-import model.ModelCercaPrenotazione;
-import view.CercaPrenotazione;
+import model.cercaprenotazione.ModelCercaPrenotazione;
+import view.cercaprenotazione.CercaPrenotazione;
 
 public class ControllerCercaPrenotazione {
 

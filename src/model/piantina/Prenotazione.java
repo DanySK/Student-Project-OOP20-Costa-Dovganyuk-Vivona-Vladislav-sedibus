@@ -1,5 +1,6 @@
-package model;
+package model.piantina;
 
+import model.utili.Cliente;
 
 public class Prenotazione  {
 

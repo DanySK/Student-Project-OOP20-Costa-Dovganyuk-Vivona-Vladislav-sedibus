@@ -1,8 +1,10 @@
-package model;
+package model.piantina;
 
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
+
+import model.utili.Periodo;
 
 public interface Ristorante {
 
