@@ -1,29 +1,62 @@
 package controllers.cercaprenotazione;
 
+import java.net.URL;
+import java.util.Optional;
+import java.util.ResourceBundle;
+
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.*;
 import model.cercaprenotazione.ModelCercaPrenotazione;
-import view.cercaprenotazione.CercaPrenotazione;
+import model.cercaprenotazione.ModelCercaPrenotazioneImpl;
+import model.utili.Periodo;
 
-public class ControllerCercaPrenotazione {
+public class ControllerCercaPrenotazione implements Initializable {
 
-	private CercaPrenotazione vista;
-	private ModelCercaPrenotazione modello;
+	@FXML private TextField testoCodice;
+	@FXML private TextField testoCognome;
+	@FXML private Label testoErrore;
+	@FXML private ToggleGroup turno;
+	private ModelCercaPrenotazione modello = new ModelCercaPrenotazioneImpl();
 	
 	public ControllerCercaPrenotazione() {
-		
 	}
 	
-	public void gestisciEventi() {
-		this.vista.getBottoneAnnulla().setOnAction(e -> {
-			this.vista.precedentePagina();
-		});
-		
-		this.vista.getBottoneConferma().setOnAction(e -> {
-			if(this.modello.cercaDati(this.vista.getCodice(), this.vista.getCognome())) {
-				this.vista.prossimaPagina();
-			} else {
-				this.vista.datiIncorretti();
-			}
-		});
+	public void handlerConferma() {
+		if(this.sceltaTurno().isPresent() && this.modello.cercaDati(this.testoCodice.getText(), 
+																	this.testoCognome.getText(), 
+																	this.getTurno())) {
+			//va alla prossima pagina -> modifica prenotazione
+		} else {
+			this.datiIncorretti(true);
+		}
+	}
+	
+	public void handlerAnnulla() {
+		//va alla pagina precedente
+	}
+
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		this.testoCodice.clear();
+		this.testoCognome.clear();
+		this.datiIncorretti(false);
+	}
+	
+	private void datiIncorretti(boolean visibile) {
+		this.testoErrore.setVisible(visibile);
+	}
+	
+	private RadioButton turnoSelezionato() {
+		return (RadioButton)this.turno.getSelectedToggle();
+	}
+	
+	private Periodo getTurno() {
+		return this.turnoSelezionato().getText().equals("Pranzo") ? Periodo.PRANZO : Periodo.CENA;
+	}
+	
+	private Optional<RadioButton> sceltaTurno() {
+		return Optional.ofNullable(this.turnoSelezionato());
 	}
 	
 }
