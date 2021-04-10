@@ -66,6 +66,7 @@ public class Main {
 		
 		LoaderTableView view = new LoaderTableView();
 		view.loadView(Utente.ADMIN);
+		//view.start(new Stage());
 		
 		/*
 		CercaPrenotazione p = new CercaPrenotazioneImpl();

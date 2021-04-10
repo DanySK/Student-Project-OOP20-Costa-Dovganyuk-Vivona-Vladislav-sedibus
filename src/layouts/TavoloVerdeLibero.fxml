@@ -7,12 +7,11 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
 
-
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="255.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.piantina.ControllerTavoloLibero">
+<VBox fx:id="vBoxPrincipale" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="255.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.piantina.ControllerTavoloLibero">
    <children>
       <TextFlow prefHeight="56.0" prefWidth="600.0" style="-fx-background-color: #E5FFEA; -fx-border-color: #00DF2D;" textAlignment="CENTER">
          <children>
-            <Text fill="#00df2d" strokeType="OUTSIDE" strokeWidth="0.0" text="Tavolo #ID - LIBERO" textAlignment="CENTER">
+            <Text fx:id="testoSuperiore" fill="#00df2d" strokeType="OUTSIDE" strokeWidth="0.0" text="" textAlignment="CENTER">
                <font>
                   <Font name="Segoe UI Light" size="36.0" />
                </font>
@@ -21,16 +20,26 @@
       </TextFlow>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #E5FFEA; -fx-border-color: #9EFF97;">
          <children>
-            <Button id="buttonConferma" layoutX="59.0" layoutY="61.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="177.0" text="CONFERMA" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="60.0">
+            <Button fx:id="buttonConferma" onAction="#handlerConferma" layoutX="59.0" layoutY="61.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="177.0" style="-fx-background-color: #9EFF97; -fx-border-color: #00DF2D;" text="CONFERMA" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="60.0">
                <font>
                   <Font name="Segoe UI Symbol" size="22.0" />
                </font>
             </Button>
-            <Button id="buttonAnnulla" layoutX="371.0" layoutY="60.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="177.0" text="ANNULLA" AnchorPane.bottomAnchor="70.0" AnchorPane.rightAnchor="60.0">
+            <Button onAction="#handlerAnnulla" layoutX="371.0" layoutY="60.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="177.0" style="-fx-background-color: #9EFF97; -fx-border-color: #00DF2D;" text="ANNULLA" AnchorPane.bottomAnchor="70.0" AnchorPane.rightAnchor="60.0">
                <font>
                   <Font name="Segoe UI Symbol" size="22.0" />
                </font>
             </Button>
+            <Text fx:id="testoPeriodo" layoutX="258.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" text="" textAlignment="CENTER" wrappingWidth="84.0">
+               <font>
+                  <Font name="Segoe UI Light" size="16.0" />
+               </font>
+            </Text>
+            <Text fx:id="testoData" layoutX="258.0" layoutY="174.0" strokeType="OUTSIDE" strokeWidth="0.0" text="" textAlignment="CENTER" wrappingWidth="84.0">
+               <font>
+                  <Font name="Segoe UI Light" size="16.0" />
+               </font>
+            </Text>
          </children>
       </AnchorPane>
    </children>
