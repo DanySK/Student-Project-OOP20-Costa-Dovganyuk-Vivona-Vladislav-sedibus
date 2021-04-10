@@ -1,47 +1,35 @@
 package view.cercaprenotazione;
 
-import javafx.scene.control.Button;
+import java.io.IOException;
 
-public interface CercaPrenotazione {
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
+public class CercaPrenotazione extends Application  {
+
+	private static final String PERC_SCENA = "/layouts/CercaPrenotazione.fxml";
 	
-	/**
-	 * mostra la schermata per cercare una prenotazione
-	 */
-	void inizia();
+	public CercaPrenotazione() {}
 	
-	/**
-	 * mostra il messaggio di errore nella schermata
-	 */
-	void datiIncorretti();
-	
-	/**
-	 * permette di collegarsi alla schermata riepilogativa
-	 */
-	void prossimaPagina();
-	
-	/**
-	 * permette di collegarsi alla schermata precedente a questa
-	 */
-	void precedentePagina();
-	
-	/**
-	 * @return il codice inserito dall'utente
-	 */
-	String getCodice();
-	
-	/**
-	 * @return il cognome inserito dal'utente
-	 */
-	String getCognome();
-	
-	/**
-	 * @return il bottone che conferma i dati inseriti
-	 */
-	Button getBottoneConferma();
-	
-	/**
-	 * @return il bottone che riporta alla schermata precedente
-	 */
-	Button getBottoneAnnulla();
-	
+	public void inizia() {
+		launch();
+	}
+
+	@Override
+	public void start(Stage scenaPrimaria) throws Exception {
+		final FXMLLoader caricatore = new FXMLLoader(getClass().getResource(PERC_SCENA));
+		try {
+			Parent radice = caricatore.load();
+			final Scene miaScena = new Scene(radice);
+			scenaPrimaria.setScene(miaScena);
+			scenaPrimaria.setResizable(false);
+			scenaPrimaria.show();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
 }

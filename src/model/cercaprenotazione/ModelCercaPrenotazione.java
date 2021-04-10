@@ -1,5 +1,7 @@
 package model.cercaprenotazione;
 
+import model.utili.Periodo;
+
 public interface ModelCercaPrenotazione {
 
 	/**
@@ -8,6 +10,6 @@ public interface ModelCercaPrenotazione {
 	 * @param cognome è il cognome che il cliente ha inserito, quindi da cercare
 	 * @return vero se li ha trovati, falso altrimenti
 	 */
-	boolean cercaDati(String codice, String cognome);
+	boolean cercaDati(String codice, String cognome, Periodo turno);
 	
 }

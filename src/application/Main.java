@@ -17,7 +17,7 @@ import model.piantina.Ristorante;
 import model.piantina.Tavolo;
 import model.utili.Utente;
 import view.cercaprenotazione.CercaPrenotazione;
-import view.cercaprenotazione.CercaPrenotazioneImpl;
+import view.cercaprenotazione.CercaPrenotazione;
 import view.adminuser.LoaderAdminUserSelection;
 import view.piantina.LoaderTableView;
 import model.piantina.MainTableModel;
@@ -64,9 +64,11 @@ public class Main {
 		 * 			Carico la view, e lei si occupa di caricare il controller
 		 */
 		
-		LoaderTableView view = new LoaderTableView();
-		view.loadView(Utente.ADMIN);
+		/*LoaderTableView view = new LoaderTableView();
+		view.loadView(Utente.ADMIN);*/
 		
+		CercaPrenotazione cp = new CercaPrenotazione();
+		cp.inizia();
 		/*
 		CercaPrenotazione p = new CercaPrenotazioneImpl();
 		p.inizia();
