@@ -27,6 +27,7 @@ public class ControllerCercaPrenotazione implements Initializable {
 																	this.testoCognome.getText(), 
 																	this.getTurno())) {
 			//va alla prossima pagina -> modifica prenotazione
+			System.out.println("TROVATA!");
 		} else {
 			this.datiIncorretti(true);
 		}
