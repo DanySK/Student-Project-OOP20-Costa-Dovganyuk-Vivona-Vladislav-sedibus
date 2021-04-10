@@ -40,9 +40,9 @@ public class Prenotazione  {
 	}
 
 	//ritorna la prenotazione base corrente
-		public Prenotazione getPrenotazione() {
-				return new Prenotazione(getCodicePrenotazione(),getCliente(), getTavolo(), getPostiPrenotati());
-		}
+	public Prenotazione getPrenotazione() {
+		return new Prenotazione(getCodicePrenotazione(),getCliente(), getTavolo(), getPostiPrenotati());
+	}
 	
 
 }

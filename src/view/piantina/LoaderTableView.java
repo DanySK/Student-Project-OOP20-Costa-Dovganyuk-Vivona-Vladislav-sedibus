@@ -17,6 +17,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
+import javafx.scene.text.Text;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 
@@ -25,17 +26,18 @@ public class LoaderTableView extends Application {
 	
 	private static final int PROPORTION = 2;
 	private static Utente utente;
-	@FXML TextField typeUser;
+	private Text testoUtente;
 	private boolean admin;
+	
 	
 	/*
 	public LoaderTableView(Utente utente) {
-		this.utente = utente;
+		LoaderTableView.utente = utente;
 	}
 	*/
 	
 	public void loadView(Utente utente) {
-		
+		LoaderTableView.utente = utente;
 		launch();
 	}
 	
@@ -51,10 +53,13 @@ public class LoaderTableView extends Application {
             final int sh = (int) screen.getHeight();
             final Scene scene = new Scene(root);
             
+            this.testoUtente = (Text) loader.getNamespace().get("testoUtente");
+            this.testoUtente.setText(LoaderTableView.utente.toString());
+            
             //setTextField(typeUser);
             
             //final Scene scene = new Scene(root, sw / PROPORTION, sh / PROPORTION);
-            primaryStage.setTitle("Visione Tavoli-" + LoaderTableView.utente);
+            primaryStage.setTitle("Visione Tavoli - " + LoaderTableView.utente);
 	        primaryStage.setScene(scene);
 	        primaryStage.show();
 	        
@@ -68,20 +73,9 @@ public class LoaderTableView extends Application {
 	}
 	
 
-	public void setUser(Utente u) {
-		LoaderTableView.utente = u;
-		
-		if(u.equals(Utente.ADMIN)) {
-			admin = true;
-		}else {
-			admin = false;
-		}
-		
-	}
 	
-	private void setTextField(TextField field) {
-		field.setText(LoaderTableView.utente.toString());
-	}
+	
+	
 	
 	
 }
