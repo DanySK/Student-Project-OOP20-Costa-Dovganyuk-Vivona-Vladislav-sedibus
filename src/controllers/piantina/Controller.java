@@ -5,6 +5,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+
+import com.sun.javafx.scene.control.inputmap.KeyBinding.OptionalBoolean;
+
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -28,6 +31,8 @@ public class Controller implements Initializable {
 	@FXML private DatePicker datePicker;
 	@FXML private ChoiceBox<Periodo> periodBox;
 	@FXML private AnchorPane paneTavoli;
+	@FXML private AnchorPane paneData;
+	
 	private LocalDate localDate = LocalDate.now() ;
 	private List<Button> listButton = new ArrayList<>();
 	private List<Button> listRedButton = new ArrayList<>();
@@ -35,27 +40,36 @@ public class Controller implements Initializable {
 	private Periodo periodo;
 	private boolean primaChiamata = true;
 	//boolean per la visualizzazione dei tavoli ROSSI
-	private boolean admin = false;
+	private boolean admin ;
+	private Utente user = Utente.UNSET;
 	
 	
 	public Controller() {
 		
 	}
 	
+	
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+    	
     	
     	setPeriodBox();
     	this.datePicker.setValue(localDate);
     	getIDTavoliPrenotati(this.localDate, this.periodo);
     	handlerTavolo();
+    	
+    	
 
     }
     
-   
+    private void setUser() {
+    	System.out.println(this.datePicker.getScene().getUserData());
+    }
+    
     
     private void coloraTavoli(List<Integer> l) {
-  
+    	
+    	
     	this.paneTavoli.getChildren().forEach(e -> {
         	Button b = (Button)e;
         	
@@ -74,7 +88,6 @@ public class Controller implements Initializable {
         		b.setDisable(false);
         		b.getStylesheets().add(TAVOLO_VERDE_STYLE_PATH);
         	}
-        
         	
         	this.listButton.add(b);
         });
@@ -116,14 +129,9 @@ public class Controller implements Initializable {
     
     private void getIDTavoliPrenotati(LocalDate data, Periodo p) {
     	System.out.print("ID dei Tavoli prenotati - ");
-    	System.out.println("Per la data " + data + " e Periodo: " + p);
-    	
-    	if(primaChiamata) {
-    		primaChiamata = false;
-    	}else {
-    		coloraTavoli(this.model.tavoliPrenotati(localDate, periodo));	
-    	}
-    	
+    	System.out.println("Per la data " + data + " e Periodo: " + p);    		
+    	coloraTavoli(this.model.tavoliPrenotati(localDate, periodo));	
+
     }
     
     

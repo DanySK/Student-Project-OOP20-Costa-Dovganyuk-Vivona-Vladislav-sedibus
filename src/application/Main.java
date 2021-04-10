@@ -64,9 +64,6 @@ public class Main {
 		 * 			Carico la view, e lei si occupa di caricare il controller
 		 */
 		
-		/*LoaderTableView view = new LoaderTableView();
-		view.loadView(Utente.ADMIN);*/
-		
 		CercaPrenotazione cp = new CercaPrenotazione();
 		cp.inizia();
 		/*
