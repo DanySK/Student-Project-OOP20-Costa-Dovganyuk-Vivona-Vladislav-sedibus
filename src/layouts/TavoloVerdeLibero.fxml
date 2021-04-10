@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.TextFlow?>
+
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="255.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.piantina.ControllerTavoloLibero">
+   <children>
+      <TextFlow prefHeight="56.0" prefWidth="600.0" style="-fx-background-color: #E5FFEA; -fx-border-color: #00DF2D;" textAlignment="CENTER">
+         <children>
+            <Text fill="#00df2d" strokeType="OUTSIDE" strokeWidth="0.0" text="Tavolo #ID - LIBERO" textAlignment="CENTER">
+               <font>
+                  <Font name="Segoe UI Light" size="36.0" />
+               </font>
+            </Text>
+         </children>
+      </TextFlow>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #E5FFEA; -fx-border-color: #9EFF97;">
+         <children>
+            <Button id="buttonConferma" layoutX="59.0" layoutY="61.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="177.0" text="CONFERMA" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="60.0">
+               <font>
+                  <Font name="Segoe UI Symbol" size="22.0" />
+               </font>
+            </Button>
+            <Button id="buttonAnnulla" layoutX="371.0" layoutY="60.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="177.0" text="ANNULLA" AnchorPane.bottomAnchor="70.0" AnchorPane.rightAnchor="60.0">
+               <font>
+                  <Font name="Segoe UI Symbol" size="22.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+   </children>
+</VBox>
