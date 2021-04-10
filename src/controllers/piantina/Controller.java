@@ -100,7 +100,7 @@ public class Controller implements Initializable {
     			
     			if(this.listRedButton.contains(b) && admin) {
     				//apro la view dell'admin
-    			}else {
+    			}else{
     				
     			}
     			

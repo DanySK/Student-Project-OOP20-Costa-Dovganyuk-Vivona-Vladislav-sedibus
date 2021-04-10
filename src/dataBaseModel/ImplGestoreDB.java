@@ -103,7 +103,7 @@ public class ImplGestoreDB implements GestoreDB {
 			//Type type = new TypeToken<Map<String, List<Prenotazione>>>(){}.getType();
 			Type type = new TypeToken<Map<String, List<Prenotazione>>>(){}.getType();
 			Map<String, List<Prenotazione>> map =  gson.fromJson(reader, type) ;
-			//se il file � vuoto il map sara null e non empty
+			//se il file e vuoto il map sara null e non empty
 			mappa = map == null ? mappa : map;
 
 			reader.close();
@@ -126,17 +126,6 @@ public class ImplGestoreDB implements GestoreDB {
 		// elemento
 		var map = getMapPrenotazioni(prenotazione.getPeriodo());
 		
-		/*
-		if(map.isEmpty()) {
-			map.put(prenotazione.getData(), Arrays.asList(prenotazione.getPrenotazione()));
-		}else {
-			if(map.keySet().contains(prenotazione.getData())) {
-				map.get(prenotazione.getData()).add(prenotazione.getPrenotazione());
-			}else {
-				map.put(prenotazione.getData(), Arrays.asList(prenotazione.getPrenotazione()));
-			}
-		}
-		*/
 		// se la mappa e vuota, o non contiene la chiave
 		// faccio una put
 		// altrimenti
@@ -147,19 +136,6 @@ public class ImplGestoreDB implements GestoreDB {
 			map.get(prenotazione.getLocalData()).add(prenotazione.getPrenotazione());
 		}
 		
-		// nel set delle chiavi controllo se non � gia presente la data della
-		// prenotazione
-		/*
-		 * if(map.keySet().contains(prenotazione.getData())) { //se la
-		 * contiene allora aggiungo alla lista solo la prenotazione
-		 * map.get(prenotazione.getData()).add(prenotazione.getPrenotazione()); }else {
-		 * Se non esiste allora faccio una put con k=data della prenotazione e una lista
-		 * contente attualmente una sola prenotazione
-		 * 
-		 * map.put(prenotazione.getData(),
-		 * Arrays.asList(prenotazione.getPrenotazione())); }
-		 */
-
 		loadMapOnFile(map, prenotazione.getPeriodo());
 
 	}
@@ -181,129 +157,5 @@ public class ImplGestoreDB implements GestoreDB {
 		}
 	}
 	
-	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	/*
-	 * private Gson gson = new GsonBuilder().setPrettyPrinting().create(); private
-	 * String PRANZO_FILE_PATH = "res/pranzo.json"; private String CENA_FILE_PATH =
-	 * "res/cena.json"; //private OutputStreamWriter streamWriter; //private
-	 * JsonWriter writer; private File file;
-	 * 
-	 * public ImplGestoreDB() { createFiles(); }
-	 * 
-	 * private void createFiles() { if(!new File(PRANZO_FILE_PATH).exists()) {
-	 * createNewFile(PRANZO_FILE_PATH); }else if(!new File(CENA_FILE_PATH).exists())
-	 * { createNewFile(CENA_FILE_PATH); } }
-	 * 
-	 * private void createNewFile(String path) { try { new
-	 * File(path).createNewFile(); } catch (IOException e) { // TODO Auto-generated
-	 * catch block e.printStackTrace(); } }
-	 * 
-	 * 
-	 * public void loadOnFile(PrenotazioneEstesa prenotazione) {
-	 * 
-	 * Map<String,List<Prenotazione>> map = new HashMap<>(); List<Prenotazione> list
-	 * = new ArrayList<>(); list.add(prenotazione.getPrenotazione());
-	 * map.put(prenotazione.getData(), list);
-	 * 
-	 * try { Writer writer =
-	 * Files.newBufferedWriter(Paths.get(getPath(prenotazione.getPeriodo())));
-	 * gson.toJson(map,writer); writer.close(); } catch (IOException e) { // TODO
-	 * Auto-generated catch block e.printStackTrace(); } }
-	 * 
-	 *//**
-		 * 
-		 * @param p
-		 * @return il path del file in base a p
-		 */
-	/*
-	 * private String getPath(Periodo p) { return p.equals(Periodo.PRANZO) ?
-	 * PRANZO_FILE_PATH : CENA_FILE_PATH; }
-	 * 
-	 * 
-	 * // ritorna la mappa dove la chiave � la data(in formato Stringa) e la lista
-	 * // associata alla data public Map<String, List<Prenotazione>>
-	 * getMapPrenotazioni(Periodo p) {
-	 * 
-	 * // variabile "nuova" che conterr� la mappa aggiornata Map<String,
-	 * List<Prenotazione>> mappa = new HashMap<>();
-	 * 
-	 * 
-	 * try { // reader che permette di leggere dal file Reader reader =
-	 * Files.newBufferedReader(Paths.get(getPath(p)));
-	 * 
-	 * 
-	 * Parte della type trovata qua:
-	 * 
-	 * https://stackoverflow.com/questions/24765039/gson-deserialize-into-map
-	 * 
-	 * 
-	 * //Type type = new TypeToken<Map<String,
-	 * List<ImplPrenotazione>>>(){}.getType();
-	 * 
-	 * //System.out.println("Type = " + type);
-	 * 
-	 * Map<String, List<Prenotazione>> map = gson.fromJson(reader, new
-	 * TypeToken<Map<String, List<ImplPrenotazione>>>(){}.getType()) ; //se il file
-	 * � vuoto il map sara null e non empty mappa = map == null ? mappa : map;
-	 * 
-	 * 
-	 * 
-	 * reader.close();
-	 * 
-	 * } catch (IOException e) { e.printStackTrace(); }
-	 * 
-	 * return mappa;
-	 * 
-	 * 
-	 * Map<String, List<Prenotazione>> mappa = new HashMap<>();
-	 * 
-	 * try { // reader che permette di leggere dal file Reader reader =
-	 * Files.newBufferedReader(Paths.get(getPath(p)));
-	 * 
-	 * Type type = new TypeToken<Map<String, List<Prenotazione>>>(){}.getType();
-	 * 
-	 * Map<String, List<Prenotazione>> map = gson.fromJson(reader, type); //se il
-	 * file � vuoto il map sara null e non empty mappa = map == null ? mappa : map;
-	 * 
-	 * reader.close();
-	 * 
-	 * } catch (IOException e) { e.printStackTrace(); }
-	 * 
-	 * return mappa;
-	 * 
-	 * }
-	 * 
-	 * 
-	 * 
-	 *//**
-		 * 
-		 * @param prenotazione Aggiunge al file la prenotazione passata
-		 */
-	/*
-	 * public void addToFile(PrenotazioneEstesa prenotazione) { // viene prelevata
-	 * la mappa dal file giusto, cosi per poi aggiungere il nuovo // elemento var
-	 * map = getMapPrenotazioni(prenotazione.getPeriodo());
-	 * 
-	 * if (map.isEmpty() || !map.keySet().contains(prenotazione.getLocalData())) {
-	 * map.put(prenotazione.getLocalData(),
-	 * Arrays.asList(prenotazione.getPrenotazione())); } else {
-	 * map.get(prenotazione.getLocalData()).add(prenotazione.getPrenotazione()); }
-	 * 
-	 * 
-	 * loadMapOnFile(map, prenotazione.getPeriodo());
-	 * 
-	 * }
-	 * 
-	 *//**
-		 * 
-		 * @param map
-		 * @param p   carica su file giusto(in base al periodo) la mappa passatagli
-		 *//*
-			 * private void loadMapOnFile(Map<String, List<Prenotazione>> map, Periodo p) {
-			 * 
-			 * try { Writer writer = Files.newBufferedWriter(Paths.get(getPath(p)));
-			 * gson.toJson(map, writer); writer.close(); } catch (IOException e) { // TODO
-			 * Auto-generated catch block e.printStackTrace(); } }
-			 */
 
 }

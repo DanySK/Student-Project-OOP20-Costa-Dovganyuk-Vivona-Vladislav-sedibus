@@ -35,7 +35,7 @@ public class LoaderTableView extends Application {
 	*/
 	
 	public void loadView(Utente utente) {
-		
+		LoaderTableView.utente = utente;
 		launch();
 	}
 	

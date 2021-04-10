@@ -35,7 +35,6 @@ public class ImplRistorante implements Ristorante {
 		try {
 			loadTavolifromFile();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -60,7 +59,6 @@ public class ImplRistorante implements Ristorante {
 
 	private void loadTavolifromFile() throws IOException {
 		try {
-			//InputStream str = new FileInputStream(new File("res/restourant-conf/tavoli.txt"));
 			FileReader f = new FileReader(FILE_PATH);
 		    BufferedReader b = new BufferedReader(f);
 		    String s;
@@ -100,6 +98,7 @@ public class ImplRistorante implements Ristorante {
 		
 	}
 	
+	
 	private List<Prenotazione> prenotazioni(LocalDate data, Periodo p){
 		
 		if(this.periodoAttuale.isEmpty()) {
@@ -118,5 +117,7 @@ public class ImplRistorante implements Ristorante {
 		
 		return new ArrayList<Prenotazione>();
 	}
+	
+	
 	
 }
