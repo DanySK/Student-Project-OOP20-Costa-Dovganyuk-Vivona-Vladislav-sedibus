@@ -45,7 +45,6 @@ public class Controller implements Initializable {
 	private boolean primaChiamata = true;
 	//boolean per la visualizzazione dei tavoli ROSSI
 	private boolean admin ;
-	private Utente user = Utente.UNSET;
 	
 	
 	
@@ -88,6 +87,7 @@ public class Controller implements Initializable {
         	
         	if(l.contains(Integer.parseInt(b.getId()))) {
         		b.getStylesheets().add(TAVOLO_ROSSO_STYLE_PATH);
+        		
         		this.listRedButton.add(b);
         		
         		
@@ -95,6 +95,8 @@ public class Controller implements Initializable {
         		b.setDisable(false);
         		b.getStylesheets().add(TAVOLO_VERDE_STYLE_PATH);
         	}
+        	//b.setText(b.getText().concat("\nMax posti:" + model.getPostiMax(Integer.parseInt(b.getId()))));
+        	
         	
         	this.listButton.add(b);
         });

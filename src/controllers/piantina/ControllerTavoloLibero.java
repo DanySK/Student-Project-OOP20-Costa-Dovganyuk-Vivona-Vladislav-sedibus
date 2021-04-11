@@ -1,6 +1,5 @@
 package controllers.piantina;
 
-import java.awt.Button;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -8,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import view.creaprenotazione.ViewPrenotazione;
 
 public class ControllerTavoloLibero implements Initializable {
 
@@ -21,16 +21,20 @@ public class ControllerTavoloLibero implements Initializable {
 	
 	
 	public void handlerConferma() {
-		
+		ViewPrenotazione view = new ViewPrenotazione(new Stage());
+		closeCurrentStage();
 	}
 	
 	
 	public void handlerAnnulla() {
 		System.out.println("Premuto ANNULLA");
+		closeCurrentStage();
+	}
+	
+	private void closeCurrentStage() {
 		var s = (Stage) this.vBoxPrincipale.getScene().getWindow();
 		s.close();
 	}
-	
 	
 	
 

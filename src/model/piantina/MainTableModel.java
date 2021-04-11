@@ -13,9 +13,9 @@ public interface MainTableModel {
 	 * @param p
 	 * @return la lista degli ID dei tavoli prenotati 
 	 */
-	public List<Integer> tavoliPrenotati(LocalDate date, Periodo p);
+	List<Integer> tavoliPrenotati(LocalDate date, Periodo p);
 	
-	
+	int getPostiMax(int ID);
 	
 	
 }

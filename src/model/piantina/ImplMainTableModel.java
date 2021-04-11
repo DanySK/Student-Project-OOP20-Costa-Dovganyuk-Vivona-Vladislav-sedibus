@@ -27,5 +27,10 @@ public class ImplMainTableModel implements MainTableModel {
 		
 		return listaID;
 	}
+	
+	public int getPostiMax(int ID) {
+		return this.listaTavoli.stream().filter(t -> t.getName() == ID).mapToInt(e -> e.getMaxPosti()).findFirst().getAsInt();
+	}
+	
 
 }

@@ -1,5 +1,5 @@
 {
-  "2021-04-10": [
+  "2021-04-11": [
     {
       "codicePrenotazione": "AA1100",
       "cliente": {
@@ -10,6 +10,20 @@
       },
       "tavolo": {
         "name": 2,
+        "maxPosti": 10
+      },
+      "nPostiPrenotati": 8
+    },
+    {
+      "codicePrenotazione": "AA2200",
+      "cliente": {
+        "nome": "Mirko",
+        "cognome": "Viroli",
+        "email": "mirko.viroli@unibo.it",
+        "nTelefono": "326598485"
+      },
+      "tavolo": {
+        "name": 5,
         "maxPosti": 10
       },
       "nPostiPrenotati": 8
