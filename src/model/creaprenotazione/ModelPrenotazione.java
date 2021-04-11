@@ -1,17 +1,8 @@
 package model.creaprenotazione;
 
-import java.util.Random;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 public class ModelPrenotazione {
 	
 	private int nPosti;
-	private Random rand = new Random();
-	private int numeroCod = 0;
-	private final String lettereCod = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-	private Pattern pattern;
-	private Matcher matcher;
 	
 	public ModelPrenotazione() {
 		this.azzeraPosti();
@@ -41,11 +32,8 @@ public class ModelPrenotazione {
 		return false;
 	}
 	
-	
-	
 	private String generaCodice() {
-		this.numeroCod++;
-		return this.lettereCod.charAt(this.rand.nextInt(this.lettereCod.length())) + String.valueOf(this.numeroCod);
+		return new GeneratoreCodice().ottieni();
 	}
 	
 }
