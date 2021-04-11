@@ -14,11 +14,8 @@ import javafx.stage.Stage;
 
 
 
-
 public class AdminLoginController {
 	
-	
-	private static final int PROPORTION = 2;
 	
 	@FXML
 	private TextField user;
@@ -29,13 +26,15 @@ public class AdminLoginController {
 	@FXML
 	private Label failedLabel;
 	
-	
+	;
 	
 	 @FXML
-	 public void loadTableView(ActionEvent event) { 
+	 public void loadTableView(ActionEvent event) { //metodo che alla pressione tasto del tasto conferma confronta i dati dell admin e carica la pantina dei tavoli
 
-	if (pass.getText().equals("pass") && user.getText().equals("utente"))
-	{	
+	  if (pass.getText().equals("pass") && user.getText().equals("utente"))
+	  {	
+		model.admin.ModelAdmin.setAdminTrue();
+		System.out.println("Lo stato dell'amministratore è:" + model.admin.ModelAdmin.getAdminState());
 	  
 		 try {         //Copia incolla del metodo dento view.LoaderTableView con alcune modifiche 
 			 final FXMLLoader loader = new FXMLLoader(getClass().getResource("/layouts/MappaTavoli.fxml"));
@@ -49,19 +48,19 @@ public class AdminLoginController {
 	            final int sh = (int) screen.getHeight();
 	            final Scene scene = new Scene(root);
 	            
-	           
 	            //final Scene scene = new Scene(root, sw / PROPORTION, sh / PROPORTION);
 	            primaryStage.setTitle("Table Top View");
 		        primaryStage.setScene(scene);
 		        primaryStage.show();
-		        
 	           
 	        } catch (Exception e) {
 	            e.printStackTrace();
 	        }
 
-	}
-	else failedLabel.setText("Nome Utente o Password Errati");
-}
+	  }
+	  
+	  else failedLabel.setText("Nome Utente o Password Errati");
+   }
     
+	
 }
