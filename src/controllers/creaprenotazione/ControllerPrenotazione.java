@@ -12,7 +12,7 @@ import model.utili.AzioneUtente;
 public class ControllerPrenotazione implements Initializable {
 	
 	private AzioneUtente azione;
-	@FXML private BorderPane pannello;
+	@FXML private AnchorPane ancora;
 	private List<TextField> campiTesto = new ArrayList<>();
 	@FXML private DatePicker testoData;
 	@FXML private ToggleGroup turno;
@@ -22,14 +22,11 @@ public class ControllerPrenotazione implements Initializable {
 	public ControllerPrenotazione() {}
 	
 	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
-		this.pannello.getChildren().forEach(ap -> {
-			final AnchorPane ancpan = (AnchorPane)ap;
-			ancpan.getChildren().forEach(elem -> {
-				if(elem.getClass().equals(TextField.class)) {
-					this.campiTesto.add((TextField)elem);
-				}
-			});
+	public void initialize(URL location, ResourceBundle resources) {
+		this.ancora.getChildren().forEach(elem -> {
+			if(elem.getClass().equals(TextField.class)) {
+				this.campiTesto.add((TextField)elem);
+			}
 		});
 		this.pulisciCampi();
 	}
@@ -37,7 +34,7 @@ public class ControllerPrenotazione implements Initializable {
 	private void pulisciCampi() {
 		this.campiTesto.forEach(tf -> tf.clear());
 		this.testoData.getEditor().clear();
-		//this.turno.getSelectedToggle().setSelected(false); NON VA
+		//this.turno.getSelectedToggle().setSelected(false); NON VA -> da sostituire
 	}
 	
 	public void handlerPiuPosti() {

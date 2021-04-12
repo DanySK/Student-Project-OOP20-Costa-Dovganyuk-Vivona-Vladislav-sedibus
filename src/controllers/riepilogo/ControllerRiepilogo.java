@@ -19,12 +19,12 @@ public class ControllerRiepilogo implements Initializable {
 	}
 	
 	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
+	public void initialize(URL location, ResourceBundle resources) {
 		this.pannello.getChildren().forEach(ap -> {
 			final AnchorPane ancpan = (AnchorPane)ap;
 			ancpan.getChildren().forEach(elem -> {
 				final Optional<String> id = Optional.ofNullable(elem.getId());
-				if(elem.getClass() == Label.class && id.isPresent()) {
+				if(elem.getClass().equals(Label.class) && id.isPresent()) {
 					this.spazi.add((Label)elem);
 				}
 			});
