@@ -39,7 +39,7 @@ public class GeneratoreCodice {
 
 	/**
 	 * 
-	 * @return una stringa che 
+	 * @return una stringa composta da una lettera casuale e un numero crescente
 	 */
 	public String ottieni() {
 		return this.codice;

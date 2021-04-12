@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:id="pannello" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.creaprenotazione.ControllerPrenotazione">
    <left>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
@@ -55,17 +55,17 @@
    <bottom>
       <AnchorPane prefHeight="99.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="bottonePrenota" layoutX="70.0" layoutY="20.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="100.0" text="PRENOTA">
+            <Button fx:id="bottonePrenota" layoutX="70.0" layoutY="20.0" mnemonicParsing="false" onAction="#handlerConferma" prefHeight="35.0" prefWidth="100.0" text="PRENOTA">
                <font>
                   <Font size="15.0" />
                </font>
             </Button>
-            <Button fx:id="bottoneReset" layoutX="250.0" layoutY="20.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="100.0" text="RESETTA">
+            <Button fx:id="bottoneReset" layoutX="250.0" layoutY="20.0" mnemonicParsing="false" onAction="#handlerReset" prefHeight="35.0" prefWidth="100.0" text="RESETTA">
                <font>
                   <Font size="15.0" />
                </font>
             </Button>
-            <Button fx:id="bottoneAnnulla" layoutX="430.0" layoutY="20.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="100.0" text="ANNULLA">
+            <Button fx:id="bottoneAnnulla" layoutX="430.0" layoutY="20.0" mnemonicParsing="false" onAction="#handlerAnnulla" prefHeight="35.0" prefWidth="100.0" text="ANNULLA">
                <font>
                   <Font size="15.0" />
                </font>
@@ -87,14 +87,19 @@
                </font>
             </Label>
             <Label fx:id="testoPosti" alignment="CENTER" contentDisplay="CENTER" layoutX="24.0" layoutY="238.0" prefHeight="24.0" prefWidth="23.0" text="0" textAlignment="CENTER" />
-            <Button fx:id="bottonePiuPosti" layoutX="48.0" layoutY="237.0" mnemonicParsing="false" text="+" />
-            <Button fx:id="bottoneMenoPosti" layoutX="1.0" layoutY="237.0" mnemonicParsing="false" text="-" />
+            <Button fx:id="bottonePiuPosti" layoutX="48.0" layoutY="237.0" mnemonicParsing="false" onAction="#handlerPiuPosti" text="+" />
+            <Button fx:id="bottoneMenoPosti" layoutX="1.0" layoutY="237.0" mnemonicParsing="false" onAction="#handlerMenoPosti" text="-" />
             <RadioButton fx:id="bottonePranzo" layoutX="1.0" layoutY="205.0" mnemonicParsing="false" text="Pranzo">
                <toggleGroup>
                   <ToggleGroup fx:id="turno" />
                </toggleGroup>
             </RadioButton>
             <RadioButton fx:id="bottoneCena" layoutX="81.0" layoutY="205.0" mnemonicParsing="false" text="Cena" toggleGroup="$turno" />
+            <Label fx:id="etichettaAzione" layoutX="273.0" layoutY="10.0" prefHeight="27.0" prefWidth="117.0">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </center>
