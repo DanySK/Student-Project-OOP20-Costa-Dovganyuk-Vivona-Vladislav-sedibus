@@ -23,6 +23,7 @@ import model.piantina.MainTableModel;
 import model.utili.Periodo;
 import model.utili.Utente;
 import view.adminuser.LoaderAdminUserSelection;
+import view.piantina.LoaderTavoloRossoOccupato;
 import view.piantina.LoaderTavoloVerdeLibero;
 
 public class Controller implements Initializable {
@@ -47,7 +48,6 @@ public class Controller implements Initializable {
 	private Periodo periodo;
 	private boolean primaChiamata = true;
 	//boolean per la visualizzazione dei tavoli ROSSI
-	private boolean admin ;
 	
 	
 	
@@ -109,9 +109,14 @@ public class Controller implements Initializable {
     			//System.out.println("Lista tavoli rossi = " + this.listRedButton);
     			if(this.listRedButton.contains(b) && isAdmin()) {
     				//apro la view dell'admin
-    				//quindi il riepilogo di tale tavolo
-    				//alla view devo passare quindi...
-    				//Periodo, Data, ed ID tavolo
+    				LoaderTavoloRossoOccupato tavoloRossoView = new LoaderTavoloRossoOccupato(b.getId(),this.model.getCodicePrenotazione(periodo, localDate,Integer.parseInt(b.getId())));
+    				try {
+						tavoloRossoView.start(new Stage());
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+    				
     				System.out.println("ADMIN, possibile aprire questo tavolo");
     			}else{
     				if(this.listRedButton.contains(b)) {
@@ -119,7 +124,7 @@ public class Controller implements Initializable {
     				}else {
     					LoaderTavoloVerdeLibero tavoloVerdeView = new LoaderTavoloVerdeLibero(b.getId(),this.periodo,this.localDate);
         				Stage stagePrincipale = (Stage) this.datePicker.getScene().getWindow();
-        				stagePrincipale.toBack();
+        				//stagePrincipale.toBack();
         				
         				try {
     						tavoloVerdeView.start(new Stage());

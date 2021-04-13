@@ -32,5 +32,8 @@ public class ImplMainTableModel implements MainTableModel {
 		return this.listaTavoli.stream().filter(t -> t.getName() == ID).mapToInt(e -> e.getMaxPosti()).findFirst().getAsInt();
 	}
 	
+	public String getCodicePrenotazione(Periodo p, LocalDate data, int idTavolo) {
+		return ristorante.getListPrenotazioni(data, p).stream().filter(e -> e.getTavolo().getName() == idTavolo).findFirst().get().getCodicePrenotazione();
+	}
 
 }

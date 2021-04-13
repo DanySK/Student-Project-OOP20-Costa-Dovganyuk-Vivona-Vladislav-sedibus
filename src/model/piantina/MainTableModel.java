@@ -17,5 +17,5 @@ public interface MainTableModel {
 	
 	int getPostiMax(int ID);
 	
-	
+	String getCodicePrenotazione(Periodo p, LocalDate data, int idTavolo);
 }
