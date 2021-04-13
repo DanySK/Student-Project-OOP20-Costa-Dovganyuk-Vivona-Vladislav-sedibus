@@ -28,8 +28,7 @@ public class LoaderPrenotazione extends Application {
 	private Periodo periodo;
 	private LocalDate data;
 	private String idTavolo;
-	
-	private Label massimoPosti;
+	private Label etichettaTavolo;
 	
 	public LoaderPrenotazione(AzioneUtente azione, Periodo periodo, LocalDate data, String idTavolo) {
 		LoaderPrenotazione.azione = azione;
@@ -68,15 +67,14 @@ public class LoaderPrenotazione extends Application {
 			}
 			
 			
-			//compilazione inerenta alla data
+			//compilazione inerente alla data
 			this.testoData = (DatePicker) caricatore.getNamespace().get("testoData");
 			this.testoData.setValue(this.data);
 			this.testoData.setEditable(false);
 			//this.testoData.setDisable(true);
 			
-			this.massimoPosti = (Label) caricatore.getNamespace().get("massimoPosti");
-			Integer n = 5;
-			this.massimoPosti.setText(n.toString());
+			this.etichettaTavolo = (Label) caricatore.getNamespace().get("etichettaTavolo");
+			this.etichettaTavolo.setText("Tavolo " + this.idTavolo);
 			
 			scenaPrimaria.show();
 		} catch (IOException e) {

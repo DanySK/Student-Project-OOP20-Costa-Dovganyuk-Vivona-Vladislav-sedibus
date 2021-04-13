@@ -29,7 +29,7 @@ public class ControllerCercaPrenotazione implements Initializable {
 			//va alla prossima pagina -> modifica prenotazione
 			System.out.println("TROVATA!");
 		} else {
-			this.datiIncorretti(true);
+			this.testoErrore.setVisible(true);
 		}
 	}
 	
@@ -41,11 +41,7 @@ public class ControllerCercaPrenotazione implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		this.testoCodice.clear();
 		this.testoCognome.clear();
-		this.datiIncorretti(false);
-	}
-	
-	private void datiIncorretti(boolean visibile) {
-		this.testoErrore.setVisible(visibile);
+		this.testoErrore.setVisible(false);
 	}
 	
 	private RadioButton turnoSelezionato() {

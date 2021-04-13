@@ -26,6 +26,8 @@ public class ControllerPrenotazione implements Initializable {
 	@FXML private Label testoPosti;
 	@FXML private Label massimoPosti;
 	@FXML private Label etichettaAzione;
+	@FXML private Label errore;
+	@FXML private Label etichettaTavolo;
 	private ModelPrenotazione modello = new ModelPrenotazioneImpl();
 	private PilotaPosti gestionePosti;
 	
@@ -34,6 +36,7 @@ public class ControllerPrenotazione implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {  //forse non serve neanche
 		//System.out.println(this.massimoPosti.getText()); NON VA
+		
 		this.gestionePosti = new PilotaPosti(9);  //da modificare
 		this.pulisciCampi();
 	}
@@ -45,6 +48,7 @@ public class ControllerPrenotazione implements Initializable {
 		//this.testoData.getEditor().clear();
 		this.gestionePosti.azzeraPosti();
 		this.aggiornaPosti();
+		this.errore.setVisible(false);
 		//this.turno.getSelectedToggle().setSelected(false); NON VA -> da sostituire
 	}
 	
@@ -63,17 +67,22 @@ public class ControllerPrenotazione implements Initializable {
 	}
 	
 	public void handlerConferma() {
-		//prende e controlla testi componenti
 		if(this.modello.prendiDati(this.testoNome.getText(), this.testoCognome.getText(), 
-									 this.testoEmail.getText(), this.testoTelefono.getText())) {
-			//se ok allora aggiunge prenotaz.
-			System.out.println("TUTTO OK");
-			/*this.modello.aggiungiPrenotazione(this.getPeriodo(), 
-											  this.testoData.getValue(), 
-											  tavolo, 
-											  this.gestionePosti.getNumeroPosti());*/
+				this.testoEmail.getText(), this.testoTelefono.getText())) {
+			this.modello.prelevaIdTavolo(this.getIdTavolo());
+			this.modello.aggiungiPrenotazione(this.getPeriodo(), 
+											  this.testoData.getValue(),
+											  this.gestionePosti.getNumeroPosti());
+			System.out.println("PRENOTAZIONE AGGIUNTA CON SUCCESSO");
 			//prossima pagina -> riepilogo a cui passare etichettaAzione
+		} else {
+			this.errore.setVisible(true);
 		}
+	}
+	
+	private int getIdTavolo() {
+		String testo = this.etichettaTavolo.getText();
+		return Integer.parseInt(testo.substring(testo.length() - 1));
 	}
 	
 	private RadioButton turnoSelezionato() {

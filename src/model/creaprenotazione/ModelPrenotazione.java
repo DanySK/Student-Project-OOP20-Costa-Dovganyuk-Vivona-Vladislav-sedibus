@@ -13,7 +13,7 @@ public interface ModelPrenotazione {
 	 * @param tavolo
 	 * @param postiPrenotati
 	 */
-	void aggiungiPrenotazione(Periodo periodo, LocalDate data, Tavolo tavolo, int postiPrenotati);
+	void aggiungiPrenotazione(Periodo periodo, LocalDate data, int postiPrenotati);
 	
 	/**
 	 * @param nome che l'utente ha inserito
@@ -23,5 +23,9 @@ public interface ModelPrenotazione {
 	 * @return vero se i dati in ingresso rispettano i controlli, falso altrimenti
 	 */
 	boolean prendiDati(String nome, String cognome, String email, String telefono);
+	
+	void prelevaIdTavolo(int idTavolo);
+	
+	int getMaxPosti();
 	
 }

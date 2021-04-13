@@ -28,5 +28,21 @@
       },
       "nPostiPrenotati": 8
     }
+  ],
+  "2021-04-13": [
+    {
+      "codicePrenotazione": "A0000",
+      "cliente": {
+        "nome": "nicola",
+        "cognome": "costa",
+        "email": "nicolacosta@gmail.com",
+        "nTelefono": "3703090213"
+      },
+      "tavolo": {
+        "name": 1,
+        "maxPosti": 10
+      },
+      "nPostiPrenotati": 1
+    }
   ]
 }
