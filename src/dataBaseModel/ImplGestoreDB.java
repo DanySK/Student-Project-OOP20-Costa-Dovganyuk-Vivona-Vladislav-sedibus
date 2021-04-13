@@ -86,7 +86,7 @@ public class ImplGestoreDB implements GestoreDB {
 	// associata alla data
 	public Map<String, List<Prenotazione>> getMapPrenotazioni(Periodo p) {
 
-		// variabile "nuova" che conterr� la mappa aggiornata
+		// variabile "nuova" che conterra la mappa aggiornata
 		Map<String, List<Prenotazione>> mappa = new HashMap<>();
 		
 		
@@ -152,7 +152,6 @@ public class ImplGestoreDB implements GestoreDB {
 			gson.toJson(map, writer);
 			writer.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

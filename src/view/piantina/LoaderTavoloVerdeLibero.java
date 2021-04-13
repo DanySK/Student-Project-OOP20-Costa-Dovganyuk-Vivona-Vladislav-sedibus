@@ -18,8 +18,6 @@ import model.utili.Periodo;
 
 public class LoaderTavoloVerdeLibero extends Application{
 
-	
-	
 	private Text testoSuperiore;
 	private Text testoPeriodo;
 	private Text testoData;

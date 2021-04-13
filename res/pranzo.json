@@ -43,6 +43,34 @@
         "maxPosti": 10
       },
       "nPostiPrenotati": 1
+    },
+    {
+      "codicePrenotazione": "L0001",
+      "cliente": {
+        "nome": "Rostyslav",
+        "cognome": "Dovganyuk",
+        "email": "rostydovga@unibo.it",
+        "nTelefono": "3256980361"
+      },
+      "tavolo": {
+        "name": 3,
+        "maxPosti": 12
+      },
+      "nPostiPrenotati": 5
+    },
+    {
+      "codicePrenotazione": "G0002",
+      "cliente": {
+        "nome": "Franco",
+        "cognome": "Maiotti",
+        "email": "frankMaio@gmail.com",
+        "nTelefono": "457812036"
+      },
+      "tavolo": {
+        "name": 2,
+        "maxPosti": 8
+      },
+      "nPostiPrenotati": 4
     }
   ]
 }

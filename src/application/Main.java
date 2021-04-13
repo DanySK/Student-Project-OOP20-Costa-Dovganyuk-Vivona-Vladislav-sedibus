@@ -64,7 +64,7 @@ public class Main {
 		 * 			Carico la view, e lei si occupa di caricare il controller
 		 */
 		LoaderTableView view = new LoaderTableView();
-		view.loadView(Utente.USER);
+		view.loadView(Utente.ADMIN);
 		
 		
 
