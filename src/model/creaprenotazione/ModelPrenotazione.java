@@ -1,22 +1,20 @@
 package model.creaprenotazione;
 
-import java.util.*;
+import java.time.LocalDate;
+import model.piantina.Tavolo;
+import model.utili.Periodo;
 
-import model.utili.Cliente;
-
-public class ModelPrenotazione {
+public interface ModelPrenotazione {
 	
-	private Cliente cliente;
+	/**
+	 * Aggiunge una nuova prenotazione
+	 * @param periodo
+	 * @param data
+	 * @param tavolo
+	 * @param postiPrenotati
+	 */
+	void aggiungiPrenotazione(Periodo periodo, LocalDate data, Tavolo tavolo, int postiPrenotati);
 	
-	public ModelPrenotazione() {
-	}
-	
-	
-	
-	private String generaCodice() {
-		return new GeneratoreCodice().ottieni();
-	}
-
 	/**
 	 * @param nome che l'utente ha inserito
 	 * @param cognome che l'utente ha inserito
@@ -24,9 +22,6 @@ public class ModelPrenotazione {
 	 * @param telefono che l'utente ha inserito
 	 * @return vero se i dati in ingresso rispettano i controlli, falso altrimenti
 	 */
-	public boolean prendiDati(String nome, String cognome, String email, String telefono) {
-		this.cliente = new Cliente(nome, cognome, email, telefono);
-		return this.cliente.rispettaControlli();
-	}
+	boolean prendiDati(String nome, String cognome, String email, String telefono);
 	
 }
