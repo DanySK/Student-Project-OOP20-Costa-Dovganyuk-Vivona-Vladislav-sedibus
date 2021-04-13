@@ -18,6 +18,11 @@
                   <DatePicker fx:id="datePicker" editable="false" layoutX="14.0" onAction="#topMenuHandler" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0" />
                   <Button layoutX="692.0" mnemonicParsing="false" onAction="#tornaIndietroHandler" text="Torna Indietro" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0" />
                   <ChoiceBox fx:id="periodBox" layoutX="330.0" onAction="#topMenuHandler" prefWidth="150.0" AnchorPane.rightAnchor="442.0" AnchorPane.topAnchor="0.0" />
+                  <Text fx:id="testoOrario" layoutX="623.0" layoutY="104.1865234375" strokeType="OUTSIDE" strokeWidth="0.0" text="" textAlignment="CENTER" wrappingWidth="106.13671875" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <font>
+                        <Font name="Segoe UI Historic" size="15.0" />
+                     </font>
+                  </Text>
                </children>
                <padding>
                   <Insets bottom="10.0" left="8.0" right="5.0" top="10.0" />

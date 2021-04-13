@@ -30,12 +30,15 @@ public class Controller implements Initializable {
 	
 	private static String TAVOLO_VERDE_STYLE_PATH = "layouts/tavoloLibero.css";
 	private static String TAVOLO_ROSSO_STYLE_PATH = "layouts/tavoloOccupato.css";
+	private static String ORARIO_PRANZO = "12.00 - 13.30";
+	private static String ORARIO_CENA = "18.00 - 19.30";
 	
 	@FXML private DatePicker datePicker;
 	@FXML private ChoiceBox<Periodo> periodBox;
 	@FXML private AnchorPane paneTavoli;
 	@FXML private AnchorPane paneData;
 	@FXML private Text testoUtente;
+	@FXML private Text testoOrario;
 	
 	private LocalDate localDate = LocalDate.now() ;
 	private List<Button> listButton = new ArrayList<>();
@@ -63,9 +66,6 @@ public class Controller implements Initializable {
     	
     }
     
-    private void setUser() {
-    	System.out.println("Utente" + this.testoUtente.getText());
-    }
     
     private boolean isAdmin() {
     	if(Utente.valueOf(this.testoUtente.getText()).equals(Utente.ADMIN)) {
@@ -145,13 +145,16 @@ public class Controller implements Initializable {
     		this.periodo = this.periodBox.getValue();
 	    	this.localDate = this.datePicker.getValue() == null ? LocalDate.now() : this.datePicker.getValue();
 	    	getIDTavoliPrenotati(localDate, periodo);
+	    	setOrario(this.periodo.equals(Periodo.PRANZO)? ORARIO_PRANZO : ORARIO_CENA);
     	}
+    	
     }
     
     private void setPeriodBox() {
     	this.periodBox.getItems().addAll(Periodo.PRANZO, Periodo.CENA);
     	this.periodBox.setValue(Periodo.PRANZO);
     	this.periodo = this.periodBox.getValue();
+    	setOrario(this.periodo.equals(Periodo.PRANZO)? ORARIO_PRANZO : ORARIO_CENA);
     }
     
     
@@ -173,6 +176,10 @@ public class Controller implements Initializable {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+    }
+    
+    private void setOrario(String testo) {
+    	this.testoOrario.setText(testo);
     }
     
 

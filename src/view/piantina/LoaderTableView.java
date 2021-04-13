@@ -11,11 +11,13 @@ import java.util.Set;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import model.piantina.MainTableModel;
+import model.utili.Periodo;
 import model.utili.Utente;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.image.Image;
 import javafx.scene.text.Text;
 import javafx.fxml.FXML;
@@ -56,7 +58,7 @@ public class LoaderTableView extends Application {
             this.testoUtente = (Text) loader.getNamespace().get("testoUtente");
             this.testoUtente.setText(LoaderTableView.utente.toString());
             
-            //setTextField(typeUser);
+           
             
             //final Scene scene = new Scene(root, sw / PROPORTION, sh / PROPORTION);
             primaryStage.setTitle("Visione Tavoli - " + LoaderTableView.utente);
@@ -72,7 +74,6 @@ public class LoaderTableView extends Application {
 		
 	}
 	
-
 	
 	
 	
