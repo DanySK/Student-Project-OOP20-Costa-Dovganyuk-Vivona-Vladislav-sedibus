@@ -87,7 +87,7 @@
                </font>
             </Label>
             <Label fx:id="testoPosti" alignment="CENTER" contentDisplay="CENTER" layoutX="24.0" layoutY="238.0" prefHeight="24.0" prefWidth="23.0" text="0" textAlignment="CENTER" />
-            <Button fx:id="bottonePiuPosti" layoutX="48.0" layoutY="237.0" mnemonicParsing="false" onAction="#handlerPiuPosti" text="+" />
+            <Button fx:id="bottonePiuPosti" layoutX="82.0" layoutY="237.0" mnemonicParsing="false" onAction="#handlerPiuPosti" prefHeight="25.0" prefWidth="25.0" text="+" />
             <Button fx:id="bottoneMenoPosti" layoutX="1.0" layoutY="237.0" mnemonicParsing="false" onAction="#handlerMenoPosti" text="-" />
             <RadioButton fx:id="bottonePranzo" layoutX="1.0" layoutY="205.0" mnemonicParsing="false" text="Pranzo">
                <toggleGroup>
@@ -100,6 +100,8 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="46.0" layoutY="238.0" prefHeight="24.0" prefWidth="12.0" text="/" textAlignment="CENTER" />
+            <Label fx:id="massimoPosti" alignment="CENTER" contentDisplay="CENTER" layoutX="58.0" layoutY="238.0" prefHeight="24.0" prefWidth="23.0" textAlignment="CENTER" />
          </children>
       </AnchorPane>
    </center>

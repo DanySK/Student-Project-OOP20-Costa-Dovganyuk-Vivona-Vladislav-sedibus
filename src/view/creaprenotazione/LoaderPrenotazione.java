@@ -29,6 +29,8 @@ public class LoaderPrenotazione extends Application {
 	private LocalDate data;
 	private String idTavolo;
 	
+	private Label massimoPosti;
+	
 	public LoaderPrenotazione(AzioneUtente azione, Periodo periodo, LocalDate data, String idTavolo) {
 		LoaderPrenotazione.azione = azione;
 		this.periodo = periodo;
@@ -72,6 +74,9 @@ public class LoaderPrenotazione extends Application {
 			this.testoData.setEditable(false);
 			//this.testoData.setDisable(true);
 			
+			this.massimoPosti = (Label) caricatore.getNamespace().get("massimoPosti");
+			Integer n = 5;
+			this.massimoPosti.setText(n.toString());
 			
 			scenaPrimaria.show();
 		} catch (IOException e) {
