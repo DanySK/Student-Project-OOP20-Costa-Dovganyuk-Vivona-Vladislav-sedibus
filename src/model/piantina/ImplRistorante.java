@@ -99,7 +99,7 @@ public class ImplRistorante implements Ristorante {
 	}
 	
 	
-	private List<Prenotazione> prenotazioni(LocalDate data, Periodo p){
+	public List<Prenotazione> getListPrenotazioni(LocalDate data, Periodo p){
 		
 		if(this.periodoAttuale.isEmpty()) {
 			this.prenotazioni = getPrenotazioni(p);

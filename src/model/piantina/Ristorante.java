@@ -35,4 +35,7 @@ public interface Ristorante {
 	 */
 	public Map<String,List<Prenotazione>> getPrenotazioni(Periodo p);
 	
+	
+	
+	List<Prenotazione> getListPrenotazioni(LocalDate data, Periodo p);
 }
