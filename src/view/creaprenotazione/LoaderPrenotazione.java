@@ -37,6 +37,11 @@ public class LoaderPrenotazione extends Application {
 		this.idTavolo = idTavolo;
 	}
 	
+	/**
+	 * Creare un secondo Costruttore, che prende anche i valori necessari per precompilare
+	 * tutti i campi necessari alla modifica (Nome,Cognome,Email,Telefono,numero di posti)
+	 */
+	
 	/*public void inizia(AzioneUtente a) {
 		azione = a;
 		launch();
@@ -51,9 +56,27 @@ public class LoaderPrenotazione extends Application {
 			scenaPrimaria.setScene(miaScena);
 			scenaPrimaria.setResizable(false);
 			
+			/**
+			 * in caso di Azione.MODIFICA, possibile anche cambiare il testo dei bottoni 
+			 * poi nel controller, gestire al click del bottone conferma, il richiamo verso la
+			 * classe Cliente in cui vado a modificare i dati
+			 *------------------------------------------------------
+			 * Data e periodo non sono modificabili 
+			 **/
+			
+			/*if(AzioneUtente.MODIFICA){
+			 * 		Precompilo i campi di Nome, Cognome ....
+			 * }
+			 */
+			
+			//questi qua lasciare cosi
 			this.etichettaAzione = (Label) caricatore.getNamespace().get("etichettaAzione");
 			this.etichettaAzione.setText(LoaderPrenotazione.azione.toString());
 			
+			/**
+			 * Turno non e modificabile...
+			 * se facessimo diventare un Text invece che tooggle group?
+			 */
 			this.turno =  (ToggleGroup) caricatore.getNamespace().get("turno");
 			if(this.periodo.equals(Periodo.PRANZO)) {
 				this.turno.getToggles().get(TOGGLE_POS_PRANZO).setSelected(true);
