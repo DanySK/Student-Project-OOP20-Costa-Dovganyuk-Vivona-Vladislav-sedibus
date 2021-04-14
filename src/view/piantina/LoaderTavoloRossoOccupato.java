@@ -59,29 +59,7 @@ public class LoaderTavoloRossoOccupato extends Application {
             final int sh = (int) screen.getHeight();
             final Scene scene = new Scene(root);
             
-            this.testoSuperiore = (Text) loader.getNamespace().get("testoSuperiore");
-            this.testoSuperiore.setText(TESTO_SUPERIORE);
-            
-            this.textCodice = (Text) loader.getNamespace().get("textCodice");
-            this.textCodice.setText(this.codicePrenotazione);
-            
-            this.textCognomeNomeCliente = (Text) loader.getNamespace().get("textCognomeNomeCliente");
-            this.textCognomeNomeCliente.setText(this.cognomeNomeCliente);
-            
-            this.textPostiPrenotati = (Text) loader.getNamespace().get("textPostiPrenotati");
-            this.textPostiPrenotati.setText(this.postiPrenotati);
-            
-            this.textTelefono = (Text) loader.getNamespace().get("textTelefono");
-            this.textTelefono.setText(this.numTelefono);
-            
-            this.textEmail = (Text) loader.getNamespace().get("textEmail");
-            this.textEmail.setText(this.email);
-            
-            this.textPeriodo = (Text) loader.getNamespace().get("textPeriodo");
-            this.textPeriodo.setText(this.periodo);
-            
-            this.textData = (Text) loader.getNamespace().get("textData");
-            this.textData.setText(this.data);
+            setAllTexts(loader);
             
             primaryStage.setOpacity(OPACITY);
             primaryStage.setTitle("Tavolo OCCUPATO");
@@ -93,6 +71,32 @@ public class LoaderTavoloRossoOccupato extends Application {
         } catch (Exception e) {
             e.printStackTrace();
         }
+	}
+	
+	private void setAllTexts(FXMLLoader loader) {
+		this.testoSuperiore = (Text) loader.getNamespace().get("testoSuperiore");
+        this.testoSuperiore.setText(TESTO_SUPERIORE);
+        
+        this.textCodice = (Text) loader.getNamespace().get("textCodice");
+        this.textCodice.setText(this.codicePrenotazione);
+        
+        this.textCognomeNomeCliente = (Text) loader.getNamespace().get("textCognomeNomeCliente");
+        this.textCognomeNomeCliente.setText(this.cognomeNomeCliente);
+        
+        this.textPostiPrenotati = (Text) loader.getNamespace().get("textPostiPrenotati");
+        this.textPostiPrenotati.setText(this.postiPrenotati);
+        
+        this.textTelefono = (Text) loader.getNamespace().get("textTelefono");
+        this.textTelefono.setText(this.numTelefono);
+        
+        this.textEmail = (Text) loader.getNamespace().get("textEmail");
+        this.textEmail.setText(this.email);
+        
+        this.textPeriodo = (Text) loader.getNamespace().get("textPeriodo");
+        this.textPeriodo.setText(this.periodo);
+        
+        this.textData = (Text) loader.getNamespace().get("textData");
+        this.textData.setText(this.data);
 	}
 
 }

@@ -44,7 +44,7 @@ public class Controller implements Initializable {
 	private LocalDate localDate = LocalDate.now() ;
 	private List<Button> listButton = new ArrayList<>();
 	private List<Button> listRedButton = new ArrayList<>();
-	private MainTableModel model = new ImplMainTableModel();
+	private MainTableModel model; // = new ImplMainTableModel();
 	private Periodo periodo;
 	private boolean primaChiamata = true;
 	//boolean per la visualizzazione dei tavoli ROSSI
@@ -111,11 +111,11 @@ public class Controller implements Initializable {
     				//apro la view dell'admin
     				int idTavolo = Integer.parseInt(b.getId());
     				LoaderTavoloRossoOccupato tavoloRossoView = new LoaderTavoloRossoOccupato(b.getId(),
-    						this.model.getCodicePrenotazione(periodo, localDate,idTavolo), 
-    						this.model.getCognomeNomeCliente(periodo, localDate,idTavolo),
-    						this.model.getPostiPrenotati(periodo, localDate, idTavolo),
-    						this.model.getNumTelefonoCliente(periodo, localDate, idTavolo),
-    						this.model.getEmailCliente(periodo, localDate, idTavolo), this.periodo, this.localDate);
+    						this.model.getCodicePrenotazione(idTavolo), 
+    						this.model.getCognomeNomeCliente(idTavolo),
+    						this.model.getPostiPrenotati(idTavolo),
+    						this.model.getNumTelefonoCliente(idTavolo),
+    						this.model.getEmailCliente(idTavolo), this.periodo, this.localDate);
     				try {
 						tavoloRossoView.start(new Stage());
 					} catch (Exception e1) {
@@ -169,6 +169,7 @@ public class Controller implements Initializable {
     
     
     private void getIDTavoliPrenotati(LocalDate data, Periodo p) {
+    	model = new ImplMainTableModel(p,data);
     	System.out.print("ID dei Tavoli prenotati - ");
     	System.out.println("Per la data " + data + " e Periodo: " + p);    		
     	coloraTavoli(this.model.tavoliPrenotati(localDate, periodo));	

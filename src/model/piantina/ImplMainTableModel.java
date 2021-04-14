@@ -14,69 +14,74 @@ public class ImplMainTableModel implements MainTableModel {
 	private Ristorante ristorante = new ImplRistorante();
 	//lista totale dei Tavoli
 	private List<Tavolo> listaTavoli = new ArrayList<>();
+	private Periodo periodo;
+	private LocalDate data;
 	
 	
-	
-	public ImplMainTableModel() {
+	public ImplMainTableModel(Periodo p, LocalDate d) {
 		this.listaTavoli = this.ristorante.tavoliRistorante();
+		this.periodo = p;
+		this.data = d;
 	}
 	
+	public ImplMainTableModel() {
+	}
 	
 	
 	@Override
 	public List<Integer> tavoliPrenotati(LocalDate date, Periodo p) {
 		List<Integer> listaID = new ArrayList<>();
-		ristorante.tavoliPrenotati(date, p).forEach(t ->{
+		ristorante.tavoliPrenotati(data, periodo).forEach(t ->{
 			listaID.add(t.getName());
 		});
 		
 		return listaID;
 	}
 	
-	
+	@Override
 	public int getPostiMax(int ID) {
 		return this.listaTavoli.stream().filter(t -> t.getName() == ID).mapToInt(e -> e.getMaxPosti()).findFirst().getAsInt();
 	}
 	
 	@Override
-	public String getCodicePrenotazione(Periodo p, LocalDate data, int idTavolo) {
-		return ristorante.getListPrenotazioni(data, p).stream().filter(e -> e.getTavolo().getName() == idTavolo).findFirst().get().getCodicePrenotazione();
+	public String getCodicePrenotazione(int idTavolo) {
+		return ristorante.getListPrenotazioni(data, periodo).stream().filter(e -> e.getTavolo().getName() == idTavolo).findFirst().get().getCodicePrenotazione();
 	}
 
 	@Override
-	public String getCognomeNomeCliente(Periodo periodo, LocalDate data, int idTavolo) {
-		Cliente c = getCliente(periodo, data, idTavolo);
+	public String getCognomeNomeCliente(int idTavolo) {
+		Cliente c = getCliente(idTavolo);
 		return c.getNome().concat(" "+c.getCognome());
 	}
 	
 	@Override
-	public String getPostiPrenotati(Periodo p, LocalDate data, int idTavolo) {
-		return String.valueOf(getInformazioniPrenotazione(p, data, idTavolo).get().getPrenotazione().getPostiPrenotati());
+	public String getPostiPrenotati(int idTavolo) {
+		return String.valueOf(getInformazioniPrenotazione(idTavolo).get().getPrenotazione().getPostiPrenotati());
 	}
 
 	@Override
-	public String getNumTelefonoCliente(Periodo p, LocalDate data, int idTavolo) {
-		return getCliente(p, data, idTavolo).getTelefono();
+	public String getNumTelefonoCliente(int idTavolo) {
+		return getCliente(idTavolo).getTelefono();
 	}
 
 
 	@Override
-	public String getEmailCliente(Periodo p, LocalDate data, int idTavolo) {
-		return getCliente(p, data, idTavolo).getEmail();
+	public String getEmailCliente(int idTavolo) {
+		return getCliente(idTavolo).getEmail();
 	}
 	
 	
-	private Optional<Prenotazione> getInformazioniPrenotazione(Periodo periodo, LocalDate data, int idTavolo) {
-		return streamPrenotazioni(data, periodo).filter(p -> p.getTavolo().getName() == idTavolo).findFirst();
+	private Optional<Prenotazione> getInformazioniPrenotazione(int idTavolo) {
+		return streamPrenotazioni().filter(p -> p.getTavolo().getName() == idTavolo).findFirst();
 	}
 	
 	
-	private Cliente getCliente(Periodo periodo, LocalDate data, int idTavolo) {
-		return getInformazioniPrenotazione(periodo, data, idTavolo).get().getCliente();
+	private Cliente getCliente(int idTavolo) {
+		return getInformazioniPrenotazione(idTavolo).get().getCliente();
 	}
 	
-	private Stream<Prenotazione> streamPrenotazioni(LocalDate data, Periodo p){
-		return ristorante.getListPrenotazioni(data, p).stream();
+	private Stream<Prenotazione> streamPrenotazioni(){
+		return ristorante.getListPrenotazioni(data, periodo).stream();
 	}
 
 

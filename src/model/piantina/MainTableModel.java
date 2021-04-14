@@ -17,13 +17,13 @@ public interface MainTableModel {
 	
 	int getPostiMax(int ID);
 	
-	String getCodicePrenotazione(Periodo p, LocalDate data, int idTavolo);
+	String getCodicePrenotazione(int idTavolo);
 	
-	String getCognomeNomeCliente(Periodo p, LocalDate data, int idTavolo);
+	String getCognomeNomeCliente(int idTavolo);
 	
-	String getPostiPrenotati(Periodo p, LocalDate data, int idTavolo);
+	String getPostiPrenotati(int idTavolo);
 	
-	String getNumTelefonoCliente(Periodo p, LocalDate data, int idTavolo);
+	String getNumTelefonoCliente(int idTavolo);
 	
-	String getEmailCliente(Periodo p, LocalDate data, int idTavolo);
+	String getEmailCliente(int idTavolo);
 }

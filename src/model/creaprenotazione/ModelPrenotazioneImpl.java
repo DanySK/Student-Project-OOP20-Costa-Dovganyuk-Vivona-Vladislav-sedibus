@@ -47,6 +47,7 @@ public class ModelPrenotazioneImpl implements ModelPrenotazione {
 
 	@Override
 	public int getMaxPosti() {
+		
 		return mtm.getPostiMax(this.idTavolo);
 	}
 	
