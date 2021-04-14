@@ -49,7 +49,7 @@
                   <Font size="19.0" />
                </font>
             </Label>
-            <Label fx:id="etichettaTavolo" layoutX="27.0" layoutY="270.0" prefHeight="28.0" prefWidth="163.0">
+            <Label fx:id="etichettaTavolo" layoutX="27.0" layoutY="270.0" prefHeight="28.0" prefWidth="163.0" text="">
                <font>
                   <Font size="19.0" />
                </font>

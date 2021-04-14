@@ -15,6 +15,7 @@ import model.utili.Periodo;
 
 public class ControllerPrenotazione implements Initializable {
 	
+	private static final int POS_ID_TAVOLO = 1;
 	private AzioneUtente azione;
 	@FXML private AnchorPane ancoraTesti;
 	@FXML protected TextField testoNome;
@@ -77,7 +78,7 @@ public class ControllerPrenotazione implements Initializable {
 	
 	private int getIdTavolo() {
 		String testo = this.etichettaTavolo.getText();
-		return Integer.parseInt(testo.substring(testo.length() - 1));
+		return Integer.parseInt(testo.split(" ")[POS_ID_TAVOLO]);
 	}
 	
 	private RadioButton turnoSelezionato() {

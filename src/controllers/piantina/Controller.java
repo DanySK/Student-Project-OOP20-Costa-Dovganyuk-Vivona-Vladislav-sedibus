@@ -109,15 +109,17 @@ public class Controller implements Initializable {
     			//System.out.println("Lista tavoli rossi = " + this.listRedButton);
     			if(this.listRedButton.contains(b) && isAdmin()) {
     				//apro la view dell'admin
-    				LoaderTavoloRossoOccupato tavoloRossoView = new LoaderTavoloRossoOccupato(b.getId(),this.model.getCodicePrenotazione(periodo, localDate,Integer.parseInt(b.getId())));
+    				int idTavolo = Integer.parseInt(b.getId());
+    				LoaderTavoloRossoOccupato tavoloRossoView = new LoaderTavoloRossoOccupato(b.getId(),
+    						this.model.getCodicePrenotazione(periodo, localDate,idTavolo), 
+    						this.model.getCognomeNomeCliente(periodo, localDate,idTavolo),
+    						this.model.getPostiPrenotati(periodo, localDate, idTavolo));
     				try {
 						tavoloRossoView.start(new Stage());
 					} catch (Exception e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
     				
-    				System.out.println("ADMIN, possibile aprire questo tavolo");
     			}else{
     				if(this.listRedButton.contains(b)) {
     					

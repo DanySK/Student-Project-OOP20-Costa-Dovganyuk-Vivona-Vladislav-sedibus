@@ -16,13 +16,26 @@ public class LoaderTavoloRossoOccupato extends Application {
 	//DA FXML
 	private Text testoSuperiore;
 	private Text textCodice;
+	private Text textCognomeNomeCliente;
+	private Text textPostiPrenotati;
+	private Text textTelefono;
+	private Text textEmail;
+	private Text textPeriodo;
+	private Text textData;
+	
 	
 	private String TESTO_SUPERIORE;
 	private String codicePrenotazione;
+	private String cognomeNomeCliente;
+	private String postiPrenotati;
 	
-	public LoaderTavoloRossoOccupato(String idTavolo, String codicePrenotazione) {
+	public LoaderTavoloRossoOccupato(String idTavolo, 
+			String codicePrenotazione, String cognomeNomeCliente,
+			String postiPrenotati) {
 		TESTO_SUPERIORE = "Tavolo " + idTavolo + " - PRENOTATO";
 		this.codicePrenotazione = codicePrenotazione;
+		this.cognomeNomeCliente = cognomeNomeCliente;
+		this.postiPrenotati = postiPrenotati;
 	}
 	
 	@Override
@@ -42,7 +55,11 @@ public class LoaderTavoloRossoOccupato extends Application {
             this.textCodice = (Text) loader.getNamespace().get("textCodice");
             this.textCodice.setText(this.codicePrenotazione);
             
+            this.textCognomeNomeCliente = (Text) loader.getNamespace().get("textCognomeNomeCliente");
+            this.textCognomeNomeCliente.setText(this.cognomeNomeCliente);
             
+            this.textPostiPrenotati = (Text) loader.getNamespace().get("textPostiPrenotati");
+            this.textPostiPrenotati.setText(this.postiPrenotati);
             
             primaryStage.setOpacity(OPACITY);
             primaryStage.setTitle("Tavolo OCCUPATO");
