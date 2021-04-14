@@ -6,15 +6,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import com.sun.javafx.scene.control.inputmap.KeyBinding.OptionalBoolean;
+
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
-import javafx.scene.control.MenuButton;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -98,7 +96,6 @@ public class Controller implements Initializable {
         	}
         	//b.setText(b.getText().concat("\nMax posti:" + model.getPostiMax(Integer.parseInt(b.getId()))));
         	
-        	
         	this.listButton.add(b);
         });
     }
@@ -107,8 +104,6 @@ public class Controller implements Initializable {
     	
     	this.listButton.forEach(b -> {
     		b.setOnAction(e -> {
-    			System.out.println("Stato premuto il Tavolo " + b.getId());
-    			//System.out.println("Lista tavoli rossi = " + this.listRedButton);
     			if(this.listRedButton.contains(b) && isAdmin()) {
     				//apro la view dell'admin
     				int idTavolo = Integer.parseInt(b.getId());
@@ -130,12 +125,7 @@ public class Controller implements Initializable {
     					LoaderTavoloVerdeLibero tavoloVerdeView = new LoaderTavoloVerdeLibero(b.getId(),this.periodo,this.localDate);
         				try {
     						tavoloVerdeView.start(new Stage());
-    						//tavoloVerdeView.wait();
-    						
-    							
-    						
     					} catch (Exception exception) {
-    						// TODO Auto-generated catch block
     						exception.printStackTrace();
     					}
     				}
@@ -148,7 +138,7 @@ public class Controller implements Initializable {
     	});
     	
     }
-   
+/*   
     private void freezeElements() {
     	this.panePrincipale.lookupAll("Button").forEach(b-> b.setDisable(true));
     	this.datePicker.setDisable(true);
@@ -160,7 +150,7 @@ public class Controller implements Initializable {
     	this.datePicker.setDisable(false);
     	this.periodBox.setDisable(false);
     }
-    
+*/  
     
     public void topMenuHandler() {
     	if(this.primaChiamata) {

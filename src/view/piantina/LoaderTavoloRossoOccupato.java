@@ -1,7 +1,5 @@
 package view.piantina;
 
-import java.awt.Dimension;
-import java.awt.Toolkit;
 import java.time.LocalDate;
 
 import javafx.application.Application;
@@ -15,6 +13,7 @@ import model.utili.Periodo;
 public class LoaderTavoloRossoOccupato extends Application {
 
 	private final double OPACITY = 0.95;
+	private final String TITLE = "Tavolo Occupato";
 	//DA FXML
 	private Text testoSuperiore;
 	private Text textCodice;
@@ -54,19 +53,18 @@ public class LoaderTavoloRossoOccupato extends Application {
 		try {
             final FXMLLoader loader = new FXMLLoader(getClass().getResource("/layouts/TavoloRossoOccupato.fxml"));
             final Parent root = loader.load();
-            final Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
-            final int sw = (int) screen.getWidth();
-            final int sh = (int) screen.getHeight();
+            //final Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+            //final int sw = (int) screen.getWidth();
+            //final int sh = (int) screen.getHeight();
             final Scene scene = new Scene(root);
             
             setAllTexts(loader);
             
             primaryStage.setOpacity(OPACITY);
-            primaryStage.setTitle("Tavolo OCCUPATO");
+            primaryStage.setTitle(TITLE);
 	        primaryStage.setScene(scene);
 	        primaryStage.show();
 	        
-	        //setUser(utente);
 	        
         } catch (Exception e) {
             e.printStackTrace();
