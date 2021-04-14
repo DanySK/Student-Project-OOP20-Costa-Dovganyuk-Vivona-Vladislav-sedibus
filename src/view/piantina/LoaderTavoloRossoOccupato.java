@@ -2,6 +2,7 @@ package view.piantina;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.time.LocalDate;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -9,6 +10,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import model.utili.Periodo;
 
 public class LoaderTavoloRossoOccupato extends Application {
 
@@ -28,14 +30,22 @@ public class LoaderTavoloRossoOccupato extends Application {
 	private String codicePrenotazione;
 	private String cognomeNomeCliente;
 	private String postiPrenotati;
+	private String numTelefono;
+	private String email;
+	private String periodo;
+	private String data;
 	
 	public LoaderTavoloRossoOccupato(String idTavolo, 
 			String codicePrenotazione, String cognomeNomeCliente,
-			String postiPrenotati) {
+			String postiPrenotati, String numTelefono, String email, Periodo periodo, LocalDate data) {
 		TESTO_SUPERIORE = "Tavolo " + idTavolo + " - PRENOTATO";
 		this.codicePrenotazione = codicePrenotazione;
 		this.cognomeNomeCliente = cognomeNomeCliente;
 		this.postiPrenotati = postiPrenotati;
+		this.numTelefono = numTelefono;
+		this.email = email;
+		this.periodo = periodo.toString();
+		this.data = data.toString();
 	}
 	
 	@Override
@@ -60,6 +70,18 @@ public class LoaderTavoloRossoOccupato extends Application {
             
             this.textPostiPrenotati = (Text) loader.getNamespace().get("textPostiPrenotati");
             this.textPostiPrenotati.setText(this.postiPrenotati);
+            
+            this.textTelefono = (Text) loader.getNamespace().get("textTelefono");
+            this.textTelefono.setText(this.numTelefono);
+            
+            this.textEmail = (Text) loader.getNamespace().get("textEmail");
+            this.textEmail.setText(this.email);
+            
+            this.textPeriodo = (Text) loader.getNamespace().get("textPeriodo");
+            this.textPeriodo.setText(this.periodo);
+            
+            this.textData = (Text) loader.getNamespace().get("textData");
+            this.textData.setText(this.data);
             
             primaryStage.setOpacity(OPACITY);
             primaryStage.setTitle("Tavolo OCCUPATO");

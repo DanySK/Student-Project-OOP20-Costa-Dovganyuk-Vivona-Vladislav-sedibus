@@ -113,7 +113,9 @@ public class Controller implements Initializable {
     				LoaderTavoloRossoOccupato tavoloRossoView = new LoaderTavoloRossoOccupato(b.getId(),
     						this.model.getCodicePrenotazione(periodo, localDate,idTavolo), 
     						this.model.getCognomeNomeCliente(periodo, localDate,idTavolo),
-    						this.model.getPostiPrenotati(periodo, localDate, idTavolo));
+    						this.model.getPostiPrenotati(periodo, localDate, idTavolo),
+    						this.model.getNumTelefonoCliente(periodo, localDate, idTavolo),
+    						this.model.getEmailCliente(periodo, localDate, idTavolo), this.periodo, this.localDate);
     				try {
 						tavoloRossoView.start(new Stage());
 					} catch (Exception e1) {

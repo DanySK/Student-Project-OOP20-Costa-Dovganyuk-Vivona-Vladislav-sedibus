@@ -15,6 +15,8 @@ public class ImplMainTableModel implements MainTableModel {
 	//lista totale dei Tavoli
 	private List<Tavolo> listaTavoli = new ArrayList<>();
 	
+	
+	
 	public ImplMainTableModel() {
 		this.listaTavoli = this.ristorante.tavoliRistorante();
 	}
@@ -32,10 +34,6 @@ public class ImplMainTableModel implements MainTableModel {
 	}
 	
 	
-	private Stream<Prenotazione> streamPrenotazioni(LocalDate data, Periodo p){
-		return ristorante.getListPrenotazioni(data, p).stream();
-	}
-	
 	public int getPostiMax(int ID) {
 		return this.listaTavoli.stream().filter(t -> t.getName() == ID).mapToInt(e -> e.getMaxPosti()).findFirst().getAsInt();
 	}
@@ -51,18 +49,36 @@ public class ImplMainTableModel implements MainTableModel {
 		return c.getNome().concat(" "+c.getCognome());
 	}
 	
+	@Override
+	public String getPostiPrenotati(Periodo p, LocalDate data, int idTavolo) {
+		return String.valueOf(getInformazioniPrenotazione(p, data, idTavolo).get().getPrenotazione().getPostiPrenotati());
+	}
+
+	@Override
+	public String getNumTelefonoCliente(Periodo p, LocalDate data, int idTavolo) {
+		return getCliente(p, data, idTavolo).getTelefono();
+	}
+
+
+	@Override
+	public String getEmailCliente(Periodo p, LocalDate data, int idTavolo) {
+		return getCliente(p, data, idTavolo).getEmail();
+	}
+	
+	
 	private Optional<Prenotazione> getInformazioniPrenotazione(Periodo periodo, LocalDate data, int idTavolo) {
 		return streamPrenotazioni(data, periodo).filter(p -> p.getTavolo().getName() == idTavolo).findFirst();
 	}
 	
-	public String getPostiPrenotati(Periodo p, LocalDate data, int idTavolo) {
-		return String.valueOf(getInformazioniPrenotazione(p, data, idTavolo).get().getPrenotazione().getPostiPrenotati());
-	}
 	
 	private Cliente getCliente(Periodo periodo, LocalDate data, int idTavolo) {
 		return getInformazioniPrenotazione(periodo, data, idTavolo).get().getCliente();
 	}
 	
-	
+	private Stream<Prenotazione> streamPrenotazioni(LocalDate data, Periodo p){
+		return ristorante.getListPrenotazioni(data, p).stream();
+	}
+
+
 
 }

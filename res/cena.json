@@ -30,5 +30,21 @@
       },
       "nPostiPrenotati": 8
     }
+  ],
+  "2021-04-14": [
+    {
+      "codicePrenotazione": "L0008",
+      "cliente": {
+        "nome": "Franco",
+        "cognome": "DaBrescia",
+        "email": "fffraaancoo@gmail.com",
+        "nTelefono": "1245003658"
+      },
+      "tavolo": {
+        "name": 11,
+        "maxPosti": 4
+      },
+      "nPostiPrenotati": 6
+    }
   ]
 }

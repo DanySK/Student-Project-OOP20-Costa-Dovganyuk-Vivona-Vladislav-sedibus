@@ -22,4 +22,8 @@ public interface MainTableModel {
 	String getCognomeNomeCliente(Periodo p, LocalDate data, int idTavolo);
 	
 	String getPostiPrenotati(Periodo p, LocalDate data, int idTavolo);
+	
+	String getNumTelefonoCliente(Periodo p, LocalDate data, int idTavolo);
+	
+	String getEmailCliente(Periodo p, LocalDate data, int idTavolo);
 }
