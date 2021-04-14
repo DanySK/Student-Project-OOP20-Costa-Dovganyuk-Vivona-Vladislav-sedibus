@@ -72,5 +72,77 @@
       },
       "nPostiPrenotati": 4
     }
+  ],
+  "2021-04-14": [
+    {
+      "codicePrenotazione": "X0003",
+      "cliente": {
+        "nome": "Mario",
+        "cognome": "Draghi",
+        "email": "mario.draghi@statoItaliano.it",
+        "nTelefono": "45120036987"
+      },
+      "tavolo": {
+        "name": 1,
+        "maxPosti": 10
+      },
+      "nPostiPrenotati": 6
+    },
+    {
+      "codicePrenotazione": "Q0004",
+      "cliente": {
+        "nome": "Maria",
+        "cognome": "Geppina",
+        "email": "mary.geppy@gmail.com",
+        "nTelefono": "4578003625"
+      },
+      "tavolo": {
+        "name": 1,
+        "maxPosti": 10
+      },
+      "nPostiPrenotati": 5
+    },
+    {
+      "codicePrenotazione": "F0005",
+      "cliente": {
+        "nome": "franco",
+        "cognome": "geppino",
+        "email": "asdasd@gmail.it",
+        "nTelefono": "5456456564"
+      },
+      "tavolo": {
+        "name": 1,
+        "maxPosti": 10
+      },
+      "nPostiPrenotati": 7
+    },
+    {
+      "codicePrenotazione": "T0006",
+      "cliente": {
+        "nome": "Pippo",
+        "cognome": "Baudo",
+        "email": "piipo@gmail.com",
+        "nTelefono": "4578100365"
+      },
+      "tavolo": {
+        "name": 1,
+        "maxPosti": 10
+      },
+      "nPostiPrenotati": 5
+    },
+    {
+      "codicePrenotazione": "V0007",
+      "cliente": {
+        "nome": "Marietto",
+        "cognome": "Balotelli",
+        "email": "mariooo@gmail.com",
+        "nTelefono": "12054872"
+      },
+      "tavolo": {
+        "name": 10,
+        "maxPosti": 10
+      },
+      "nPostiPrenotati": 7
+    }
   ]
 }
