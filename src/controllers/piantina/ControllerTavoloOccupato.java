@@ -13,6 +13,7 @@ import model.piantina.MainTableModel;
 import model.utili.Cliente;
 import model.utili.Periodo;
 import model.utili.Utente;
+import view.piantina.LoaderTableView;
 
 public class ControllerTavoloOccupato implements Initializable  {
 
@@ -63,6 +64,9 @@ public class ControllerTavoloOccupato implements Initializable  {
 		/*
 		 * Chiude lo stage corrente e torna alla visuale principale
 		 */
+		LoaderTableView view = new LoaderTableView();
+		view.start(new Stage());
+		
 		var stage = (Stage) this.textCodice.getScene().getWindow();
 		stage.close();
 		

@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 import model.utili.AzioneUtente;
 import model.utili.Periodo;
 import view.creaprenotazione.LoaderPrenotazione;
+import view.piantina.LoaderTableView;
 
 public class ControllerTavoloLibero implements Initializable {
 
@@ -39,8 +40,10 @@ public class ControllerTavoloLibero implements Initializable {
 	
 	
 	public void handlerAnnulla() {
-		System.out.println("Premuto ANNULLA");
+		LoaderTableView view = new LoaderTableView();
+		view.start(new Stage());
 		closeCurrentStage();
+		
 	}
 	
 	private void closeCurrentStage() {

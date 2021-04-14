@@ -34,6 +34,7 @@ public class Controller implements Initializable {
 	private static String ORARIO_PRANZO = "12.00 - 13.30";
 	private static String ORARIO_CENA = "18.00 - 19.30";
 	
+	@FXML private AnchorPane panePrincipale;
 	@FXML private DatePicker datePicker;
 	@FXML private ChoiceBox<Periodo> periodBox;
 	@FXML private AnchorPane paneTavoli;
@@ -103,6 +104,7 @@ public class Controller implements Initializable {
     }
     
     private void handlerTavolo() {
+    	
     	this.listButton.forEach(b -> {
     		b.setOnAction(e -> {
     			System.out.println("Stato premuto il Tavolo " + b.getId());
@@ -121,17 +123,17 @@ public class Controller implements Initializable {
 					} catch (Exception e1) {
 						e1.printStackTrace();
 					}
-    				
     			}else{
     				if(this.listRedButton.contains(b)) {
     					
     				}else {
     					LoaderTavoloVerdeLibero tavoloVerdeView = new LoaderTavoloVerdeLibero(b.getId(),this.periodo,this.localDate);
-        				Stage stagePrincipale = (Stage) this.datePicker.getScene().getWindow();
-        				//stagePrincipale.toBack();
-        				
         				try {
     						tavoloVerdeView.start(new Stage());
+    						//tavoloVerdeView.wait();
+    						
+    							
+    						
     					} catch (Exception exception) {
     						// TODO Auto-generated catch block
     						exception.printStackTrace();
@@ -139,12 +141,26 @@ public class Controller implements Initializable {
     				}
     				
     			}
+    			Stage stagePrincipale = (Stage) this.datePicker.getScene().getWindow();
+    			stagePrincipale.close();
     			
     		});
     	});
     	
     }
    
+    private void freezeElements() {
+    	this.panePrincipale.lookupAll("Button").forEach(b-> b.setDisable(true));
+    	this.datePicker.setDisable(true);
+    	this.periodBox.setDisable(true);
+    }
+    
+    private void unFreezeElements() {
+    	this.panePrincipale.lookupAll("Button").forEach(b-> b.setDisable(false));
+    	this.datePicker.setDisable(false);
+    	this.periodBox.setDisable(false);
+    }
+    
     
     public void topMenuHandler() {
     	if(this.primaChiamata) {
