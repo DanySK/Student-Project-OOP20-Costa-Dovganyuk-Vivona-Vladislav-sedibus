@@ -75,13 +75,23 @@ public class ImplMainTableModel implements MainTableModel {
 		return streamPrenotazioni().filter(p -> p.getTavolo().getName() == idTavolo).findFirst();
 	}
 	
-	
-	private Cliente getCliente(int idTavolo) {
+	@Override
+	public Cliente getCliente(int idTavolo) {
 		return getInformazioniPrenotazione(idTavolo).get().getCliente();
 	}
 	
 	private Stream<Prenotazione> streamPrenotazioni(){
 		return ristorante.getListPrenotazioni(data, periodo).stream();
+	}
+
+	@Override
+	public Prenotazione getPrenotazione(String codicePrenotazione) {
+		return streamPrenotazioni().filter(p -> p.getCodicePrenotazione().equals(codicePrenotazione)).findFirst().get().getPrenotazione();
+	}
+
+	@Override
+	public int getIdTavolo(String codicePrenotazione) {
+		return streamPrenotazioni().filter(p -> p.getCodicePrenotazione().equals(codicePrenotazione)).findFirst().get().getTavolo().getName();
 	}
 
 
