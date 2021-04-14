@@ -15,7 +15,7 @@ public interface ModelPrenotazione {
 	 */
 	void aggiungiPrenotazione(Periodo periodo, LocalDate data, int postiPrenotati);
 	
-	/**
+	/**z
 	 * @param nome che l'utente ha inserito
 	 * @param cognome che l'utente ha inserito
 	 * @param email che l'utente ha inserito

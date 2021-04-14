@@ -19,7 +19,6 @@ public class ModelPrenotazioneImpl implements ModelPrenotazione {
 	private int idTavolo = 0;
 	private Tavolo tavoloScelto;
 	private MainTableModel mtm = new ImplMainTableModel();
-	//private GestoreDB db = new ImplGestoreDB();
 	private Ristorante ristorante = new ImplRistorante();
 	
 	public ModelPrenotazioneImpl() { }

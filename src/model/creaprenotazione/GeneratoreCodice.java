@@ -12,7 +12,7 @@ import java.util.Random;
 
 public class GeneratoreCodice {
 
-	private final static String PERC_FILE = "res/ultimo-codice.txt";
+	private final static String PERC_FILE = "res/ultimo-codice/codice.txt";
 	private final static int NUMERO_CIFRE = 4;
 	private int n;
 	private String codice = "";

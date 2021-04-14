@@ -16,12 +16,12 @@ import model.utili.Periodo;
 public class ControllerPrenotazione implements Initializable {
 	
 	private AzioneUtente azione;
-	@FXML private AnchorPane ancora;
-	@FXML private TextField testoNome;
-	@FXML private TextField testoCognome;
-	@FXML private TextField testoEmail;
-	@FXML private TextField testoTelefono;
-	@FXML private DatePicker testoData;
+	@FXML private AnchorPane ancoraTesti;
+	@FXML protected TextField testoNome;
+	@FXML protected TextField testoCognome;
+	@FXML protected TextField testoEmail;
+	@FXML protected TextField testoTelefono;
+	@FXML protected DatePicker testoData;
 	@FXML private ToggleGroup turno;
 	@FXML private Label testoPosti;
 	@FXML private Label massimoPosti;
@@ -34,22 +34,19 @@ public class ControllerPrenotazione implements Initializable {
 	public ControllerPrenotazione() { }
 	
 	@Override
-	public void initialize(URL location, ResourceBundle resources) {  //forse non serve neanche
-		//System.out.println(this.massimoPosti.getText()); NON VA
+	public void initialize(URL location, ResourceBundle resources) {
 		
 		this.gestionePosti = new PilotaPosti(9);  //da modificare
 		this.pulisciCampi();
 	}
 	
 	private void pulisciCampi() {
-		this.ancora.getChildren().stream().filter(p -> p.getClass().equals(TextField.class))
-										  .map(el -> (TextField) el)
-										  .forEach(tf -> tf.clear());
-		//this.testoData.getEditor().clear();
+		this.ancoraTesti.getChildren().stream().filter(p -> p.getClass().equals(TextField.class))
+											   .map(el -> (TextField) el)
+											   .forEach(tf -> tf.clear());
 		this.gestionePosti.azzeraPosti();
 		this.aggiornaPosti();
 		this.errore.setVisible(false);
-		//this.turno.getSelectedToggle().setSelected(false); NON VA -> da sostituire
 	}
 	
 	public void handlerPiuPosti() {
@@ -67,13 +64,11 @@ public class ControllerPrenotazione implements Initializable {
 	}
 	
 	public void handlerConferma() {
-		if(this.modello.prendiDati(this.testoNome.getText(), this.testoCognome.getText(), 
-				this.testoEmail.getText(), this.testoTelefono.getText())) {
+		if(this.modello.prendiDati(this.testoNome.getText(), this.testoCognome.getText(), this.testoEmail.getText(), this.testoTelefono.getText())) {
 			this.modello.prelevaIdTavolo(this.getIdTavolo());
 			this.modello.aggiungiPrenotazione(this.getPeriodo(), 
 											  this.testoData.getValue(),
 											  this.gestionePosti.getNumeroPosti());
-			System.out.println("PRENOTAZIONE AGGIUNTA CON SUCCESSO");
 			//prossima pagina -> riepilogo a cui passare etichettaAzione
 		} else {
 			this.errore.setVisible(true);
@@ -101,8 +96,4 @@ public class ControllerPrenotazione implements Initializable {
 		//pagina precedente
 	}
 	
-	private void riempiCampi() {
-		
-	}
-
 }
