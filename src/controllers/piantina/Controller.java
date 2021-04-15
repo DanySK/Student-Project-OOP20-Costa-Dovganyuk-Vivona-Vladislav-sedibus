@@ -49,11 +49,7 @@ public class Controller implements Initializable {
 	//boolean per la visualizzazione dei tavoli ROSSI
 	
 	
-	
-	
-	public Controller() {
-		
-	}
+	public Controller() {}
 	
 	
     @Override

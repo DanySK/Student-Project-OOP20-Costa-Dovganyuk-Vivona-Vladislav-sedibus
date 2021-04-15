@@ -11,6 +11,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.utili.AzioneUtente;
 import model.utili.Periodo;
+import model.utili.Utente;
 import view.creaprenotazione.LoaderPrenotazione;
 import view.piantina.LoaderTableView;
 

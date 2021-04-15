@@ -64,7 +64,11 @@ public class ControllerTavoloOccupato implements Initializable  {
 		/*
 		 * Chiude lo stage corrente e torna alla visuale principale
 		 */
-		LoaderTableView view = new LoaderTableView();
+		if(this.model == null) {
+			setModel();
+		}
+		System.out.println("Periodo e data - " + this.periodo + "  " + this.data);
+		LoaderTableView view = new LoaderTableView(this.periodo,this.data);
 		view.start(new Stage());
 		
 		var stage = (Stage) this.textCodice.getScene().getWindow();
