@@ -9,84 +9,67 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import model.creaprenotazione.ModelPrenotazione;
 import model.creaprenotazione.ModelPrenotazioneImpl;
-import model.creaprenotazione.PilotaPosti;
 import model.utili.AzioneUtente;
-import model.utili.Periodo;
 
 public class ControllerPrenotazione implements Initializable {
 	
-	private static final int POS_ID_TAVOLO = 1;
-	private AzioneUtente azione;
-	@FXML private AnchorPane ancoraTesti;
-	@FXML protected TextField testoNome;
-	@FXML protected TextField testoCognome;
-	@FXML protected TextField testoEmail;
-	@FXML protected TextField testoTelefono;
-	@FXML protected DatePicker testoData;
-	@FXML private ToggleGroup turno;
+	//private AzioneUtente azione;
+	@FXML private TextField testoNome;
+	@FXML private TextField testoCognome;
+	@FXML private TextField testoEmail;
+	@FXML private TextField testoTelefono;
+	@FXML private DatePicker testoData;
+	@FXML private TextField testoPeriodo;
 	@FXML private Label testoPosti;
-	@FXML private Label massimoPosti;
-	@FXML private Label etichettaAzione;
 	@FXML private Label errore;
-	@FXML private Label etichettaTavolo;
 	private ModelPrenotazione modello = new ModelPrenotazioneImpl();
-	private PilotaPosti gestionePosti;
 	
-	public ControllerPrenotazione() { }
-	
+	public ControllerPrenotazione(String idTavolo, AzioneUtente azione) { 
+		this.modello.prendiTavolo(idTavolo);
+		//this.azione = azione;
+	}
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		
-		this.gestionePosti = new PilotaPosti(9);  //da modificare
 		this.pulisciCampi();
 	}
 	
 	private void pulisciCampi() {
-		this.ancoraTesti.getChildren().stream().filter(p -> p.getClass().equals(TextField.class))
-											   .map(el -> (TextField) el)
-											   .forEach(tf -> tf.clear());
-		this.gestionePosti.azzeraPosti();
-		this.aggiornaPosti();
+		this.azzeraPosti();
 		this.errore.setVisible(false);
+		this.testoNome.clear();
+		this.testoCognome.clear();
+		this.testoEmail.clear();
+		this.testoTelefono.clear();
+	}
+	
+	private void azzeraPosti() {
+		this.modello.inizializzaPosti();
+		this.aggiornaPosti();
 	}
 	
 	public void handlerPiuPosti() {
-		this.gestionePosti.aggiungiPosto();
+		this.modello.incrementaPosti();
 		this.aggiornaPosti();
 	}
 	
 	public void handlerMenoPosti() {
-		this.gestionePosti.togliPosto();
+		this.modello.decrementaPosti();
 		this.aggiornaPosti();
 	}
 	
 	private void aggiornaPosti() {
-		this.testoPosti.setText(String.valueOf(this.gestionePosti.getNumeroPosti()));
+		this.testoPosti.setText(String.valueOf(this.modello.postiCorrenti()));
 	}
 	
 	public void handlerConferma() {
-		if(this.modello.prendiDati(this.testoNome.getText(), this.testoCognome.getText(), this.testoEmail.getText(), this.testoTelefono.getText())) {
-			this.modello.prelevaIdTavolo(this.getIdTavolo());
-			this.modello.aggiungiPrenotazione(this.getPeriodo(), 
-											  this.testoData.getValue(),
-											  this.gestionePosti.getNumeroPosti());
-			//prossima pagina -> riepilogo a cui passare etichettaAzione
+		if(this.modello.prendiDatiCliente(this.testoNome.getText(), this.testoCognome.getText(), 
+										  this.testoEmail.getText(), this.testoTelefono.getText())) {
+			this.modello.prendiPeriodo(this.testoPeriodo.getText());
+			this.modello.aggiungiPrenotazione(this.testoData.getValue());
+			//prossima pagina a cui passare la prenotazione
 		} else {
 			this.errore.setVisible(true);
 		}
-	}
-	
-	private int getIdTavolo() {
-		String testo = this.etichettaTavolo.getText();
-		return Integer.parseInt(testo.split(" ")[POS_ID_TAVOLO]);
-	}
-	
-	private RadioButton turnoSelezionato() {
-		return (RadioButton) this.turno.getSelectedToggle();
-	}
-	
-	private Periodo getPeriodo() {
-		return this.turnoSelezionato().getText().equals("Pranzo") ? Periodo.PRANZO : Periodo.CENA;
 	}
 	
 	public void handlerReset() {

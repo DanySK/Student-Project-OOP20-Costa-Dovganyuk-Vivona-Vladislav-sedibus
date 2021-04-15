@@ -3,6 +3,7 @@ package view.creaprenotazione;
 import java.io.IOException;
 import java.time.LocalDate;
 
+import controllers.creaprenotazione.ControllerPrenotazione;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -10,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
 import model.utili.AzioneUtente;
@@ -18,7 +20,7 @@ import model.utili.Periodo;
 public class LoaderPrenotazione extends Application {
 
 	private static final String PERC_SCENA = "/layouts/ScenePrenotazione.fxml";
-	private static final int TOGGLE_POS_PRANZO = 0;
+	/*private static final int TOGGLE_POS_PRANZO = 0;
 	private static final int TOGGLE_POS_CENA = 1;
 	private static AzioneUtente azione;
 	private Label etichettaAzione;
@@ -27,13 +29,24 @@ public class LoaderPrenotazione extends Application {
 	private Periodo periodo;
 	private LocalDate data;
 	private String idTavolo;
+	private Label etichettaTavolo;*/
+	private static AzioneUtente azione;
+	private DatePicker testoData;
+	private LocalDate data;
+	private TextField testoPeriodo;
+	private Periodo periodo;
 	private Label etichettaTavolo;
-	private Label massimoPosti;
+	private String idTavolo;
+	
 	
 	public LoaderPrenotazione(AzioneUtente azione, Periodo periodo, LocalDate data, String idTavolo) {
-		LoaderPrenotazione.azione = azione;
+		/*LoaderPrenotazione.azione = azione;
 		this.periodo = periodo;
 		this.data = data;
+		this.idTavolo = idTavolo;*/
+		LoaderPrenotazione.azione = azione;
+		this.data = data;
+		this.periodo = periodo;
 		this.idTavolo = idTavolo;
 	}
 	
@@ -50,11 +63,24 @@ public class LoaderPrenotazione extends Application {
 	@Override
 	public void start(Stage scenaPrimaria) throws Exception {
 		final FXMLLoader caricatore = new FXMLLoader(getClass().getResource(PERC_SCENA));
+		ControllerPrenotazione c = new ControllerPrenotazione(this.idTavolo, LoaderPrenotazione.azione);
 		try {
+			caricatore.setController(c);
 			final Parent radice = caricatore.load();
 			final Scene miaScena = new Scene(radice);
 			scenaPrimaria.setScene(miaScena);
 			scenaPrimaria.setResizable(false);
+			
+			this.testoData = (DatePicker) caricatore.getNamespace().get("testoData");
+			this.testoData.setValue(this.data);
+			this.testoData.setDisable(true);
+			
+			this.testoPeriodo = (TextField) caricatore.getNamespace().get("testoPeriodo");
+			this.testoPeriodo.setText(this.periodo.toString());
+			this.testoPeriodo.setDisable(true);
+			
+			this.etichettaTavolo = (Label) caricatore.getNamespace().get("etichettaTavolo");
+			this.etichettaTavolo.setText("Tavolo " + this.idTavolo);
 			
 			/**
 			 * in caso di Azione.MODIFICA, possibile anche cambiare il testo dei bottoni 
@@ -70,14 +96,14 @@ public class LoaderPrenotazione extends Application {
 			 */
 			
 			//questi qua lasciare cosi
-			this.etichettaAzione = (Label) caricatore.getNamespace().get("etichettaAzione");
-			this.etichettaAzione.setText(LoaderPrenotazione.azione.toString());
+			/*this.etichettaAzione = (Label) caricatore.getNamespace().get("etichettaAzione");
+			this.etichettaAzione.setText(LoaderPrenotazione.azione.toString());*/
 			
 			/**
 			 * Turno non e modificabile...
 			 * se facessimo diventare un Text invece che tooggle group?
 			 */
-			this.turno =  (ToggleGroup) caricatore.getNamespace().get("turno");
+			/*this.turno =  (ToggleGroup) caricatore.getNamespace().get("turno");
 			if(this.periodo.equals(Periodo.PRANZO)) {
 				this.turno.getToggles().get(TOGGLE_POS_PRANZO).setSelected(true);
 			}else {
@@ -89,7 +115,7 @@ public class LoaderPrenotazione extends Application {
 			this.testoData.setDisable(true);
 			
 			this.etichettaTavolo = (Label) caricatore.getNamespace().get("etichettaTavolo");
-			this.etichettaTavolo.setText("Tavolo " + this.idTavolo);
+			this.etichettaTavolo.setText("Tavolo " + this.idTavolo);*/
 			
 			scenaPrimaria.show();
 		} catch (IOException e) {
