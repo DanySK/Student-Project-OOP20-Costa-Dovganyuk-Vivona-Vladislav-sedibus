@@ -2,8 +2,8 @@ package model.creaprenotazione;
 
 public class PilotaPosti {
 
-	private int nPosti;
 	private final static int MIN_POSTI = 1;
+	private int nPosti;
 	private int maxPosti;
 	
 	public PilotaPosti(int max) {
@@ -25,7 +25,7 @@ public class PilotaPosti {
 	}
 	
 	public void togliPosto() {
-		if(this.nPosti != MIN_POSTI) {
+		if(this.nPosti > MIN_POSTI) {
 			this.nPosti--;
 		}
 	}

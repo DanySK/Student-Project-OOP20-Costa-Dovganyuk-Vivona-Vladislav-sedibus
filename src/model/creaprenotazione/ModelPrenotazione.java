@@ -5,27 +5,52 @@ import model.piantina.Tavolo;
 import model.utili.Periodo;
 
 public interface ModelPrenotazione {
+
+	/**
+	 * Dal nome/id viene ricavato il tavolo scelto dall'utente
+	 * @param idTavolo
+	 */
+	void prendiTavolo(String idTavolo);
 	
 	/**
-	 * Aggiunge una nuova prenotazione
-	 * @param periodo
-	 * @param data
-	 * @param tavolo
-	 * @param postiPrenotati
+	 * Aumenta di 1 i posti che il cliente vuole occupare
 	 */
-	void aggiungiPrenotazione(Periodo periodo, LocalDate data, int postiPrenotati);
+	void incrementaPosti();
 	
-	/**z
+	/**
+	 * Diminuisce di 1 i posti che il cliente vuole occupare
+	 */
+	void decrementaPosti();
+	
+	/**
+	 * Porta i posti che il cliente puo' occupare al minimo
+	 */
+	void inizializzaPosti();
+	
+	/**
+	 * @return i posti che il cliente vuole occupare
+	 */
+	int postiCorrenti();
+	
+	/**
 	 * @param nome che l'utente ha inserito
 	 * @param cognome che l'utente ha inserito
 	 * @param email che l'utente ha inserito
 	 * @param telefono che l'utente ha inserito
 	 * @return vero se i dati in ingresso rispettano i controlli, falso altrimenti
 	 */
-	boolean prendiDati(String nome, String cognome, String email, String telefono);
+	boolean prendiDatiCliente(String nome, String cognome, String email, String telefono);
 	
-	void prelevaIdTavolo(int idTavolo);
+	/**
+	 * Estrapola il periodo dalla stringa in input
+	 * @param periodo
+	 */
+	void prendiPeriodo(String periodo);
 	
-	int getMaxPosti();
+	/**
+	 * Aggiunge una nuova prenotazione
+	 * @param data
+	 */
+	void aggiungiPrenotazione(LocalDate data);
 	
 }
