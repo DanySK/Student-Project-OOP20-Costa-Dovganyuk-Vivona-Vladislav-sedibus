@@ -1,18 +1,13 @@
 package view.piantina;
 
-import java.awt.Dimension;
-import java.awt.Toolkit;
-import java.net.URL;
 import java.time.LocalDate;
-import java.util.ResourceBundle;
 
 import javafx.application.Application;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.utili.Periodo;
 
@@ -41,9 +36,6 @@ public class LoaderTavoloVerdeLibero extends Application{
 		try {
             final FXMLLoader loader = new FXMLLoader(getClass().getResource("/layouts/TavoloVerdeLibero.fxml"));
             final Parent root = loader.load();
-            final Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
-            final int sw = (int) screen.getWidth();
-            final int sh = (int) screen.getHeight();
             final Scene scene = new Scene(root);
             
             
@@ -55,13 +47,13 @@ public class LoaderTavoloVerdeLibero extends Application{
             this.testoPeriodo.setText(this.periodo.toString());
             this.testoData.setText(this.data.toString());
             
-            //final Scene scene = new Scene(root, sw / PROPORTION, sh / PROPORTION);
+            primaryStage.setResizable(false);
+            primaryStage.initModality(Modality.APPLICATION_MODAL);
             primaryStage.setOpacity(OPACITY);
             primaryStage.setTitle("Tavolo LIBERO");
 	        primaryStage.setScene(scene);
 	        primaryStage.show();
 	        
-	        //setUser(utente);
 	        
         } catch (Exception e) {
             e.printStackTrace();

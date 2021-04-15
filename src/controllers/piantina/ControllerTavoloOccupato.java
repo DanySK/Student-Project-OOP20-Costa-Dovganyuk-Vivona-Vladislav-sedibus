@@ -12,16 +12,13 @@ import model.piantina.ImplMainTableModel;
 import model.piantina.MainTableModel;
 import model.utili.Cliente;
 import model.utili.Periodo;
-import model.utili.Utente;
-import view.piantina.LoaderTableView;
+
 
 public class ControllerTavoloOccupato implements Initializable  {
 
 	@FXML private Text textCodice;
 	@FXML private Text textData;
 	@FXML private Text textPeriodo;
-	//sara necessario per poi riaprire lo stage dei tavoli in modalita ADMIN
-	private final Utente utente = Utente.ADMIN;
 	private MainTableModel model = null;
 	
 	private Cliente cliente;
@@ -36,10 +33,6 @@ public class ControllerTavoloOccupato implements Initializable  {
 
 	
 	public void handlerModifica() {
-		/*
-		 * vado a richiamre la loader di ScenePrenotazione passandogli gli elementi necessari
-		 * a precompilare i campi delle form, e il flag che indica che si tratta di una modifica
-		 */
 		if(this.model == null) {
 			setModel();
 		}
@@ -52,25 +45,12 @@ public class ControllerTavoloOccupato implements Initializable  {
 	}
 	
 	public void handlerElimina() {
-		/*
-		 * vado a richiamare la funzione che elimina la prenotazione, e successivamente apre una finestra per confermare l'eliminazione
-		 */
 		if(this.model == null) {
 			setModel();
 		}
 	}
 	
 	public void handlerAnnulla() {
-		/*
-		 * Chiude lo stage corrente e torna alla visuale principale
-		 */
-		if(this.model == null) {
-			setModel();
-		}
-		System.out.println("Periodo e data - " + this.periodo + "  " + this.data);
-		LoaderTableView view = new LoaderTableView(this.periodo,this.data);
-		view.start(new Stage());
-		
 		var stage = (Stage) this.textCodice.getScene().getWindow();
 		stage.close();
 		

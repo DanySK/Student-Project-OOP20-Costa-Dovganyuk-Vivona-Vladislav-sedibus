@@ -4,7 +4,6 @@ package model.piantina;
 
 public class Tavolo  {
 	
-	private static final long serialVersionUID = 1L;
 	private int name;
 	private int maxPosti;
 	

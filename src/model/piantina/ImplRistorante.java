@@ -1,22 +1,16 @@
 package model.piantina;
 
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-import com.google.gson.Gson;
 
 import dataBaseModel.GestoreDB;
 import dataBaseModel.ImplGestoreDB;
@@ -26,6 +20,8 @@ public class ImplRistorante implements Ristorante {
 
 	
 	private static String FILE_PATH = "res/restourant-conf/tavoli.txt";
+	private static final int POS_ID_TAVOLO = 0;
+	private static final int POS_MAX_POSTI_TAVOLO = 1;
 	private List<Tavolo> tavoli = new ArrayList<>();
 	private GestoreDB getsoreDB =  new ImplGestoreDB();
 	private Optional<Periodo> periodoAttuale = Optional.empty();
@@ -37,7 +33,6 @@ public class ImplRistorante implements Ristorante {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
 	}
 	
 	
@@ -67,7 +62,7 @@ public class ImplRistorante implements Ristorante {
 		    	if(s == null) {
 		    		break;
 		    	}
-		    	tavoli.add(new Tavolo(Integer.parseInt(s.split(",")[0]),Integer.parseInt(s.split(",")[1])));
+		    	tavoli.add(new Tavolo(Integer.parseInt(s.split(",")[POS_ID_TAVOLO]),Integer.parseInt(s.split(",")[POS_MAX_POSTI_TAVOLO])));
 		    }
 		    b.close();
 		    

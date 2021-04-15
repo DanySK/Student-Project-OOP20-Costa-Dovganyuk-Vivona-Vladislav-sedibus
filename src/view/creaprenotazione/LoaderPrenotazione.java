@@ -13,6 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.utili.AzioneUtente;
 import model.utili.Periodo;
@@ -70,6 +71,8 @@ public class LoaderPrenotazione extends Application {
 			final Scene miaScena = new Scene(radice);
 			scenaPrimaria.setScene(miaScena);
 			scenaPrimaria.setResizable(false);
+	        scenaPrimaria.initModality(Modality.APPLICATION_MODAL);
+			
 			
 			this.testoData = (DatePicker) caricatore.getNamespace().get("testoData");
 			this.testoData.setValue(this.data);

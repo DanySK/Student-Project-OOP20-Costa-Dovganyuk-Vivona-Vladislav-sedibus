@@ -111,8 +111,8 @@ public class Controller implements Initializable {
     						this.model.getEmailCliente(idTavolo), this.periodo, this.localDate);
     				try {
 						tavoloRossoView.start(new Stage());
-					} catch (Exception e1) {
-						e1.printStackTrace();
+					} catch (Exception exception) {
+						exception.printStackTrace();
 					}
     			}else{
     				if(this.listRedButton.contains(b)) {
@@ -127,26 +127,11 @@ public class Controller implements Initializable {
     				}
     				
     			}
-    			Stage stagePrincipale = (Stage) this.datePicker.getScene().getWindow();
-    			stagePrincipale.close();
     			
     		});
     	});
     	
     }
-/*   
-    private void freezeElements() {
-    	this.panePrincipale.lookupAll("Button").forEach(b-> b.setDisable(true));
-    	this.datePicker.setDisable(true);
-    	this.periodBox.setDisable(true);
-    }
-    
-    private void unFreezeElements() {
-    	this.panePrincipale.lookupAll("Button").forEach(b-> b.setDisable(false));
-    	this.datePicker.setDisable(false);
-    	this.periodBox.setDisable(false);
-    }
-*/  
     
     public void topMenuHandler() {
     	if(this.primaChiamata) {
@@ -187,6 +172,7 @@ public class Controller implements Initializable {
 			currentStage.close();
 		} catch (Exception e) {
 			e.printStackTrace();
+			
 		}
     }
     

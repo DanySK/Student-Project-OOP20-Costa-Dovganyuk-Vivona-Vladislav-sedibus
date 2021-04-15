@@ -24,9 +24,6 @@ public class ImplMainTableModel implements MainTableModel {
 		this.data = d;
 	}
 	
-	public ImplMainTableModel() {
-	}
-	
 	
 	@Override
 	public List<Integer> tavoliPrenotati(LocalDate date, Periodo p) {
