@@ -3,7 +3,6 @@ package view.piantina;
 import java.time.LocalDate;
 
 import javafx.application.Application;
-import javafx.event.EventType;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -53,10 +52,8 @@ public class LoaderTavoloVerdeLibero extends Application{
             
             this.buttonConferma = (Button) loader.getNamespace().get("buttonConferma");
             //chiudo lo stage della visione tavolo, che verra riaperta dal Controller Prenotazione
-            //se l'utente e admin
             this.buttonConferma.setOnMouseReleased(e->{
             	this.previousStage.close();
-            	System.out.println("Bottone rilasciato");
             });
             
             primaryStage.setResizable(false);
