@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
@@ -102,7 +103,7 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <TextField fx:id="testoPeriodo" layoutX="1.0" layoutY="202.0" promptText="PRANZO/CENA" />
+            <ChoiceBox fx:id="testoPeriodo" layoutX="1.0" layoutY="202.0" prefWidth="150.0" />
          </children>
       </AnchorPane>
    </center>

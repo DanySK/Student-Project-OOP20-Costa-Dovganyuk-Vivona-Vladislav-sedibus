@@ -8,11 +8,10 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
 import model.utili.AzioneUtente;
 import model.utili.Periodo;
@@ -20,52 +19,48 @@ import model.utili.Periodo;
 public class LoaderPrenotazione extends Application {
 
 	private static final String PERC_SCENA = "/layouts/ScenePrenotazione.fxml";
-	/*private static final int TOGGLE_POS_PRANZO = 0;
-	private static final int TOGGLE_POS_CENA = 1;
-	private static AzioneUtente azione;
-	private Label etichettaAzione;
-	private ToggleGroup turno;
-	private DatePicker testoData;
-	private Periodo periodo;
-	private LocalDate data;
-	private String idTavolo;
-	private Label etichettaTavolo;*/
 	private static AzioneUtente azione;
 	private DatePicker testoData;
 	private LocalDate data;
-	private TextField testoPeriodo;
+	private ChoiceBox<Periodo> testoPeriodo;
 	private Periodo periodo;
 	private Label etichettaTavolo;
 	private String idTavolo;
 	
+	//MODIFICA
+	private String vecchioNome;
+	private TextField testoNome;
+	private String vecchioCognome;
+	private TextField testoCognome;
+	private String vecchiaEmail;
+	private TextField testoEmail;
+	private String vecchioTelefono;
+	private TextField testoTelefono;
+	private String vecchiPosti;
+	private Label testoPosti;
 	
 	public LoaderPrenotazione(AzioneUtente azione, Periodo periodo, LocalDate data, String idTavolo) {
-		/*LoaderPrenotazione.azione = azione;
-		this.periodo = periodo;
-		this.data = data;
-		this.idTavolo = idTavolo;*/
 		LoaderPrenotazione.azione = azione;
 		this.data = data;
 		this.periodo = periodo;
 		this.idTavolo = idTavolo;
 	}
 	
-	/**
-	 * Creare un secondo Costruttore, che prende anche i valori necessari per precompilare
-	 * tutti i campi necessari alla modifica (Nome,Cognome,Email,Telefono,numero di posti)
-	 */
-	
-	/*public void inizia(AzioneUtente a) {
-		azione = a;
-		launch();
-	}*/
+	public LoaderPrenotazione(AzioneUtente azione, String nome, String cognome, String email, String telefono, LocalDate data, Periodo periodo, String nPosti, String idTavolo) {
+		this(azione, periodo, data, idTavolo);
+		this.vecchioNome = nome;
+		this.vecchioCognome = cognome;
+		this.vecchiaEmail = email;
+		this.vecchioTelefono = telefono;
+		this.vecchiPosti = nPosti;
+	}
 	
 	@Override
 	public void start(Stage scenaPrimaria) throws Exception {
 		final FXMLLoader caricatore = new FXMLLoader(getClass().getResource(PERC_SCENA));
-		ControllerPrenotazione c = new ControllerPrenotazione(this.idTavolo, LoaderPrenotazione.azione);
+		ControllerPrenotazione crea = new ControllerPrenotazione(this.idTavolo, LoaderPrenotazione.azione);
 		try {
-			caricatore.setController(c);
+			caricatore.setController(crea);
 			final Parent radice = caricatore.load();
 			final Scene miaScena = new Scene(radice);
 			scenaPrimaria.setScene(miaScena);
@@ -73,49 +68,29 @@ public class LoaderPrenotazione extends Application {
 			
 			this.testoData = (DatePicker) caricatore.getNamespace().get("testoData");
 			this.testoData.setValue(this.data);
-			this.testoData.setDisable(true);
 			
-			this.testoPeriodo = (TextField) caricatore.getNamespace().get("testoPeriodo");
-			this.testoPeriodo.setText(this.periodo.toString());
-			this.testoPeriodo.setDisable(true);
+			this.testoPeriodo = (ChoiceBox<Periodo>) caricatore.getNamespace().get("testoPeriodo");
+			this.testoPeriodo.setValue(this.periodo);
+			this.testoPeriodo.getItems().addAll(Periodo.PRANZO, Periodo.CENA);
 			
 			this.etichettaTavolo = (Label) caricatore.getNamespace().get("etichettaTavolo");
 			this.etichettaTavolo.setText("Tavolo " + this.idTavolo);
 			
-			/**
-			 * in caso di Azione.MODIFICA, possibile anche cambiare il testo dei bottoni 
-			 * poi nel controller, gestire al click del bottone conferma, il richiamo verso la
-			 * classe Cliente in cui vado a modificare i dati
-			 *------------------------------------------------------
-			 * Data e periodo non sono modificabili 
-			 **/
-			
-			/*if(AzioneUtente.MODIFICA){
-			 * 		Precompilo i campi di Nome, Cognome ....
-			 * }
-			 */
-			
-			//questi qua lasciare cosi
-			/*this.etichettaAzione = (Label) caricatore.getNamespace().get("etichettaAzione");
-			this.etichettaAzione.setText(LoaderPrenotazione.azione.toString());*/
-			
-			/**
-			 * Turno non e modificabile...
-			 * se facessimo diventare un Text invece che tooggle group?
-			 */
-			/*this.turno =  (ToggleGroup) caricatore.getNamespace().get("turno");
-			if(this.periodo.equals(Periodo.PRANZO)) {
-				this.turno.getToggles().get(TOGGLE_POS_PRANZO).setSelected(true);
-			}else {
-				this.turno.getToggles().get(TOGGLE_POS_CENA).setSelected(true);
+			if(LoaderPrenotazione.azione.equals(AzioneUtente.MODIFICA)) {
+				this.testoNome = (TextField) caricatore.getNamespace().get("testoNome");
+				this.testoNome.setText(this.vecchioNome);
+				this.testoCognome = (TextField) caricatore.getNamespace().get("testoCognome");
+				this.testoCognome.setText(this.vecchioCognome);
+				this.testoEmail = (TextField) caricatore.getNamespace().get("testoEmail");
+				this.testoEmail.setText(this.vecchiaEmail);
+				this.testoTelefono = (TextField) caricatore.getNamespace().get("testoTelefono");
+				this.testoTelefono.setText(this.vecchioTelefono);
+				this.testoPosti = (Label) caricatore.getNamespace().get("testoPosti");
+				this.testoPosti.setText(this.vecchiPosti);
+			} else {
+				this.testoPeriodo.setDisable(true);
+				this.testoData.setDisable(true);
 			}
-			
-			this.testoData = (DatePicker) caricatore.getNamespace().get("testoData");
-			this.testoData.setValue(this.data);
-			this.testoData.setDisable(true);
-			
-			this.etichettaTavolo = (Label) caricatore.getNamespace().get("etichettaTavolo");
-			this.etichettaTavolo.setText("Tavolo " + this.idTavolo);*/
 			
 			scenaPrimaria.show();
 		} catch (IOException e) {
