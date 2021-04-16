@@ -14,6 +14,9 @@ import model.utili.Periodo;
 
 public class LoaderTavoloVerdeLibero extends Application{
 
+	private final String TITLE = "Tavolo LIBERO";
+	private final String PATH_LAYOUT = "/layouts/TavoloVerdeLibero.fxml";
+	
 	private Text testoSuperiore;
 	private Text testoPeriodo;
 	private Text testoData;
@@ -37,7 +40,8 @@ public class LoaderTavoloVerdeLibero extends Application{
 	public void start(Stage primaryStage) throws Exception {
 		
 		try {
-            final FXMLLoader loader = new FXMLLoader(getClass().getResource("/layouts/TavoloVerdeLibero.fxml"));
+			
+            final FXMLLoader loader = new FXMLLoader(getClass().getResource(PATH_LAYOUT));
             final Parent root = loader.load();
             final Scene scene = new Scene(root);
             
@@ -59,7 +63,7 @@ public class LoaderTavoloVerdeLibero extends Application{
             primaryStage.setResizable(false);
             primaryStage.initModality(Modality.APPLICATION_MODAL);
             primaryStage.setOpacity(OPACITY);
-            primaryStage.setTitle("Tavolo LIBERO");
+            primaryStage.setTitle(TITLE);
 	        primaryStage.setScene(scene);
 	        primaryStage.show();
 	        
@@ -70,11 +74,6 @@ public class LoaderTavoloVerdeLibero extends Application{
 		
 	}
 	
-	
-	public void loadView() {
-		launch();
-	}
-
 
 
 }

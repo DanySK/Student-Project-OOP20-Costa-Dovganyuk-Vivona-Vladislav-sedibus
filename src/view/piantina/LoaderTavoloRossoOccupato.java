@@ -16,6 +16,7 @@ public class LoaderTavoloRossoOccupato extends Application {
 
 	private final double OPACITY = 0.95;
 	private final String TITLE = "Tavolo Occupato";
+	private final String PATH_LAYOUT = "/layouts/TavoloRossoOccupato.fxml";
 	//DA FXML
 	private Text testoSuperiore;
 	private Text textCodice;
@@ -55,7 +56,7 @@ public class LoaderTavoloRossoOccupato extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		
 		try {
-            final FXMLLoader loader = new FXMLLoader(getClass().getResource("/layouts/TavoloRossoOccupato.fxml"));
+            final FXMLLoader loader = new FXMLLoader(getClass().getResource(PATH_LAYOUT));
             final Parent root = loader.load();
             final Scene scene = new Scene(root);
             

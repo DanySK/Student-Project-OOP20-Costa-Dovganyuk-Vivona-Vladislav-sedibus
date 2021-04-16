@@ -24,9 +24,19 @@ public class ImplGestoreDB implements GestoreDB {
 
 
 	private Gson gson = new GsonBuilder().setPrettyPrinting().create();
-	private static String PRANZO_FILE_PATH = "res/pranzo.json";
-	private static String CENA_FILE_PATH = "res/cena.json";
+	//private static String PRANZO_FILE_PATH = "res/pranzo.json";
+	//private static String CENA_FILE_PATH = "res/cena.json";
 
+	private static String PRANZO_FILE_PATH = System.getProperty("user.home") + System.getProperty("file.separator") + "pranzo.json";  
+	private static String CENA_FILE_PATH = System.getProperty("user.home") + System.getProperty("file.separator") + "cena.json";
+	
+	/**
+	 *  System.getProperty("user.home")
+            + System.getProperty("file.separator")
+            + BadIOGUI.class.getSimpleName() + ".txt";
+	 */
+	
+	
 	public ImplGestoreDB() {
 		createFiles();
 	}
