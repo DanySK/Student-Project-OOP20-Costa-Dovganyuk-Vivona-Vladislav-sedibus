@@ -6,6 +6,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -24,8 +25,9 @@ public class LoaderTavoloRossoOccupato extends Application {
 	private Text textEmail;
 	private Text textPeriodo;
 	private Text textData;
+	private Button buttonModifica;
 	
-	
+	private Stage previousStage;
 	private String TESTO_SUPERIORE;
 	private String codicePrenotazione;
 	private String cognomeNomeCliente;
@@ -37,7 +39,7 @@ public class LoaderTavoloRossoOccupato extends Application {
 	
 	public LoaderTavoloRossoOccupato(String idTavolo, 
 			String codicePrenotazione, String cognomeNomeCliente,
-			String postiPrenotati, String numTelefono, String email, Periodo periodo, LocalDate data) {
+			String postiPrenotati, String numTelefono, String email, Periodo periodo, LocalDate data, Stage previousStage) {
 		TESTO_SUPERIORE = "Tavolo " + idTavolo + " - PRENOTATO";
 		this.codicePrenotazione = codicePrenotazione;
 		this.cognomeNomeCliente = cognomeNomeCliente;
@@ -46,6 +48,7 @@ public class LoaderTavoloRossoOccupato extends Application {
 		this.email = email;
 		this.periodo = periodo.toString();
 		this.data = data.toString();
+		this.previousStage = previousStage; 
 	}
 	
 	@Override
@@ -57,6 +60,12 @@ public class LoaderTavoloRossoOccupato extends Application {
             final Scene scene = new Scene(root);
             
             setAllTexts(loader);
+            
+            this.buttonModifica = (Button) loader.getNamespace().get("buttonModifica");
+            this.buttonModifica.setOnMouseReleased(e->{
+            	this.previousStage.close();
+            });
+            
             
             primaryStage.setResizable(false);
             primaryStage.initModality(Modality.APPLICATION_MODAL);

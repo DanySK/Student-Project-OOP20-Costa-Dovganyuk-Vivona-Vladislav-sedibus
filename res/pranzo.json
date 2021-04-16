@@ -160,5 +160,21 @@
       },
       "nPostiPrenotati": 5
     }
+  ],
+  "2021-04-16": [
+    {
+      "codicePrenotazione": "W0010",
+      "cliente": {
+        "nome": "Mario",
+        "cognome": "Vittorio",
+        "email": "mario@gmail.com",
+        "nTelefono": "12450026"
+      },
+      "tavolo": {
+        "name": 2,
+        "maxPosti": 8
+      },
+      "nPostiPrenotati": 5
+    }
   ]
 }

@@ -1,6 +1,8 @@
 package model.creaprenotazione;
 
 import java.time.LocalDate;
+
+import model.piantina.PrenotazioneEstesa;
 import model.piantina.Tavolo;
 import model.utili.Periodo;
 
@@ -52,5 +54,7 @@ public interface ModelPrenotazione {
 	 * @param data
 	 */
 	void aggiungiPrenotazione(LocalDate data);
+	
+	void eleminaVecchiaPrenotazione(PrenotazioneEstesa pe);
 	
 }

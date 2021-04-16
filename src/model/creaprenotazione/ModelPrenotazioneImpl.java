@@ -69,5 +69,10 @@ public class ModelPrenotazioneImpl implements ModelPrenotazione {
 	private String generaCodice() {
 		return new GeneratoreCodice().ottieni();
 	}
+
+	@Override
+	public void eleminaVecchiaPrenotazione(PrenotazioneEstesa pe) {
+		
+	}
 	
 }

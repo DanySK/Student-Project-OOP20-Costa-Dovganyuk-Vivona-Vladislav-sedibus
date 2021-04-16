@@ -100,6 +100,7 @@ public class Controller implements Initializable {
     	
     	this.listButton.forEach(b -> {
     		b.setOnAction(e -> {
+    			var currentStage = (Stage) this.datePicker.getScene().getWindow();
     			if(this.listRedButton.contains(b) && isAdmin()) {
     				//apro la view dell'admin
     				int idTavolo = Integer.parseInt(b.getId());
@@ -108,7 +109,7 @@ public class Controller implements Initializable {
     						this.model.getCognomeNomeCliente(idTavolo),
     						this.model.getPostiPrenotati(idTavolo),
     						this.model.getNumTelefonoCliente(idTavolo),
-    						this.model.getEmailCliente(idTavolo), this.periodo, this.localDate);
+    						this.model.getEmailCliente(idTavolo), this.periodo, this.localDate,currentStage);
     				try {
 						tavoloRossoView.start(new Stage());
 					} catch (Exception exception) {
@@ -118,7 +119,8 @@ public class Controller implements Initializable {
     				if(this.listRedButton.contains(b)) {
     					
     				}else {
-    					LoaderTavoloVerdeLibero tavoloVerdeView = new LoaderTavoloVerdeLibero(b.getId(),this.periodo,this.localDate);
+    					
+    					LoaderTavoloVerdeLibero tavoloVerdeView = new LoaderTavoloVerdeLibero(b.getId(),this.periodo,this.localDate,currentStage);
         				try {
     						tavoloVerdeView.start(new Stage());
     					} catch (Exception exception) {
