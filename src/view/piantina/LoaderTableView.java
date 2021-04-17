@@ -15,6 +15,7 @@ public class LoaderTableView extends Application {
 	
 	private Text testoUtente;
 	private static Utente utente;
+	private final String PATH_LAYOUT = "/layouts/MappaTavoli.fxml";
 	
 	
 	public static void loaderTableView(Utente utente) {
@@ -37,7 +38,7 @@ public class LoaderTableView extends Application {
 	public void start(Stage primaryStage) {
 		
 		try {
-            final FXMLLoader loader = new FXMLLoader(getClass().getResource("/layouts/MappaTavoli.fxml"));
+            final FXMLLoader loader = new FXMLLoader(getClass().getResource(PATH_LAYOUT));
             final Parent root = loader.load();
             final Scene scene = new Scene(root);
             
