@@ -16,19 +16,21 @@ public class LoaderTableView extends Application {
 	private Text testoUtente;
 	private static Utente utente;
 	
-	/*
-	public LoaderTableView(Utente utente) {
+	
+	public static void loaderTableView(Utente utente) {
 		LoaderTableView.utente = utente;
 	}
-	*/
+	
+	/*
 	public LoaderTableView() {
 		
 	}
 	
-	public void loadView(Utente utente) {
+	public static void loadView(Utente utente) {
 		LoaderTableView.utente = utente;
 		launch();
 	}
+	*/
 	
 	
 	@Override

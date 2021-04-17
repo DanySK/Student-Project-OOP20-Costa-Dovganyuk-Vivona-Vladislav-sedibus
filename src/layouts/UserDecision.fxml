@@ -5,9 +5,9 @@
 
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" 
-xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.adminuser.ControllerUserDecision">
    <children>
-      <Button layoutX="36.0" layoutY="163.0" mnemonicParsing="false" prefHeight="74.0" prefWidth="146.0" text="Prenota" />
+      <Button  fx:id="prenota" layoutX="36.0" layoutY="163.0" mnemonicParsing="false" prefHeight="74.0" prefWidth="146.0" text="Prenota" onAction="#loadTableViewUser"/>
       <Button layoutX="227.0" layoutY="163.0" mnemonicParsing="false" prefHeight="74.0" prefWidth="146.0" text="Modifica Prenotazione" />
       <Button layoutX="412.0" layoutY="163.0" mnemonicParsing="false" prefHeight="74.0" prefWidth="146.0" text="Cancella Prenotazione" />
    </children>
