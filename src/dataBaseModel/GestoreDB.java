@@ -25,6 +25,11 @@ public interface GestoreDB {
 	 */
 	public void addToFile(PrenotazioneEstesa prenotazione);
 	
-	
+	/**
+	 * 
+	 * @param map
+	 * @param p   carica su file giusto(in base al periodo) la mappa passatagli
+	 */
+	void loadMapOnFile(Map<String, List<Prenotazione>> map, Periodo p);
 	
 }

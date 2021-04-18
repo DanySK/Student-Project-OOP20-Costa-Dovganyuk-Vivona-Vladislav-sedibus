@@ -30,17 +30,12 @@ public class ImplGestoreDB implements GestoreDB {
 	private static String PRANZO_FILE_PATH = System.getProperty("user.home") + System.getProperty("file.separator") + "pranzo.json";  
 	private static String CENA_FILE_PATH = System.getProperty("user.home") + System.getProperty("file.separator") + "cena.json";
 	
-	/**
-	 *  System.getProperty("user.home")
-            + System.getProperty("file.separator")
-            + BadIOGUI.class.getSimpleName() + ".txt";
-	 */
-	
 	
 	public ImplGestoreDB() {
 		createFiles();
 	}
 
+	//Crea i file pranzo e cena se non sono presenti
 	private void createFiles() {
 		if(!new File(PRANZO_FILE_PATH).exists()) {
 			createNewFile(PRANZO_FILE_PATH);
@@ -53,30 +48,27 @@ public class ImplGestoreDB implements GestoreDB {
 		try {
 			new File(path).createNewFile();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
+	
+	
 	private String getPath(Periodo p) {
 		return p.equals(Periodo.PRANZO) ? PRANZO_FILE_PATH : CENA_FILE_PATH;
 	}
 
-	// ritorna la mappa dove la chiave e la data(in formato Stringa) e la lista di prenotazioni1
-	// associati alla data
+	
+	// ritorna la mappa dove la chiave e la data(in formato Stringa) e la lista di prenotazioni associati alla data
+	@Override
 	public Map<String, List<Prenotazione>> getMapPrenotazioni(Periodo p) {
 		// variabile "nuova" che conterra la mappa aggiornata
 		Map<String, List<Prenotazione>> mappa = new HashMap<>();
 		try {
-			// reader che permette di leggere dal file
 			Reader reader = Files.newBufferedReader(Paths.get(getPath(p)));
 			
-			/*
-			 * Parte della type trovata qua:
-			 *  
-			 * https://stackoverflow.com/questions/24765039/gson-deserialize-into-map
-			 */
 			Type type = new TypeToken<Map<String, List<Prenotazione>>>(){}.getType();
 			Map<String, List<Prenotazione>> map =  gson.fromJson(reader, type) ;
+			
 			//se il file e vuoto il map sara null e non empty
 			mappa = map == null ? mappa : map;
 
@@ -89,7 +81,7 @@ public class ImplGestoreDB implements GestoreDB {
 		return mappa;
 	}
 
-	
+	@Override
 	public void addToFile(PrenotazioneEstesa prenotazione) {
 		// viene prelevata la mappa dal file giusto, cosi per poi aggiungere il nuovo elemento
 		var map = getMapPrenotazioni(prenotazione.getPeriodo());
@@ -104,12 +96,8 @@ public class ImplGestoreDB implements GestoreDB {
 
 	}
 
-	/**
-	 * 
-	 * @param map
-	 * @param p   carica su file giusto(in base al periodo) la mappa passatagli
-	 */
-	private void loadMapOnFile(Map<String, List<Prenotazione>> map, Periodo p) {
+	@Override
+	public void loadMapOnFile(Map<String, List<Prenotazione>> map, Periodo p) {
 
 		try {
 			Writer writer = Files.newBufferedWriter(Paths.get(getPath(p)));

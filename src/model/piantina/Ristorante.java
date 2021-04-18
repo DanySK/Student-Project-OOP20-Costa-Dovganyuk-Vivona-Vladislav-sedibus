@@ -35,7 +35,15 @@ public interface Ristorante {
 	 */
 	public Map<String,List<Prenotazione>> getPrenotazioni(Periodo p);
 	
-	
-	
+	/**
+	 * 
+	 * @param data
+	 * @param p
+	 * @return la lista delle prenotazioni inerente alle 2 "chiavi"
+	 */
 	List<Prenotazione> getListPrenotazioni(LocalDate data, Periodo p);
+	
+	
+	void eliminaPrenotazione(Periodo p, String codicePrenotazione);
+	
 }
