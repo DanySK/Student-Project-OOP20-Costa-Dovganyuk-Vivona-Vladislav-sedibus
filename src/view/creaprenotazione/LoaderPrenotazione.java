@@ -12,23 +12,21 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.utili.AzioneUtente;
 import model.utili.Periodo;
+import model.utili.Utente;
 
 public class LoaderPrenotazione extends Application {
 
 	private static final String PERC_SCENA = "/layouts/ScenePrenotazione.fxml";
-	private static AzioneUtente azione;
+	private AzioneUtente azione;
+	private Utente utente;
 	private DatePicker testoData;
 	private LocalDate data;
 	private ChoiceBox<Periodo> testoPeriodo;
 	private Periodo periodo;
-	private Label etichettaTavolo;
 	private String idTavolo;
-	
-	//MODIFICA
 	private String vecchioNome;
 	private TextField testoNome;
 	private String vecchioCognome;
@@ -39,35 +37,38 @@ public class LoaderPrenotazione extends Application {
 	private TextField testoTelefono;
 	private String vecchiPosti;
 	private Label testoPosti;
+	private String codicePrenotazione;
 	
-	public LoaderPrenotazione(AzioneUtente azione, Periodo periodo, LocalDate data, String idTavolo) {
-		LoaderPrenotazione.azione = azione;
+	public LoaderPrenotazione(Utente utente, AzioneUtente azione, Periodo periodo, LocalDate data, String idTavolo) {
+		this.utente = utente;
+		this.azione = azione;
 		this.data = data;
 		this.periodo = periodo;
 		this.idTavolo = idTavolo;
 	}
 	
-	public LoaderPrenotazione(AzioneUtente azione, String nome, String cognome, String email, String telefono, LocalDate data, Periodo periodo, String nPosti, String idTavolo) {
-		this(azione, periodo, data, idTavolo);
+	public LoaderPrenotazione(Utente utente, AzioneUtente azione, String nome, String cognome, 
+			String email, String tel, LocalDate data, Periodo periodo, String nPosti, String idTavolo, String codPrenot) {
+		this(utente, azione, periodo, data, idTavolo);
 		this.vecchioNome = nome;
 		this.vecchioCognome = cognome;
 		this.vecchiaEmail = email;
-		this.vecchioTelefono = telefono;
+		this.vecchioTelefono = tel;
 		this.vecchiPosti = nPosti;
+		this.codicePrenotazione = codPrenot;
 	}
 	
 	@Override
 	public void start(Stage scenaPrimaria) throws Exception {
 		final FXMLLoader caricatore = new FXMLLoader(getClass().getResource(PERC_SCENA));
-		ControllerPrenotazione crea = new ControllerPrenotazione(this.idTavolo, LoaderPrenotazione.azione);
+		ControllerPrenotazione crea = new ControllerPrenotazione(this.utente, this.azione, this.idTavolo, this.codicePrenotazione, this.data, this.periodo, this.vecchiPosti);
 		try {
 			caricatore.setController(crea);
 			final Parent radice = caricatore.load();
 			final Scene miaScena = new Scene(radice);
 			scenaPrimaria.setScene(miaScena);
 			scenaPrimaria.setResizable(false);
-	        scenaPrimaria.initModality(Modality.APPLICATION_MODAL);
-			
+	        //scenaPrimaria.initModality(Modality.APPLICATION_MODAL);
 			
 			this.testoData = (DatePicker) caricatore.getNamespace().get("testoData");
 			this.testoData.setValue(this.data);
@@ -76,10 +77,7 @@ public class LoaderPrenotazione extends Application {
 			this.testoPeriodo.setValue(this.periodo);
 			this.testoPeriodo.getItems().addAll(Periodo.PRANZO, Periodo.CENA);
 			
-			this.etichettaTavolo = (Label) caricatore.getNamespace().get("etichettaTavolo");
-			this.etichettaTavolo.setText("Tavolo " + this.idTavolo);
-			
-			if(LoaderPrenotazione.azione.equals(AzioneUtente.MODIFICA)) {
+			if(this.azione.equals(AzioneUtente.MODIFICA)) {
 				this.testoNome = (TextField) caricatore.getNamespace().get("testoNome");
 				this.testoNome.setText(this.vecchioNome);
 				this.testoCognome = (TextField) caricatore.getNamespace().get("testoCognome");

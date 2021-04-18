@@ -1,6 +1,9 @@
 package model.creaprenotazione;
 
 import java.time.LocalDate;
+import java.util.stream.Collectors;
+import java.util.*;
+
 import model.piantina.ImplRistorante;
 import model.piantina.PrenotazioneEstesa;
 import model.piantina.Ristorante;
@@ -15,6 +18,10 @@ public class ModelPrenotazioneImpl implements ModelPrenotazione {
 	private Tavolo tavoloScelto;
 	private PilotaPosti gestorePosti;
 	private Periodo periodoScelto;
+	private LocalDate dataScelta;
+	private String vecchioCodice;
+	private Periodo vecchioPeriodo;
+	private LocalDate vecchiaData;
 	
 	public ModelPrenotazioneImpl() { }
 	
@@ -26,7 +33,28 @@ public class ModelPrenotazioneImpl implements ModelPrenotazione {
 				this.tavoloScelto = new Tavolo(id, t.getMaxPosti());
 			}
 		});
+	}
+	
+	@Override
+	public void settaPostiModifica(int posti) {
+		this.istanziaGestore();
+		this.gestorePosti.setNumeroPosti(posti);
+	}
+	
+	@Override
+	public void settaPostiCreazione() {
+		this.istanziaGestore();
+	}
+	
+	private void istanziaGestore() {
 		this.gestorePosti = new PilotaPosti(this.tavoloScelto.getMaxPosti());
+	}
+	
+	@Override
+	public void prendiVecchiaPrenotazione(String codice, Periodo periodo, LocalDate data) {
+		this.vecchioCodice = codice;
+		this.vecchioPeriodo = periodo;
+		this.vecchiaData = data;
 	}
 
 	@Override
@@ -61,9 +89,14 @@ public class ModelPrenotazioneImpl implements ModelPrenotazione {
 	}
 	
 	@Override
-	public void aggiungiPrenotazione(LocalDate data) {
-		this.ristorante.nuovaPrenotazione(new PrenotazioneEstesa(this.periodoScelto, data, 
-				this.generaCodice(), this.cliente, this.tavoloScelto, this.postiCorrenti()));
+	public void prendiData(LocalDate data) {
+		this.dataScelta = data;
+	}
+	
+	@Override
+	public void aggiungiPrenotazione() {
+		this.ristorante.nuovaPrenotazione(new PrenotazioneEstesa(this.periodoScelto, this.dataScelta, 
+				this.generaCodice(), this.cliente, this.tavoloScelto, this.gestorePosti.getNumeroPosti()));
 	}
 	
 	private String generaCodice() {
@@ -71,8 +104,37 @@ public class ModelPrenotazioneImpl implements ModelPrenotazione {
 	}
 
 	@Override
-	public void eleminaVecchiaPrenotazione(PrenotazioneEstesa pe) {
-		
+	public boolean cercaTavolo() {
+		int postiScelti = this.gestorePosti.getNumeroPosti();
+		if(postiScelti <= this.tavoloScelto.getMaxPosti() && this.vecchiaData.equals(this.dataScelta) && this.vecchioPeriodo.equals(this.periodoScelto)) {
+			return true;
+		}
+		List<Integer> pieni = this.ristorante.tavoliPrenotati(this.dataScelta, this.periodoScelto).stream()
+				.map(tp -> tp.getName())
+				.collect(Collectors.toList());
+		Optional<Tavolo> libero = this.ristorante.tavoliRistorante().stream()
+				.filter(t -> !pieni.contains(t.getName()) && t.getMaxPosti() >= postiScelti)
+				.findFirst();
+		if(libero.isPresent()) {
+			this.tavoloScelto = new Tavolo(libero.get().getName(), libero.get().getMaxPosti());
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
+	@Override
+	public void modificaPrenotazione() {
+		this.ristorante.getPrenotazioni(this.vecchioPeriodo).entrySet().forEach(e -> {
+			e.getValue().forEach(p -> {
+				if(p.getCodicePrenotazione().equals(this.vecchioCodice)) {
+					this.ristorante.eliminaPrenotazione(this.vecchioPeriodo, this.vecchioCodice);
+					this.ristorante.nuovaPrenotazione(new PrenotazioneEstesa(this.periodoScelto, 
+							this.dataScelta, this.vecchioCodice, this.cliente, this.tavoloScelto, 
+							this.gestorePosti.getNumeroPosti()));
+				}
+			});
+		});
+	}
+
 }

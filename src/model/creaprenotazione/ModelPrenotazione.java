@@ -1,9 +1,6 @@
 package model.creaprenotazione;
 
 import java.time.LocalDate;
-
-import model.piantina.PrenotazioneEstesa;
-import model.piantina.Tavolo;
 import model.utili.Periodo;
 
 public interface ModelPrenotazione {
@@ -13,6 +10,24 @@ public interface ModelPrenotazione {
 	 * @param idTavolo
 	 */
 	void prendiTavolo(String idTavolo);
+	
+	/**
+	 * Necessario ad istanziare PilotaPosti (quando si modifica una prenotazione)
+	 * @param posti i posti che voleva occupare il cliente
+	 */
+	void settaPostiModifica(int posti);
+	
+	/**
+	 * Necessario ad istanziare PilotaPosti (quando si crea una prenotazione)
+	 */
+	void settaPostiCreazione();
+	
+	/**
+	 * Prende i parametri necessari ad identificare la vecchia prenotazione
+	 * @param codice il codice della vecchia prenotazione
+	 * @param periodo il periodo della vecchia prenotazione
+	 */
+	void prendiVecchiaPrenotazione(String codice, Periodo periodo, LocalDate data);
 	
 	/**
 	 * Aumenta di 1 i posti che il cliente vuole occupare
@@ -50,11 +65,24 @@ public interface ModelPrenotazione {
 	void prendiPeriodo(String periodo);
 	
 	/**
-	 * Aggiunge una nuova prenotazione
-	 * @param data
+	 * @param dataScelta la data che ha scelto il cliente
 	 */
-	void aggiungiPrenotazione(LocalDate data);
+	void prendiData(LocalDate dataScelta);
 	
-	void eleminaVecchiaPrenotazione(PrenotazioneEstesa pe);
+	/**
+	 * Aggiunge una nuova prenotazione
+	 */
+	void aggiungiPrenotazione();
+	
+	/**
+	 * Affida al cliente il primo tavolo della piantina con le caratteristiche volute
+	 * @return vero se e' stato trovato un tavolo, falso altrimenti
+	 */
+	boolean cercaTavolo();
+	
+	/**
+	 * Modifica una prenotazione esistente, eliminando la vecchia ma preservando il codice
+	 */
+	void modificaPrenotazione();
 	
 }

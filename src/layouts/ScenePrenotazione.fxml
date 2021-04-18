@@ -48,18 +48,13 @@
                   <Font size="19.0" />
                </font>
             </Label>
-            <Label fx:id="etichettaTavolo" layoutX="27.0" layoutY="270.0" prefHeight="28.0" prefWidth="163.0" text="">
-               <font>
-                  <Font size="19.0" />
-               </font>
-            </Label>
          </children>
       </AnchorPane>
    </left>
    <bottom>
       <AnchorPane prefHeight="99.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="bottonePrenota" layoutX="70.0" layoutY="20.0" mnemonicParsing="false" onAction="#handlerConferma" prefHeight="35.0" prefWidth="100.0" text="PRENOTA">
+            <Button fx:id="bottonePrenota" layoutX="70.0" layoutY="20.0" mnemonicParsing="false" onAction="#handlerConferma" prefHeight="35.0" prefWidth="100.0" text="CONFERMA">
                <font>
                   <Font size="15.0" />
                </font>
@@ -93,12 +88,7 @@
             <Label fx:id="testoPosti" alignment="CENTER" contentDisplay="CENTER" layoutX="24.0" layoutY="238.0" prefHeight="24.0" prefWidth="26.0" text="0" textAlignment="CENTER" />
             <Button fx:id="bottonePiuPosti" layoutX="53.0" layoutY="237.0" mnemonicParsing="false" onAction="#handlerPiuPosti" prefHeight="25.0" prefWidth="25.0" text="+" />
             <Button fx:id="bottoneMenoPosti" layoutX="1.0" layoutY="237.0" mnemonicParsing="false" onAction="#handlerMenoPosti" text="-" />
-            <Label fx:id="etichettaAzione" layoutX="273.0" layoutY="10.0" prefHeight="27.0" prefWidth="117.0">
-               <font>
-                  <Font name="System Bold" size="15.0" />
-               </font>
-            </Label>
-            <Label fx:id="errore" layoutX="3.0" layoutY="279.0" prefHeight="21.0" prefWidth="252.0" text="Errore - dati inseriti non corretti" textFill="RED">
+            <Label fx:id="errore" layoutX="3.0" layoutY="279.0" prefHeight="21.0" prefWidth="391.0" textFill="RED">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
