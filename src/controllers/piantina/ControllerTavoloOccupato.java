@@ -10,8 +10,12 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.piantina.ImplMainTableModel;
 import model.piantina.MainTableModel;
+import model.piantina.Prenotazione;
+import model.utili.AzioneUtente;
 import model.utili.Cliente;
 import model.utili.Periodo;
+import model.utili.Utente;
+import view.creaprenotazione.LoaderPrenotazione;
 
 
 public class ControllerTavoloOccupato implements Initializable  {
@@ -22,19 +26,35 @@ public class ControllerTavoloOccupato implements Initializable  {
 	private MainTableModel model = null;
 	
 	private Cliente cliente;
+	private Prenotazione prenotazione;
+	private String codicePrenotazione;
 	private Periodo periodo;
 	private LocalDate data;
 	private int idTavolo;
+	private Utente utente;
+	private AzioneUtente azione;
 	
 	@Override
 	public void initialize(URL url, ResourceBundle rsrc) {
-		
+		this.utente = Utente.ADMIN;
 	}
 
 	
 	public void handlerModifica() {
+		this.azione = AzioneUtente.MODIFICA;
 		if(this.model == null) {
 			setModel();
+		}
+		
+		LoaderPrenotazione viewPrenotazione = new LoaderPrenotazione(this.utente, this.azione, 
+				this.cliente.getNome(), this.cliente.getCognome(), 
+				this.cliente.getEmail(), this.cliente.getTelefono(),
+				data, periodo, String.valueOf(prenotazione.getPostiPrenotati()) , String.valueOf(this.idTavolo) , this.codicePrenotazione);
+		
+		try {
+			viewPrenotazione.start(new Stage());
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		
 		System.out.println("Cliente: " + this.cliente.getNome() +" " 
@@ -61,8 +81,10 @@ public class ControllerTavoloOccupato implements Initializable  {
 		this.periodo = Periodo.valueOf(this.textPeriodo.getText());
 		this.data = LocalDate.parse(this.textData.getText());
 		this.model = new ImplMainTableModel(this.periodo,this.data);
-		this.idTavolo = this.model.getIdTavolo(this.textCodice.getText());
-		this.cliente = this.model.getCliente(idTavolo);
+		this.codicePrenotazione = this.textCodice.getText();
+		this.idTavolo = this.model.getIdTavolo(this.codicePrenotazione);
+		this.prenotazione = this.model.getPrenotazione(this.codicePrenotazione);
+		this.cliente = this.prenotazione.getCliente();
 	}
 	
 }

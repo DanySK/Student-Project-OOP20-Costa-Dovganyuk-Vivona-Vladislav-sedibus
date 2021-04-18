@@ -11,6 +11,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.utili.Periodo;
+import model.utili.Utente;
 
 public class LoaderTavoloVerdeLibero extends Application{
 
@@ -20,6 +21,7 @@ public class LoaderTavoloVerdeLibero extends Application{
 	private Text testoSuperiore;
 	private Text testoPeriodo;
 	private Text testoData;
+	private Text testoUtente;
 	private Button buttonConferma;
 	
 	private String TESTO_SUPERIORE;
@@ -27,8 +29,10 @@ public class LoaderTavoloVerdeLibero extends Application{
 	private LocalDate data;
 	private final double OPACITY = 0.95;
 	private Stage previousStage;
+	private Utente utente;
 	
-	public LoaderTavoloVerdeLibero(String idTavolo, Periodo periodo, LocalDate data,Stage previousStage) {
+	public LoaderTavoloVerdeLibero(Utente utente,String idTavolo, Periodo periodo, LocalDate data,Stage previousStage) {
+		this.utente = utente;
 		TESTO_SUPERIORE = "Tavolo " + idTavolo + " - LIBERO";
 		this.periodo = periodo;
 		this.data = data;
@@ -49,10 +53,12 @@ public class LoaderTavoloVerdeLibero extends Application{
             this.testoSuperiore = (Text) loader.getNamespace().get("testoSuperiore");
             this.testoPeriodo = (Text) loader.getNamespace().get("testoPeriodo");
             this.testoData = (Text) loader.getNamespace().get("testoData");
+            this.testoUtente = (Text) loader.getNamespace().get("testoUtente");
             
             this.testoSuperiore.setText(TESTO_SUPERIORE);
             this.testoPeriodo.setText(this.periodo.toString());
             this.testoData.setText(this.data.toString());
+            this.testoUtente.setText(this.utente.toString());
             
             this.buttonConferma = (Button) loader.getNamespace().get("buttonConferma");
             //chiudo lo stage della visione tavolo, che verra riaperta dal Controller Prenotazione

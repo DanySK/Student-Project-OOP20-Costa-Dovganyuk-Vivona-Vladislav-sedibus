@@ -20,12 +20,12 @@
       </TextFlow>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #E5FFEA; -fx-border-color: #9EFF97;">
          <children>
-            <Button fx:id="buttonConferma" onAction="#handlerConferma" layoutX="59.0" layoutY="61.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="177.0" style="-fx-background-color: #9EFF97; -fx-border-color: #00DF2D;" text="CONFERMA" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="60.0">
+            <Button fx:id="buttonConferma" layoutX="59.0" layoutY="61.0" mnemonicParsing="false" onAction="#handlerConferma" prefHeight="80.0" prefWidth="177.0" style="-fx-background-color: #9EFF97; -fx-border-color: #00DF2D;" text="CONFERMA" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="60.0">
                <font>
                   <Font name="Segoe UI Symbol" size="22.0" />
                </font>
             </Button>
-            <Button onAction="#handlerAnnulla" layoutX="371.0" layoutY="60.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="177.0" style="-fx-background-color: #9EFF97; -fx-border-color: #00DF2D;" text="ANNULLA" AnchorPane.bottomAnchor="70.0" AnchorPane.rightAnchor="60.0">
+            <Button layoutX="371.0" layoutY="60.0" mnemonicParsing="false" onAction="#handlerAnnulla" prefHeight="80.0" prefWidth="177.0" style="-fx-background-color: #9EFF97; -fx-border-color: #00DF2D;" text="ANNULLA" AnchorPane.bottomAnchor="70.0" AnchorPane.rightAnchor="60.0">
                <font>
                   <Font name="Segoe UI Symbol" size="22.0" />
                </font>
@@ -38,6 +38,11 @@
             <Text fx:id="testoData" layoutX="258.0" layoutY="174.0" strokeType="OUTSIDE" strokeWidth="0.0" text="" textAlignment="CENTER" wrappingWidth="84.0">
                <font>
                   <Font name="Segoe UI Light" size="16.0" />
+               </font>
+            </Text>
+            <Text fx:id="testoUtente" layoutX="275.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ADMIN" textAlignment="CENTER">
+               <font>
+                  <Font name="Century Gothic" size="15.0" />
                </font>
             </Text>
          </children>

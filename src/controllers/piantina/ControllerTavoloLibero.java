@@ -11,6 +11,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.utili.AzioneUtente;
 import model.utili.Periodo;
+import model.utili.Utente;
 import view.creaprenotazione.LoaderPrenotazione;
 
 public class ControllerTavoloLibero implements Initializable {
@@ -20,6 +21,7 @@ public class ControllerTavoloLibero implements Initializable {
 	@FXML private Text testoPeriodo;
 	@FXML private Text testoData;
 	@FXML private Text testoSuperiore;
+	@FXML private Text testoUtente;
 	
 	@Override
 	public void initialize(URL url, ResourceBundle rsrc) {
@@ -28,7 +30,7 @@ public class ControllerTavoloLibero implements Initializable {
 	
 	
 	public void handlerConferma() {
-		LoaderPrenotazione view = new LoaderPrenotazione(AzioneUtente.CREAZIONE,getPeriodo(),getData(),getIdTavolo());
+		LoaderPrenotazione view = new LoaderPrenotazione(getUtente(),AzioneUtente.CREAZIONE,getPeriodo(),getData(),getIdTavolo());
 		try {
 			view.start(new Stage());
 		} catch (Exception e) {
@@ -58,6 +60,10 @@ public class ControllerTavoloLibero implements Initializable {
 	
 	private Periodo getPeriodo() {
 		return Periodo.valueOf(this.testoPeriodo.getText());
+	}
+	
+	private Utente getUtente() {
+		return Utente.valueOf(this.testoUtente.getText());
 	}
 	
 

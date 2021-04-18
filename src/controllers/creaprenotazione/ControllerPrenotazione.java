@@ -13,6 +13,7 @@ import model.creaprenotazione.ModelPrenotazioneImpl;
 import model.utili.AzioneUtente;
 import model.utili.Periodo;
 import model.utili.Utente;
+import view.adminuser.LoaderAdminUserSelection;
 import view.piantina.LoaderTableView;
 
 public class ControllerPrenotazione implements Initializable {
@@ -84,6 +85,7 @@ public class ControllerPrenotazione implements Initializable {
 			this.modello.prendiData(this.testoData.getValue());
 			if(this.azione.equals(AzioneUtente.CREAZIONE)) {
 				this.modello.aggiungiPrenotazione();
+				
 			} else {
 				if(this.modello.cercaTavolo()) {
 					this.modello.modificaPrenotazione();
@@ -93,16 +95,21 @@ public class ControllerPrenotazione implements Initializable {
 			}
 			if(this.utente.equals(Utente.ADMIN)) {
 				//pagina mappa dei tavoli
+				apriMappaTavoli();
 			} else {
 				//riepilogo
 				//mandi il tutto al riepilogo, incluso il tipo di Utente che ha fatto 
 				//la prenotazione/modifica, e li anche senza il controller esterno,
 				//dopo aver cliccato il tasto conferma....se ADMIN apri la visuale tavoli
 				//se USER apri la visuale iniziale(la pagina di accesso)
+				apriViewIniziale();
 			}
+			//se tutto inserito correttamente chiudo lo stage corrente
+			chiudiScena();
 		} else {
 			this.errore.setText("Attenzione - dati inseriti non corretti!");
 		}
+		
 	}
 	
 	public void handlerReset() {
@@ -110,10 +117,20 @@ public class ControllerPrenotazione implements Initializable {
 	}
 	
 	public void handlerAnnulla() {
-		final LoaderTableView piantinaTavoli = new LoaderTableView();
-		LoaderTableView.loaderTableView(Utente.USER);
-		piantinaTavoli.start(new Stage());
+		//apro la mappa tavoli qualsiasi sia il tipo di utente
+		apriMappaTavoli();
 		this.chiudiScena();
+	}
+	 
+	private void apriMappaTavoli() {
+		final LoaderTableView piantinaTavoli = new LoaderTableView();
+		LoaderTableView.loaderTableView(this.utente);
+		piantinaTavoli.start(new Stage());
+	}
+	
+	private void apriViewIniziale() {
+		final LoaderAdminUserSelection viewSelectionUser = new LoaderAdminUserSelection();
+		viewSelectionUser.start(new Stage());
 	}
 	
 	private void chiudiScena() {
