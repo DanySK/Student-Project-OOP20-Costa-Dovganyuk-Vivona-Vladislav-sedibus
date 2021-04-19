@@ -7,15 +7,17 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import model.utili.AzioneUtente;
 
-public class CercaPrenotazione extends Application  {
+public class LoaderCercaPrenotazione extends Application  {
 
 	private static final String PERC_SCENA = "/layouts/CercaPrenotazione.fxml";
+	private static AzioneUtente azioneUtente;
 	
-	public CercaPrenotazione() {}
+	public LoaderCercaPrenotazione() {}
 	
-	public void inizia() {
-		launch();
+	public static void loadCercaPrenotazione(AzioneUtente azioneUtente) {
+		LoaderCercaPrenotazione.azioneUtente=azioneUtente;
 	}
 
 	@Override
