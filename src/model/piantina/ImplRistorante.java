@@ -25,7 +25,8 @@ public class ImplRistorante implements Ristorante {
 	private List<Tavolo> tavoli = new ArrayList<>();
 	private GestoreDB getsoreDB =  new ImplGestoreDB();
 	private Optional<Periodo> periodoAttuale = Optional.empty();
-	Map<String,List<Prenotazione>> prenotazioni = new HashMap<>();
+	private Map<String,List<Prenotazione>> prenotazioni = new HashMap<>();
+	private boolean risultatoEliminazione = false;
 	
 	public ImplRistorante() {
 		try {
@@ -115,13 +116,24 @@ public class ImplRistorante implements Ristorante {
 
 
 	@Override
-	public void eliminaPrenotazione(Periodo p, String codicePrenotazione) {
-		
+	public boolean eliminaPrenotazione(Periodo p, String codicePrenotazione) {
+		this.risultatoEliminazione = false;
 		var map = getPrenotazioni(p);
 		
-		map.entrySet().forEach(v -> v.getValue().removeIf(e -> e.getCodicePrenotazione().equals(codicePrenotazione)));
+		map.entrySet().forEach(v -> {
+			if(v.getValue().removeIf(e -> e.getCodicePrenotazione().equals(codicePrenotazione))) {
+				this.risultatoEliminazione = true;
+			}
+		});
 		
-		this.getsoreDB.loadMapOnFile(map, p);
+		if(this.risultatoEliminazione) {
+			this.getsoreDB.loadMapOnFile(map, p);
+		}
+		 return this.risultatoEliminazione;
+
+		
+			
+		
 		
 	}
 	

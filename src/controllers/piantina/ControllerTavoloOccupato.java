@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ButtonType;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.piantina.ImplMainTableModel;
@@ -16,6 +17,7 @@ import model.utili.Cliente;
 import model.utili.Periodo;
 import model.utili.Utente;
 import view.creaprenotazione.LoaderPrenotazione;
+import view.riepilogo.ViewAlert;
 
 
 public class ControllerTavoloOccupato implements Initializable  {
@@ -56,26 +58,33 @@ public class ControllerTavoloOccupato implements Initializable  {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		System.out.println("Cliente: " + this.cliente.getNome() +" " 
-				+ this.cliente.getCognome() + " " + this.cliente.getTelefono() 
-				+ " " + this.cliente.getEmail());
-		
-		
+		closeCurrentStage();
 	}
 	
 	public void handlerElimina() {
 		if(this.model == null) {
 			setModel();
 		}
+		
+		ViewAlert alert = new ViewAlert();
+		if(alert.alertEliminazionePrenotazione(prenotazione, data, periodo).equals(ButtonType.YES)) {
+			//elimino effettivamente il tutto
+			System.out.println("Vado ad eliminare....");
+		}
+		
+		
 	}
 	
 	public void handlerAnnulla() {
+		closeCurrentStage();
+	}
+	
+	
+	private void closeCurrentStage() {
 		var stage = (Stage) this.textCodice.getScene().getWindow();
 		stage.close();
-		
-		
 	}
+	
 	
 	private void setModel() {
 		this.periodo = Periodo.valueOf(this.textPeriodo.getText());
