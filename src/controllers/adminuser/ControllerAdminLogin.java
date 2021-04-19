@@ -20,7 +20,8 @@ import view.piantina.LoaderTableView;
 
 
 public class ControllerAdminLogin  {
-	private static String LOGIN_FILE_PATH = System.getProperty("user.home") + System.getProperty("file.separator") +"logindata.json";
+	//private static String LOGIN_FILE_PATH = System.getProperty("user.home") + System.getProperty("file.separator") +"logindata.json";
+	private static String LOGIN_FILE_PATH = "res/logindata.json";
 	
 	@FXML
 	private TextField user;

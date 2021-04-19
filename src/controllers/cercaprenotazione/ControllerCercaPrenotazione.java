@@ -34,8 +34,10 @@ public class ControllerCercaPrenotazione implements Initializable {
 	}
 	
 	public void handlerConferma() {
+
 		if (this.sceltaTurno().isPresent() && 
 			this.modello.cercaDati(this.testoCodice.getText(), this.testoCognome.getText(), this.getTurno())) {
+			//se MODIFICA
 			LoaderPrenotazione modifica = new LoaderPrenotazione(
 					Utente.USER, AzioneUtente.MODIFICA, this.modello.getNome(), 
 					this.testoCognome.getText(), this.modello.getEmail(), 
@@ -48,6 +50,14 @@ public class ControllerCercaPrenotazione implements Initializable {
 				e.printStackTrace();
 			}
 			this.chiudiPagina();
+			//altrimenti se ELIMINA
+			//apre l'alert aspetta l'OK
+				//Se ok elimina
+					//se eliminazione = true -> apre l'alert di Conferma eliminazione
+					//altrimenti
+						//alert di errore
+			
+			
 		} else {
 			this.testoErrore.setVisible(true);
 		}
