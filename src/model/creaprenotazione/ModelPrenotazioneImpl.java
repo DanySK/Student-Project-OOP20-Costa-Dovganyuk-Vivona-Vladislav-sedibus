@@ -136,5 +136,5 @@ public class ModelPrenotazioneImpl implements ModelPrenotazione {
 			});
 		});
 	}
-
+	
 }

@@ -13,24 +13,30 @@ import model.creaprenotazione.ModelPrenotazioneImpl;
 import model.utili.AzioneUtente;
 import model.utili.Periodo;
 import model.utili.Utente;
-import view.adminuser.LoaderAdminUserSelection;
 import view.piantina.LoaderTableView;
+import view.riepilogo.LoaderRiepilogo;
 
 public class ControllerPrenotazione implements Initializable {
 	
 	private AzioneUtente azione;
 	private Utente utente;
+	private String idTavolo;
 	@FXML private TextField testoNome;
 	@FXML private TextField testoCognome;
 	@FXML private TextField testoEmail;
 	@FXML private TextField testoTelefono;
 	@FXML private DatePicker testoData;
+	@FXML private ChoiceBox<Periodo> testoPeriodo;
 	@FXML private Label testoPosti;
 	@FXML private Label errore;
-	@FXML private ChoiceBox<Periodo> testoPeriodo;
 	private ModelPrenotazione modello = new ModelPrenotazioneImpl();
 	
-	public ControllerPrenotazione(Utente utente, AzioneUtente azione, String idTavolo, String codPrenotaz, LocalDate data, Periodo periodo, String nPosti) { 
+	public ControllerPrenotazione(Utente utente, AzioneUtente azione, String idTavolo, 
+			String codPrenotaz, LocalDate data, Periodo periodo, String nPosti) { 
+		this.idTavolo = idTavolo;
+		this.azione = azione;
+		this.utente = utente;
+		
 		this.modello.prendiTavolo(idTavolo);
 		if(azione.equals(AzioneUtente.MODIFICA)) {
 			this.modello.prendiVecchiaPrenotazione(codPrenotaz, periodo, data);
@@ -38,8 +44,6 @@ public class ControllerPrenotazione implements Initializable {
 		} else {
 			this.modello.settaPostiCreazione();
 		}
-		this.azione = azione;
-		this.utente = utente;
 	}
 	
 	@Override
@@ -48,15 +52,6 @@ public class ControllerPrenotazione implements Initializable {
 			this.azzeraPosti();
 		}
 		this.errore.setText("");
-	}
-	
-	private void pulisciCampi() {
-		this.azzeraPosti();
-		this.errore.setText("");
-		this.testoNome.clear();
-		this.testoCognome.clear();
-		this.testoEmail.clear();
-		this.testoTelefono.clear();
 	}
 	
 	private void azzeraPosti() {
@@ -79,58 +74,58 @@ public class ControllerPrenotazione implements Initializable {
 	}
 	
 	public void handlerConferma() {
-		
-		if(this.modello.prendiDatiCliente(this.testoNome.getText(), this.testoCognome.getText(), this.testoEmail.getText(), this.testoTelefono.getText())) {
+		if(this.modello.prendiDatiCliente(this.testoNome.getText(), 
+										  this.testoCognome.getText(), 
+										  this.testoEmail.getText(), 
+										  this.testoTelefono.getText())) {
+			
 			this.modello.prendiPeriodo(this.testoPeriodo.getValue().toString());
 			this.modello.prendiData(this.testoData.getValue());
+			
 			if(this.azione.equals(AzioneUtente.CREAZIONE)) {
 				this.modello.aggiungiPrenotazione();
-				
-			} else {
+				this.chiudiScena();
+				this.apriRiepilogo();
+			} else {  //se una modifica
 				if(this.modello.cercaTavolo()) {
 					this.modello.modificaPrenotazione();
+					this.chiudiScena();
+					this.apriRiepilogo();
 				} else {
 					this.errore.setText("Tutto esaurito - cambiare data, periodo o n.posti");
 				}
 			}
-			if(this.utente.equals(Utente.ADMIN)) {
-				//pagina mappa dei tavoli
-				apriMappaTavoli();
-			} else {
-				//riepilogo
-				//mandi il tutto al riepilogo, incluso il tipo di Utente che ha fatto 
-				//la prenotazione/modifica, e li anche senza il controller esterno,
-				//dopo aver cliccato il tasto conferma....se ADMIN apri la visuale tavoli
-				//se USER apri la visuale iniziale(la pagina di accesso)
-				apriViewIniziale();
-			}
-			//se tutto inserito correttamente chiudo lo stage corrente
-			chiudiScena();
+			
 		} else {
 			this.errore.setText("Attenzione - dati inseriti non corretti!");
 		}
-		
 	}
 	
 	public void handlerReset() {
-		this.pulisciCampi();
+		this.azzeraPosti();
+		this.errore.setText("");
+		this.testoNome.clear();
+		this.testoCognome.clear();
+		this.testoEmail.clear();
+		this.testoTelefono.clear();
 	}
 	
 	public void handlerAnnulla() {
-		//apro la mappa tavoli qualsiasi sia il tipo di utente
-		apriMappaTavoli();
-		this.chiudiScena();
-	}
-	 
-	private void apriMappaTavoli() {
 		final LoaderTableView piantinaTavoli = new LoaderTableView();
 		LoaderTableView.loaderTableView(this.utente);
 		piantinaTavoli.start(new Stage());
+		this.chiudiScena();
 	}
 	
-	private void apriViewIniziale() {
-		final LoaderAdminUserSelection viewSelectionUser = new LoaderAdminUserSelection();
-		viewSelectionUser.start(new Stage());
+	private void apriRiepilogo() {
+		LoaderRiepilogo riepilogo = new LoaderRiepilogo(this.utente, 
+				this.azione, this.testoPeriodo.getValue(), 
+				this.testoData.getValue(), this.idTavolo);
+		try {
+			riepilogo.start(new Stage());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	private void chiudiScena() {
