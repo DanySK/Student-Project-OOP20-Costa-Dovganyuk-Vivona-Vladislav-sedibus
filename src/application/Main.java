@@ -7,6 +7,7 @@ public class Main {
 	
 		view.adminuser.LoaderAdminUserSelection.inizia();
 		
+		
 	}
 
 	

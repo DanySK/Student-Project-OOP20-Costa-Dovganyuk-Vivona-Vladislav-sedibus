@@ -6,8 +6,6 @@ import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -60,12 +58,7 @@ public class ControllerTavoloOccupato implements Initializable  {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		System.out.println("Cliente: " + this.cliente.getNome() +" " 
-				+ this.cliente.getCognome() + " " + this.cliente.getTelefono() 
-				+ " " + this.cliente.getEmail());
-		
-		
+		closeCurrentStage();
 	}
 	
 	public void handlerElimina() {
@@ -83,11 +76,15 @@ public class ControllerTavoloOccupato implements Initializable  {
 	}
 	
 	public void handlerAnnulla() {
+		closeCurrentStage();
+	}
+	
+	
+	private void closeCurrentStage() {
 		var stage = (Stage) this.textCodice.getScene().getWindow();
 		stage.close();
-		
-		
 	}
+	
 	
 	private void setModel() {
 		this.periodo = Periodo.valueOf(this.textPeriodo.getText());
