@@ -10,11 +10,14 @@ import model.utili.Periodo;
 
 public class ViewAlert {
 
-	private String TITOLO_ELIMINAZIONE = "Conferma Eliminazione Prenotazione";
-	private String HEADER_ELIMINAZIONE = "Confermi voler eliminare la prenotazione";
+	private final String TITOLO_ELIMINAZIONE = "Conferma Eliminazione Prenotazione";
+	private final String HEADER_ELIMINAZIONE = "Confermi voler eliminare la prenotazione";
+	private final String TITOLO_ELIMINAZIONE_CONFERMATA = "Eliminazione Confermata";
+	private final String HEADER_ELIMINAZIONE_CONFERMATA = "Eliminazione effettuata con Successo";
+	private Alert alert; 
 	
 	public ButtonType alertEliminazionePrenotazione(Prenotazione p, LocalDate data, Periodo periodo) {
-		Alert alert = new Alert(AlertType.CONFIRMATION);
+		alert = new Alert(AlertType.CONFIRMATION);
 		alert.setTitle(TITOLO_ELIMINAZIONE);
 		alert.setHeaderText(HEADER_ELIMINAZIONE);
 		alert.setContentText(getContenentText(p, data, periodo));
@@ -31,6 +34,21 @@ public class ViewAlert {
 		return "Codice Prenotazione: " + p.getCodicePrenotazione() + 
 				"\ndel: " + data.toString() + " per " + periodo.toString() +
 				"\na nome di " + p.getCliente().getNome() + " " + p.getCliente().getCognome();
+	}
+	
+	
+	public void alertConfermaEliminazione() {
+		alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle(TITOLO_ELIMINAZIONE_CONFERMATA);
+		alert.setHeaderText(HEADER_ELIMINAZIONE_CONFERMATA);
+		alert.showAndWait();
+		
+	}
+	
+	public void alertErrore(String messaggio) {
+		alert = new Alert(AlertType.ERROR);
+		alert.setHeaderText(messaggio);
+		alert.showAndWait();
 	}
 	
 }

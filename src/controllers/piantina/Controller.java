@@ -103,7 +103,7 @@ public class Controller implements Initializable {
     private void handlerTavolo() {
     	
     	this.listButton.forEach(b -> {
-    		
+
     		b.setOnAction(e -> {
     			var currentStage = (Stage) this.datePicker.getScene().getWindow();
     			if(this.listRedButton.contains(b) && isAdmin()) {
@@ -164,8 +164,8 @@ public class Controller implements Initializable {
     
     private void getIDTavoliPrenotati(LocalDate data, Periodo p) {
     	model = new ImplMainTableModel(p,data);
-    	System.out.print("ID dei Tavoli prenotati - ");
-    	System.out.println("Per la data " + data + " e Periodo: " + p);    		
+    	//System.out.print("ID dei Tavoli prenotati - ");
+    	//System.out.println("Per la data " + data + " e Periodo: " + p);    		
     	coloraTavoli(this.model.tavoliPrenotati(localDate, periodo));	
 
     }

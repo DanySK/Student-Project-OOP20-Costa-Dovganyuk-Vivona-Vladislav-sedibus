@@ -2,6 +2,7 @@ package view.piantina;
 
 import java.time.LocalDate;
 
+import controllers.piantina.ControllerTavoloOccupato;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -54,19 +55,21 @@ public class LoaderTavoloRossoOccupato extends Application {
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
+		final FXMLLoader loader = new FXMLLoader(getClass().getResource(PATH_LAYOUT));
 		
 		try {
-            final FXMLLoader loader = new FXMLLoader(getClass().getResource(PATH_LAYOUT));
+			ControllerTavoloOccupato controller = new ControllerTavoloOccupato(this.previousStage);
+			loader.setController(controller);
             final Parent root = loader.load();
             final Scene scene = new Scene(root);
             
             setAllTexts(loader);
-            
+           /* 
             this.buttonModifica = (Button) loader.getNamespace().get("buttonModifica");
             this.buttonModifica.setOnMouseReleased(e->{
             	this.previousStage.close();
             });
-            
+            */
             
             primaryStage.setResizable(false);
             primaryStage.initModality(Modality.APPLICATION_MODAL);

@@ -1,5 +1,6 @@
 package controllers.piantina;
 
+import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
@@ -10,13 +11,16 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.piantina.ImplMainTableModel;
+import model.piantina.ImplRistorante;
 import model.piantina.MainTableModel;
 import model.piantina.Prenotazione;
+import model.piantina.Ristorante;
 import model.utili.AzioneUtente;
 import model.utili.Cliente;
 import model.utili.Periodo;
 import model.utili.Utente;
 import view.creaprenotazione.LoaderPrenotazione;
+import view.piantina.LoaderTableView;
 import view.riepilogo.ViewAlert;
 
 
@@ -25,7 +29,10 @@ public class ControllerTavoloOccupato implements Initializable  {
 	@FXML private Text textCodice;
 	@FXML private Text textData;
 	@FXML private Text textPeriodo;
+	private Stage stageMappaTavoli;
 	private MainTableModel model = null;
+	private Ristorante ristorante = new ImplRistorante();
+	private ViewAlert alert = new ViewAlert();
 	
 	private Cliente cliente;
 	private Prenotazione prenotazione;
@@ -36,6 +43,10 @@ public class ControllerTavoloOccupato implements Initializable  {
 	private Utente utente;
 	private AzioneUtente azione;
 	
+	public ControllerTavoloOccupato(Stage stageMappaTavoli) {
+		this.stageMappaTavoli = stageMappaTavoli;
+	}
+	
 	@Override
 	public void initialize(URL url, ResourceBundle rsrc) {
 		this.utente = Utente.ADMIN;
@@ -43,6 +54,7 @@ public class ControllerTavoloOccupato implements Initializable  {
 
 	
 	public void handlerModifica() {
+		
 		this.azione = AzioneUtente.MODIFICA;
 		if(this.model == null) {
 			setModel();
@@ -59,18 +71,29 @@ public class ControllerTavoloOccupato implements Initializable  {
 			e.printStackTrace();
 		}
 		closeCurrentStage();
+		this.stageMappaTavoli.close();
+		
 	}
 	
 	public void handlerElimina() {
+		
 		if(this.model == null) {
 			setModel();
 		}
 		
-		ViewAlert alert = new ViewAlert();
+		
 		if(alert.alertEliminazionePrenotazione(prenotazione, data, periodo).equals(ButtonType.YES)) {
-			//elimino effettivamente il tutto
-			System.out.println("Vado ad eliminare....");
+			if(ristorante.eliminaPrenotazione(periodo, codicePrenotazione, this.cliente.getCognome())) {
+				//chiudo lo stage corrente
+				closeCurrentStage();
+				//messaggio di conferma eliminazione
+				alert.alertConfermaEliminazione();
+				//riapertura nuovo stage mappa Tavoli
+				openCloseMappaTavoli();
+			}
+			
 		}
+		
 		
 		
 	}
@@ -79,6 +102,12 @@ public class ControllerTavoloOccupato implements Initializable  {
 		closeCurrentStage();
 	}
 	
+	//chiude la vecchia mappa tavoli e apre quella nuova aggiornata
+	private void openCloseMappaTavoli() {
+		LoaderTableView mappaTavoli = new LoaderTableView();
+		LoaderTableView.loaderTableView(Utente.ADMIN);
+		mappaTavoli.start(stageMappaTavoli);
+	}
 	
 	private void closeCurrentStage() {
 		var stage = (Stage) this.textCodice.getScene().getWindow();
@@ -89,11 +118,14 @@ public class ControllerTavoloOccupato implements Initializable  {
 	private void setModel() {
 		this.periodo = Periodo.valueOf(this.textPeriodo.getText());
 		this.data = LocalDate.parse(this.textData.getText());
+		
 		this.model = new ImplMainTableModel(this.periodo,this.data);
 		this.codicePrenotazione = this.textCodice.getText();
-		this.idTavolo = this.model.getIdTavolo(this.codicePrenotazione);
+		this.idTavolo = this.model.getIdTavolo(this.codicePrenotazione);	
 		this.prenotazione = this.model.getPrenotazione(this.codicePrenotazione);
 		this.cliente = this.prenotazione.getCliente();
+		
+		          
 	}
 	
 }
