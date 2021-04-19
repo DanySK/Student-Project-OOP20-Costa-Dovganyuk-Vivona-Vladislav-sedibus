@@ -1,6 +1,8 @@
 package model.creaprenotazione;
 
 import java.time.LocalDate;
+
+import model.utili.Cliente;
 import model.utili.Periodo;
 
 public interface ModelPrenotazione {

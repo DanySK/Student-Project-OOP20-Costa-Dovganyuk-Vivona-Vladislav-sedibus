@@ -44,6 +44,6 @@ public interface Ristorante {
 	List<Prenotazione> getListPrenotazioni(LocalDate data, Periodo p);
 	
 	
-	boolean eliminaPrenotazione(Periodo p, String codicePrenotazione);
+	boolean eliminaPrenotazione(Periodo p, String codicePrenotazione, String cognome);
 	
 }

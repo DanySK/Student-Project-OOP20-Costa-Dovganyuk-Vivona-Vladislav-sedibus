@@ -116,12 +116,13 @@ public class ImplRistorante implements Ristorante {
 
 
 	@Override
-	public boolean eliminaPrenotazione(Periodo p, String codicePrenotazione) {
+	public boolean eliminaPrenotazione(Periodo p, String codicePrenotazione, String cognome) {
 		this.risultatoEliminazione = false;
 		var map = getPrenotazioni(p);
 		
 		map.entrySet().forEach(v -> {
-			if(v.getValue().removeIf(e -> e.getCodicePrenotazione().equals(codicePrenotazione))) {
+			if(v.getValue().removeIf(e -> e.getCodicePrenotazione().equals(codicePrenotazione) && 
+					e.getCliente().getCognome().equals(cognome))) {
 				this.risultatoEliminazione = true;
 			}
 		});
@@ -129,12 +130,8 @@ public class ImplRistorante implements Ristorante {
 		if(this.risultatoEliminazione) {
 			this.getsoreDB.loadMapOnFile(map, p);
 		}
-		 return this.risultatoEliminazione;
-
 		
-			
-		
-		
+		return this.risultatoEliminazione;
 	}
 	
 	
