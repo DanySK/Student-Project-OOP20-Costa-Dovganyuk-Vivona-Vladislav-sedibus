@@ -61,7 +61,8 @@ public class LoaderPrenotazione extends Application {
 	@Override
 	public void start(Stage scenaPrimaria) throws Exception {
 		final FXMLLoader caricatore = new FXMLLoader(getClass().getResource(PERC_SCENA));
-		ControllerPrenotazione crea = new ControllerPrenotazione(this.utente, this.azione, this.idTavolo, this.codicePrenotazione, this.data, this.periodo, this.vecchiPosti);
+		ControllerPrenotazione crea = new ControllerPrenotazione(this.utente, this.azione, 
+			this.idTavolo, this.codicePrenotazione, this.data, this.periodo, this.vecchiPosti);
 		try {
 			caricatore.setController(crea);
 			final Parent radice = caricatore.load();
@@ -72,6 +73,7 @@ public class LoaderPrenotazione extends Application {
 			
 			this.testoData = (DatePicker) caricatore.getNamespace().get("testoData");
 			this.testoData.setValue(this.data);
+			this.testoData.getEditor().setDisable(true);
 			
 			this.testoPeriodo = (ChoiceBox<Periodo>) caricatore.getNamespace().get("testoPeriodo");
 			this.testoPeriodo.setValue(this.periodo);

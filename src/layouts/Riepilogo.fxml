@@ -6,12 +6,11 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-
-<BorderPane fx:id="pannello" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.riepilogo.ControllerRiepilogo">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <bottom>
       <AnchorPane prefHeight="91.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="bottoneFine" layoutX="258.0" layoutY="20.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="84.0" text="FINE" onAction="#handlerFine">
+            <Button fx:id="bottoneFine" layoutX="258.0" layoutY="20.0" mnemonicParsing="false" onAction="#handlerFine" prefHeight="45.0" prefWidth="84.0" text="FINE">
                <font>
                   <Font size="19.0" />
                </font>
@@ -68,7 +67,7 @@
                   <Font size="15.0" />
                </font>
             </Label>
-            <Label layoutX="25.0" layoutY="140.0" prefHeight="21.0" prefWidth="48.0" text="Turno:">
+            <Label layoutX="25.0" layoutY="140.0" prefHeight="21.0" prefWidth="62.0" text="Periodo:">
                <font>
                   <Font size="15.0" />
                </font>
@@ -113,7 +112,7 @@
                   <Font size="15.0" />
                </font>
             </Label>
-            <Label fx:id="spazioTurno" layoutX="82.0" layoutY="140.0" prefHeight="21.0" prefWidth="359.0">
+            <Label fx:id="spazioPeriodo" layoutX="93.0" layoutY="140.0" prefHeight="21.0" prefWidth="359.0">
                <font>
                   <Font size="15.0" />
                </font>
@@ -130,7 +129,7 @@
             </Label>
             <Label fx:id="spazioCodPrenotazione" layoutX="188.0" layoutY="200.0" prefHeight="21.0" prefWidth="359.0">
                <font>
-                  <Font size="15.0" />
+                  <Font name="System Bold" size="15.0" />
                </font>
             </Label>
          </children>
