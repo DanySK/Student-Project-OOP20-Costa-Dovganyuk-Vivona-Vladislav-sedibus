@@ -1,5 +1,6 @@
 package controllers.piantina;
 
+import java.awt.event.ActionListener;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -13,6 +14,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -70,6 +72,9 @@ public class Controller implements Initializable {
     	}
     }
     
+    private Utente getUtente() {
+    	return isAdmin() == true ? Utente.ADMIN : Utente.USER;
+    }
     
     private void coloraTavoli(List<Integer> l) {
     	
@@ -90,7 +95,6 @@ public class Controller implements Initializable {
         		b.setDisable(false);
         		b.getStylesheets().add(TAVOLO_VERDE_STYLE_PATH);
         	}
-        	//b.setText(b.getText().concat("\nMax posti:" + model.getPostiMax(Integer.parseInt(b.getId()))));
         	
         	this.listButton.add(b);
         });
@@ -99,6 +103,7 @@ public class Controller implements Initializable {
     private void handlerTavolo() {
     	
     	this.listButton.forEach(b -> {
+    		
     		b.setOnAction(e -> {
     			var currentStage = (Stage) this.datePicker.getScene().getWindow();
     			if(this.listRedButton.contains(b) && isAdmin()) {
@@ -120,7 +125,7 @@ public class Controller implements Initializable {
     					
     				}else {
     					
-    					LoaderTavoloVerdeLibero tavoloVerdeView = new LoaderTavoloVerdeLibero(b.getId(),this.periodo,this.localDate,currentStage);
+    					LoaderTavoloVerdeLibero tavoloVerdeView = new LoaderTavoloVerdeLibero(getUtente(),b.getId(),this.periodo,this.localDate,currentStage);
         				try {
     						tavoloVerdeView.start(new Stage());
     					} catch (Exception exception) {

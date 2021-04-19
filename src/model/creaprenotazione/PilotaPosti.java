@@ -18,6 +18,10 @@ public class PilotaPosti {
 		return this.nPosti;
 	}
 	
+	public void setNumeroPosti(int n) {
+		this.nPosti = n;
+	}
+	
 	public void aggiungiPosto() {
 		if(this.nPosti < this.maxPosti) {
 			this.nPosti++;

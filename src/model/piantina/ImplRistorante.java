@@ -112,6 +112,18 @@ public class ImplRistorante implements Ristorante {
 		
 		return new ArrayList<Prenotazione>();
 	}
+
+
+	@Override
+	public void eliminaPrenotazione(Periodo p, String codicePrenotazione) {
+		
+		var map = getPrenotazioni(p);
+		
+		map.entrySet().forEach(v -> v.getValue().removeIf(e -> e.getCodicePrenotazione().equals(codicePrenotazione)));
+		
+		this.getsoreDB.loadMapOnFile(map, p);
+		
+	}
 	
 	
 	

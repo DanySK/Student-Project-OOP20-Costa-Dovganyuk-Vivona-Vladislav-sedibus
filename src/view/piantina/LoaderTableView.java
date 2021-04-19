@@ -22,17 +22,6 @@ public class LoaderTableView extends Application {
 		LoaderTableView.utente = utente;
 	}
 	
-	/*
-	public LoaderTableView() {
-		
-	}
-	
-	public static void loadView(Utente utente) {
-		LoaderTableView.utente = utente;
-		launch();
-	}
-	*/
-	
 	
 	@Override
 	public void start(Stage primaryStage) {
