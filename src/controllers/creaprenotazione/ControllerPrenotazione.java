@@ -11,7 +11,6 @@ import javafx.stage.Stage;
 import model.creaprenotazione.ModelPrenotazione;
 import model.creaprenotazione.ModelPrenotazioneImpl;
 import model.utili.AzioneUtente;
-import model.utili.Cliente;
 import model.utili.Periodo;
 import model.utili.Utente;
 import view.piantina.LoaderTableView;

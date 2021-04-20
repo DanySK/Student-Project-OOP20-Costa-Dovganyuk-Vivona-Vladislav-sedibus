@@ -13,18 +13,23 @@ import model.cercaprenotazione.ModelCercaPrenotazioneImpl;
 import model.utili.AzioneUtente;
 import model.utili.Periodo;
 import model.utili.Utente;
+import view.adminuser.LoaderAdminUserSelection;
 import view.adminuser.LoaderUserDecision;
 import view.creaprenotazione.LoaderPrenotazione;
+import view.eliminaprenotazione.ViewAlert;
 
 public class ControllerCercaPrenotazione implements Initializable {
 
+	private AzioneUtente azione;
 	@FXML private TextField testoCodice;
 	@FXML private TextField testoCognome;
 	@FXML private Label testoErrore;
 	@FXML private ToggleGroup turno;
 	private ModelCercaPrenotazione modello = new ModelCercaPrenotazioneImpl();
 	
-	public ControllerCercaPrenotazione() { }
+	public ControllerCercaPrenotazione(AzioneUtente azione) { 
+		this.azione = azione;
+	}
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -34,37 +39,42 @@ public class ControllerCercaPrenotazione implements Initializable {
 	}
 	
 	public void handlerConferma() {
-
-		if (this.sceltaTurno().isPresent() && 
-			this.modello.cercaDati(this.testoCodice.getText(), this.testoCognome.getText(), this.getTurno())) {
-			//se MODIFICA
-			LoaderPrenotazione modifica = new LoaderPrenotazione(
-					Utente.USER, AzioneUtente.MODIFICA, this.modello.getNome(), 
-					this.testoCognome.getText(), this.modello.getEmail(), 
-					this.modello.getTelefono(), this.modello.getData(),
-					this.getTurno(), this.modello.getPosti(), 
-					this.modello.getIdTavolo(), this.testoCodice.getText());
-			try {
-				modifica.start(new Stage());
-			} catch (Exception e) {
-				e.printStackTrace();
+		this.modello.prendiDati(this.testoCodice.getText(), this.testoCognome.getText(), this.getTurno());
+		if (this.sceltaTurno().isPresent() && this.modello.cercaDati()) {
+			
+			if(this.azione.equals(AzioneUtente.MODIFICA)) {  //se MODIFICA
+				LoaderPrenotazione modifica = new LoaderPrenotazione(
+						Utente.USER, AzioneUtente.MODIFICA, this.modello.getNome(), 
+						this.testoCognome.getText(), this.modello.getEmail(), 
+						this.modello.getTelefono(), this.modello.getData(),
+						this.getTurno(), this.modello.getPosti(), 
+						this.modello.getIdTavolo(), this.testoCodice.getText());
+				try {
+					modifica.start(new Stage());
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			} else {  //altrimenti se ELIMINA
+				ViewAlert alert = new ViewAlert();
+				if(alert.alertEliminazionePrenotazione(this.modello.getPrenotazione(), 
+						this.modello.getData(), this.getTurno()).equals(ButtonType.YES)) {
+					if(this.modello.eliminaPrenotazione()) {
+						alert.alertConfermaEliminazione();
+						final LoaderAdminUserSelection viewSelectionUser = new LoaderAdminUserSelection();
+						viewSelectionUser.start(new Stage());
+					} else {
+						alert.alertErrore("ERRORE");
+					}
+				}
 			}
+			
 			this.chiudiPagina();
-			//altrimenti se ELIMINA
-			//apre l'alert aspetta l'OK
-				//Se ok elimina
-					//se eliminazione = true -> apre l'alert di Conferma eliminazione
-					//altrimenti
-						//alert di errore
-			
-			
 		} else {
 			this.testoErrore.setVisible(true);
 		}
 	}
 	
 	public void handlerAnnulla() {
-		//va alla pagina precedente
 		LoaderUserDecision precedente = new LoaderUserDecision();
 		precedente.start(new Stage());
 		this.chiudiPagina();
