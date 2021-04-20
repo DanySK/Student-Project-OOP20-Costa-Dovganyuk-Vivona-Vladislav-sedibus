@@ -2,8 +2,11 @@ package controllers.adminuser;
 
 
 
+import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.Reader;
 
 import com.google.gson.Gson;
@@ -21,7 +24,7 @@ import view.piantina.LoaderTableView;
 
 public class ControllerAdminLogin  {
 	//private static String LOGIN_FILE_PATH = System.getProperty("user.home") + System.getProperty("file.separator") +"logindata.json";
-	private static String LOGIN_FILE_PATH = "res/logindata.json";
+	private static String LOGIN_FILE_PATH = "logindata.json";
 	
 	@FXML
 	private TextField user;
@@ -38,15 +41,12 @@ public class ControllerAdminLogin  {
 	 * 
 	 */
 	private void loginData () {
-		try{
-		Reader reader = new FileReader( LOGIN_FILE_PATH);//creo il file reader per il file logindata.json
+		InputStream res = ClassLoader.getSystemResourceAsStream(LOGIN_FILE_PATH);
+		    //BufferedReader b = new BufferedReader(new InputStreamReader(res));
+		Reader reader = new BufferedReader(new InputStreamReader(res));//creo il file reader per il file logindata.json
 		JsonObject jobj = new Gson().fromJson(reader,JsonObject.class);//creo il JsonObject da cui andro a leggere i dati presenti su file 
 		this.fileUser=jobj.get("utente").getAsString();//uso il metodo getAsString invece di toString in modo che la stringa restituita non abbia i quote marks
 		this.filePassword= jobj.get("password").getAsString();
-	} catch (IOException e) {
-        e.printStackTrace();
-	
-	}
 	}
 
 /**

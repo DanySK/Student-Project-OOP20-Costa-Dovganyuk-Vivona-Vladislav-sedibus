@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -11,7 +13,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-
+import application.Main;
 import dataBaseModel.GestoreDB;
 import dataBaseModel.ImplGestoreDB;
 import model.utili.Periodo;
@@ -19,7 +21,7 @@ import model.utili.Periodo;
 public class ImplRistorante implements Ristorante {
 
 	
-	private static String FILE_PATH = "res/restourant-conf/tavoli.txt";
+	private static String FILE_PATH = "tavoli.txt"; //"restourant-conf/tavoli.txt";
 	private static final int POS_ID_TAVOLO = 0;
 	private static final int POS_MAX_POSTI_TAVOLO = 1;
 	private List<Tavolo> tavoli = new ArrayList<>();
@@ -55,8 +57,9 @@ public class ImplRistorante implements Ristorante {
 
 	private void loadTavolifromFile() throws IOException {
 		try {
-			FileReader f = new FileReader(FILE_PATH);
-		    BufferedReader b = new BufferedReader(f);
+			//FileReader f = new FileReader(Main.class.getResourceAsStream(FILE_PATH));
+			InputStream res = ClassLoader.getSystemResourceAsStream(FILE_PATH);
+		    BufferedReader b = new BufferedReader(new InputStreamReader(res));
 		    String s;
 		    while(true) {
 		    	s = b.readLine();
