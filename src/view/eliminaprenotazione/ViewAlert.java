@@ -1,4 +1,4 @@
-package view.riepilogo;
+package view.eliminaprenotazione;
 
 import java.time.LocalDate;
 

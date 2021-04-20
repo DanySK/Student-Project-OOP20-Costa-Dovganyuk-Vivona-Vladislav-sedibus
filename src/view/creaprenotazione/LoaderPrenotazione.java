@@ -58,6 +58,7 @@ public class LoaderPrenotazione extends Application {
 		this.codicePrenotazione = codPrenot;
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public void start(Stage scenaPrimaria) throws Exception {
 		final FXMLLoader caricatore = new FXMLLoader(getClass().getResource(PERC_SCENA));

@@ -14,7 +14,6 @@ import model.utili.Periodo;
 public class ModelPrenotazioneImpl implements ModelPrenotazione {
 	
 	private Cliente cliente;
-	private String cognomeVecchioCliente;
 	private Ristorante ristorante = new ImplRistorante();
 	private Tavolo tavoloScelto;
 	private PilotaPosti gestorePosti;
@@ -59,7 +58,7 @@ public class ModelPrenotazioneImpl implements ModelPrenotazione {
 	}
 
 	private String prendiCognomeVecchioCliente() {
-		return ristorante.getListPrenotazioni(dataScelta, periodoScelto).stream()
+		return this.ristorante.getListPrenotazioni(this.dataScelta, this.periodoScelto).stream()
 						.filter(e -> e.getCodicePrenotazione().equals(this.vecchioCodice))
 						.map(p -> p.getCliente().getCognome()).findFirst()
 						.get();
@@ -136,7 +135,7 @@ public class ModelPrenotazioneImpl implements ModelPrenotazione {
 		this.ristorante.getPrenotazioni(this.vecchioPeriodo).entrySet().forEach(e -> {
 			e.getValue().forEach(p -> {
 				if(p.getCodicePrenotazione().equals(this.vecchioCodice)) {
-					this.ristorante.eliminaPrenotazione(this.vecchioPeriodo, this.vecchioCodice, prendiCognomeVecchioCliente());
+					this.ristorante.eliminaPrenotazione(this.vecchioPeriodo, this.vecchioCodice, this.prendiCognomeVecchioCliente());
 					this.ristorante.nuovaPrenotazione(new PrenotazioneEstesa(this.periodoScelto, 
 							this.dataScelta, this.vecchioCodice, this.cliente, this.tavoloScelto, 
 							this.gestorePosti.getNumeroPosti()));

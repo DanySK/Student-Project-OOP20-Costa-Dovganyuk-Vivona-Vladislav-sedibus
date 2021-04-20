@@ -13,17 +13,27 @@ public class ModelCercaPrenotazioneImpl implements ModelCercaPrenotazione {
 	private boolean prenotazTrovata;
 	private LocalDate data;
 	private Prenotazione prenotazione;
+	private String codice;
+	private String cognome;
+	private Periodo periodo;
 	
 	public ModelCercaPrenotazioneImpl() {
 		this.prenotazTrovata = false;
 	}
 
 	@Override
-	public boolean cercaDati(String cod, String cognome, Periodo periodo) {
-		this.ristorante.getPrenotazioni(periodo).entrySet().forEach(elem -> {
+	public void prendiDati(String cod, String cognome, Periodo periodo) {
+		this.codice = cod;
+		this.cognome = cognome;
+		this.periodo = periodo;
+	}
+	
+	@Override
+	public boolean cercaDati() {
+		this.ristorante.getPrenotazioni(this.periodo).entrySet().forEach(elem -> {
 			elem.getValue().forEach(pren -> {
-				if (pren.getCodicePrenotazione().equals(cod) && 
-					pren.getCliente().getCognome().equals(cognome)) {
+				if (pren.getCodicePrenotazione().equals(this.codice) && 
+					pren.getCliente().getCognome().equals(this.cognome)) {
 					this.prenotazione = pren;
 					this.data = LocalDate.parse(elem.getKey());
 					this.prenotazTrovata = true;
@@ -31,6 +41,11 @@ public class ModelCercaPrenotazioneImpl implements ModelCercaPrenotazione {
 			});
 		});
 		return this.prenotazTrovata;
+	}
+	
+	@Override
+	public Prenotazione getPrenotazione() {
+		return this.prenotazione;
 	}
 	
 	@Override
@@ -61,6 +76,11 @@ public class ModelCercaPrenotazioneImpl implements ModelCercaPrenotazione {
 	@Override
 	public String getIdTavolo() {
 		return String.valueOf(this.prenotazione.getTavolo().getName());
+	}
+	
+	@Override
+	public boolean eliminaPrenotazione() {
+		return this.ristorante.eliminaPrenotazione(this.periodo, this.codice, this.cognome);
 	}
 
 }
