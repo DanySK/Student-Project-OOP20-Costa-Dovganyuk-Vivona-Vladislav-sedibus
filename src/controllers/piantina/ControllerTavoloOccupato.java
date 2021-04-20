@@ -1,6 +1,5 @@
 package controllers.piantina;
 
-import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
@@ -20,8 +19,9 @@ import model.utili.Cliente;
 import model.utili.Periodo;
 import model.utili.Utente;
 import view.creaprenotazione.LoaderPrenotazione;
+import view.eliminaprenotazione.ViewAlert;
 import view.piantina.LoaderTableView;
-import view.riepilogo.ViewAlert;
+
 
 
 public class ControllerTavoloOccupato implements Initializable  {
