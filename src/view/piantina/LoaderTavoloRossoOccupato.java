@@ -7,7 +7,6 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -27,7 +26,6 @@ public class LoaderTavoloRossoOccupato extends Application {
 	private Text textEmail;
 	private Text textPeriodo;
 	private Text textData;
-	private Button buttonModifica;
 	
 	private Stage previousStage;
 	private String TESTO_SUPERIORE;
@@ -64,12 +62,6 @@ public class LoaderTavoloRossoOccupato extends Application {
             final Scene scene = new Scene(root);
             
             setAllTexts(loader);
-           /* 
-            this.buttonModifica = (Button) loader.getNamespace().get("buttonModifica");
-            this.buttonModifica.setOnMouseReleased(e->{
-            	this.previousStage.close();
-            });
-            */
             
             primaryStage.setResizable(false);
             primaryStage.initModality(Modality.APPLICATION_MODAL);

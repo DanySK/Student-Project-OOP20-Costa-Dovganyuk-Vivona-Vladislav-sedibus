@@ -5,6 +5,8 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -12,7 +14,7 @@ import java.util.Random;
 
 public class GeneratoreCodice {
 
-	private final static String PERC_FILE = "res/ultimo-codice/codice.txt";
+	private final static String PERC_FILE = "ultimo-codice/codice.txt";
 	private final static int NUMERO_CIFRE = 4;
 	private int n;
 	private String codice = "";
@@ -60,7 +62,8 @@ public class GeneratoreCodice {
 	 * Con il try-with-resources si legge e assegna il numero finale del codice dal file
 	 */
 	private void leggiUltimoCod() {
-		try (final BufferedReader br = new BufferedReader(new FileReader(PERC_FILE))) {
+		InputStream res = ClassLoader.getSystemResourceAsStream(PERC_FILE);
+		try (final BufferedReader br = new BufferedReader(new InputStreamReader(res))) {
 			this.n = Integer.parseInt(br.readLine());
 		} catch (IOException e) {
 			e.printStackTrace();
