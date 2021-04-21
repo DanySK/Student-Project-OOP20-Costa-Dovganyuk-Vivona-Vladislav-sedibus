@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import model.utili.Utente;
+import view.adminuser.LoaderAdminUserSelection;
 import view.cercaprenotazione.LoaderCercaPrenotazione;
 import view.eccezioni.AlertEccezione;
 import view.piantina.LoaderTableView;
@@ -72,5 +73,22 @@ public class ControllerUserDecision {
 		AlertEccezione avviso = new AlertEccezione();
 		avviso.err(mex);
 	}
+	
+	@FXML
+	public void goBack (ActionEvent Event) {
+		
+		Stage currentStage = (Stage) this.prenota.getScene().getWindow();
+		LoaderAdminUserSelection view= new LoaderAdminUserSelection();
+		
+		try {
+			view.start(new Stage());
+			currentStage.close();
+		} catch (Exception e) {
+			this.errore(e.getMessage());
+		}
+	}
+	
+	
+	
 	
 }

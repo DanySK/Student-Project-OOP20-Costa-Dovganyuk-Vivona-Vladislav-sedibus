@@ -8,11 +8,13 @@ import javafx.stage.Stage;
 
 public class LoaderUserDecision extends Application{
 	
+	private static final String PER_USERDECISION= "/layouts/UserDecision.fxml";
+	
 	public void start(Stage stage) {
 		try {
 		
-		   Parent root = FXMLLoader.load(getClass().getResource("/layouts/UserDecision.fxml"));
-           Scene scene = new Scene(root, 600, 500);
+		  final Parent root = FXMLLoader.load(getClass().getResource(PER_USERDECISION));
+          final Scene scene = new Scene(root, 600, 500);
     
            stage.setTitle("Sedibus");
            stage.setScene(scene);

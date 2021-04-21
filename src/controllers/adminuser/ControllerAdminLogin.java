@@ -17,6 +17,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.utili.Utente;
+import view.adminuser.LoaderAdminUserSelection;
 import view.eccezioni.AlertEccezione;
 import view.piantina.LoaderTableView;
 
@@ -76,7 +77,22 @@ public class ControllerAdminLogin  {
 	  }
 	  
 	  else failedLabel.setText("Nome Utente o Password Errati");
-   }
+      }
+	 
+	 @FXML
+	 public void goBack (ActionEvent event){
+		 
+		    LoaderAdminUserSelection view= new LoaderAdminUserSelection();
+	        Stage currentStage = (Stage) this.user.getScene().getWindow();
+	  
+			try {
+				view.start(new Stage());
+				currentStage.close();
+		     } catch (Exception e) {
+		    	 AlertEccezione avviso = new AlertEccezione();
+		    	 avviso.err(e.getMessage());
+		     }
+	 }
 
 }	
     

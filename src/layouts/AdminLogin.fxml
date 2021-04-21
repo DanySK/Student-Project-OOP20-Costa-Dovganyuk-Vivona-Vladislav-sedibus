@@ -13,11 +13,12 @@
       <TextField fx:id="user" layoutX="226.0" layoutY="150.0" />
       <Label id="passLabel" layoutX="169.0" layoutY="192.0" text="Password:" />
       <PasswordField fx:id="pass" layoutX="226.0" layoutY="188.0" />
-      <Button layoutX="307.0" layoutY="232.0" mnemonicParsing="false" onAction="#loadTableViewAdmin" text="Conferma" />
+      <Button layoutX="307.0" layoutY="232.0" mnemonicParsing="false"  text="Conferma" onAction="#loadTableViewAdmin"/>
       <Label fx:id="failedLabel" layoutX="196.0" layoutY="272.0" prefHeight="19.0" prefWidth="186.0" text="" textFill="#e41919">
          <font>
             <Font size="13.0" />
          </font>
       </Label>
+      <Button id="backButton" layoutX="375.0" layoutY="42.0" mnemonicParsing="false"  prefHeight="25.0" prefWidth="102.0" text="Torna Indietro" onAction="#goBack"/>
    </children>
 </AnchorPane>
