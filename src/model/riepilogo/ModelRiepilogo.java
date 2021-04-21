@@ -3,32 +3,32 @@ package model.riepilogo;
 public interface ModelRiepilogo {
 
 	/**
-	 * @return il nome preso dalla prenotazione del cliente
+	 * @return the name taken from the customer's reservation
 	 */
 	String getNome();
 	
 	/**
-	 * @return il cognome preso dalla prenotazione del cliente
+	 * @return the surname taken from the customer's reservation
 	 */
 	String getCognome();
 	
 	/**
-	 * @return l'email presa dalla prenotazione del cliente
+	 * @return the email taken from the customer's reservation
 	 */
 	String getEmail();
 	
 	/**
-	 * @return il telefono preso dalla prenotazione del cliente
+	 * @return the phone number taken from the customer's reservation
 	 */
 	String getTelefono();
 	
 	/**
-	 * @return il numero dei posti occupati dal cliente
+	 * @return the number of seats occupied by the customer
 	 */
 	String getPosti();
 	
 	/**
-	 * @return il codice prenotazione del cliente
+	 * @return the customer's reservation code
 	 */
 	String getCodice();
 	

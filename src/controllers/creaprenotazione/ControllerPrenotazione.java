@@ -13,6 +13,7 @@ import model.creaprenotazione.ModelPrenotazioneImpl;
 import model.utili.AzioneUtente;
 import model.utili.Periodo;
 import model.utili.Utente;
+import view.eccezioni.AlertEccezione;
 import view.piantina.LoaderTableView;
 import view.riepilogo.LoaderRiepilogo;
 
@@ -125,7 +126,8 @@ public class ControllerPrenotazione implements Initializable {
 		try {
 			riepilogo.start(new Stage());
 		} catch (Exception e) {
-			e.printStackTrace();
+			AlertEccezione avviso = new AlertEccezione();
+	    	avviso.err(e.getMessage());
 		}
 	}
 	

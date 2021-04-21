@@ -9,63 +9,63 @@ import model.utili.Periodo;
 public interface MainTableModel {
 
 	/**
-	 * 
 	 * @param date
 	 * @param p
-	 * @return la lista degli ID dei tavoli prenotati 
+	 * @return the list of IDs of the reserved tables
 	 */
 	List<Integer> tavoliPrenotati(LocalDate date, Periodo p);
 	
 	/**
-	 * 
 	 * @param ID
-	 * @return max numero di posti
+	 * @return max number of seats
 	 */
 	int getPostiMax(int ID);
 	
 	/**
-	 * 
 	 * @param idTavolo
-	 * @return il codice prenotazione inerente a quel tavolo
+	 * @return the reservation code relate to that table
 	 */
 	String getCodicePrenotazione(int idTavolo);
 	
 	/**
-	 * 
 	 * @param idTavolo
-	 * @return Cognome e Nome del cliente come unica Stringa
+	 * @return surname and name of the customer as a single String
 	 */
 	String getCognomeNomeCliente(int idTavolo);
 	
 	/**
-	 * 
 	 * @param idTavolo
-	 * @return il numero di posti prenotati per quel tavolo
+	 * @return the number of seats reserved for that table
 	 */
 	String getPostiPrenotati(int idTavolo);
 	
 	/**
-	 * 
 	 * @param idTavolo
-	 * @return il numero di telefono del Cliente che si e prenotato per tale tavolo
+	 * @return the telephone number of the customer who booked for that table
 	 */
 	String getNumTelefonoCliente(int idTavolo);
 	
 	/**
-	 * 
 	 * @param idTavolo
-	 * @return la mail del cliente che si e prenotato per tale tavolo
+	 * @return the email of the customer who booked for that table
 	 */
 	String getEmailCliente(int idTavolo);
 	
+	/**
+	 * @param idTavolo
+	 * @return the customer of the id's table
+	 */
 	Cliente getCliente(int idTavolo);
 	
 	/**
-	 * 
 	 * @param codicePrenotazione
-	 * @return la prenotazione completa avente come codicePrenotazione lo stesso passatogli in funzione
+	 * @return the complete reservation with the code passed in input
 	 */
 	Prenotazione getPrenotazione(String codicePrenotazione);
 	
+	/**
+	 * @param codicePrenotazione
+	 * @return the id of the table taken from the reservation with the code passed in input
+	 */
 	int getIdTavolo(String codicePrenotazione);
 }

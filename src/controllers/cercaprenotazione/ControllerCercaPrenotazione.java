@@ -16,6 +16,7 @@ import model.utili.Utente;
 import view.adminuser.LoaderAdminUserSelection;
 import view.adminuser.LoaderUserDecision;
 import view.creaprenotazione.LoaderPrenotazione;
+import view.eccezioni.AlertEccezione;
 import view.eliminaprenotazione.ViewAlert;
 
 public class ControllerCercaPrenotazione implements Initializable {
@@ -52,7 +53,8 @@ public class ControllerCercaPrenotazione implements Initializable {
 				try {
 					modifica.start(new Stage());
 				} catch (Exception e) {
-					e.printStackTrace();
+					AlertEccezione avviso = new AlertEccezione();
+			    	avviso.err(e.getMessage());
 				}
 			} else {  //altrimenti se ELIMINA
 				ViewAlert alert = new ViewAlert();

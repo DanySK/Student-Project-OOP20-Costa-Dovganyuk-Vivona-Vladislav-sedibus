@@ -2,33 +2,27 @@ package dataBaseModel;
 
 import java.util.List;
 import java.util.Map;
-
 import model.piantina.Prenotazione;
 import model.utili.Periodo;
 import model.piantina.PrenotazioneEstesa;
 
 public interface GestoreDB {
 
-
 	/**
-	 * 
-	 * @param p
-	 * @return la mappa delle prenotazioni in un dato periodo
+	 * @param p 
+	 * @return the map of reservations in a given period
 	 */
 	public Map<String, List<Prenotazione>> getMapPrenotazioni(Periodo p);
 	
-	
 	/**
-	 * 
 	 * @param prenotazione
-	 * aggiunge al file la prenotazione passatagli
+	 * adds a reservation to the file
 	 */
 	public void addToFile(PrenotazioneEstesa prenotazione);
 	
 	/**
-	 * 
 	 * @param map
-	 * @param p   carica su file giusto(in base al periodo) la mappa passatagli
+	 * @param p upload the map passed to him on the right file (according to the period)
 	 */
 	void loadMapOnFile(Map<String, List<Prenotazione>> map, Periodo p);
 	

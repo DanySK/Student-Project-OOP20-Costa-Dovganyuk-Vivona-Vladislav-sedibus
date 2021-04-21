@@ -9,41 +9,41 @@ import model.utili.Periodo;
 public interface Ristorante {
 
 	/**
-	 * 
-	 * @return la lista di tutti i tavoli del ristorante
+	 * @return the list of all the tables in the restaurant
 	 */
 	List<Tavolo> tavoliRistorante();
 	
 	/**
-	 * 
 	 * @param date
-	 * @return la lista dei tavoli prenotati per quella data
+	 * @return the list of tables booked for that date
 	 */
 	List<Tavolo> tavoliPrenotati(LocalDate date, Periodo p);
 	
 	/**
-	 * 
+	 * Call the db manager function for adding the reservation to the DB
 	 * @param prenotazione
-	 * va a richiamare la funzione del gestore db per l'aggiunta della prenotazione al DB
 	 */
 	public void nuovaPrenotazione(PrenotazioneEstesa prenotazione);
 	
 	/**
-	 * 
 	 * @param p
-	 * @return la mappa delle prenotazioni di un certo Periodo p
+	 * @return the map of reservations for a certain period p
 	 */
 	public Map<String,List<Prenotazione>> getPrenotazioni(Periodo p);
 	
 	/**
-	 * 
 	 * @param data
 	 * @param p
-	 * @return la lista delle prenotazioni inerente alle 2 "chiavi"
+	 * @return the list of reservations relating to the 2 "keys"
 	 */
 	List<Prenotazione> getListPrenotazioni(LocalDate data, Periodo p);
 	
-	
+	/**
+	 * @param p
+	 * @param codicePrenotazione
+	 * @param cognome
+	 * @return true if the cancellation of the reservation identified by the 3 input parameters is successful, otherwise false
+	 */
 	boolean eliminaPrenotazione(Periodo p, String codicePrenotazione, String cognome);
 	
 }

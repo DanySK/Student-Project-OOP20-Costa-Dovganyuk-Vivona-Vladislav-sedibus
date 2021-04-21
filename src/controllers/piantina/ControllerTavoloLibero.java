@@ -13,6 +13,7 @@ import model.utili.AzioneUtente;
 import model.utili.Periodo;
 import model.utili.Utente;
 import view.creaprenotazione.LoaderPrenotazione;
+import view.eccezioni.AlertEccezione;
 
 public class ControllerTavoloLibero implements Initializable {
 
@@ -34,7 +35,8 @@ public class ControllerTavoloLibero implements Initializable {
 		try {
 			view.start(new Stage());
 		} catch (Exception e) {
-			e.printStackTrace();
+			AlertEccezione avviso = new AlertEccezione();
+	    	avviso.err(e.getMessage());
 		}
 		closeCurrentStage();
 	}

@@ -8,55 +8,55 @@ import model.utili.Periodo;
 public interface ModelCercaPrenotazione {
 
 	/**
-	 * @param cod e' il codice inserito
-	 * @param cognome e' il cognome inserito
-	 * @param turno e' il turno scelto
+	 * @param cod is the entered code
+	 * @param cognome is the surname entered
+	 * @param periodo is the chosen period
 	 */
 	void prendiDati(String cod, String cognome, Periodo periodo);
 	
 	/**
-	 * cerca i dati nel database
-	 * @return vero se vengono trovati nel db, falso altrimenti
+	 * looks for data in the database
+	 * @return true if founds in the db, false otherwise
 	 */
 	boolean cercaDati();
 	
 	/**
-	 * @return la prenotazione fatta dal cliente
+	 * @return the reservation made by the customer
 	 */
 	Prenotazione getPrenotazione();
 	
 	/**
-	 * @return il nome preso dalla prenotazione del cliente
+	 * @return the name taken from the customer's reservation
 	 */
 	String getNome();
 	
 	/**
-	 * @return l'email presa dalla prenotazione del cliente
+	 * @return the email taken from the customer's booking
 	 */
 	String getEmail();
 	
 	/**
-	 * @return il telefono preso dalla prenotazione del cliente
+	 * @return the phone taken from the customer's reservation
 	 */
 	String getTelefono();
 	
 	/**
-	 * @return la data della prenotazione fatta dal cliente
+	 * @return the date of the reservation made by the customer
 	 */
 	LocalDate getData();
 	
 	/**
-	 * @return il numero dei posti prenotati dal cliente
+	 * @return the number of seats reserved by the customer
 	 */
 	String getPosti();
 	
 	/**
-	 * @return l'id/nome del tavolo occupato dal cliente
+	 * @return the id/name of the table occupied by the customer
 	 */
 	String getIdTavolo();
 
 	/**
-	 * elimina la prenotazione 
+	 * deletes the reservation 
 	 */
 	boolean eliminaPrenotazione();
 	

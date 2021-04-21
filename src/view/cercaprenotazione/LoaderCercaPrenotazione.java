@@ -18,7 +18,7 @@ public class LoaderCercaPrenotazione extends Application  {
 	public LoaderCercaPrenotazione() {}
 	
 	public static void loadCercaPrenotazione(AzioneUtente azioneUtente) {
-		LoaderCercaPrenotazione.azione=azioneUtente;
+		LoaderCercaPrenotazione.azione = azioneUtente;
 	}
 
 	@Override

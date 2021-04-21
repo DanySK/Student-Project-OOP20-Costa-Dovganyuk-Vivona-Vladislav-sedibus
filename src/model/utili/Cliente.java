@@ -2,8 +2,8 @@ package model.utili;
 
 public class Cliente  {
 
-	private static final String REGEX_NOME_COGN = ".*\\d.*";  //significa: un qualsiasi carattere è una cifra da 0 a 9
-	private static final String REGEX_TEL = "[0-9]+";  //significa: solo cifre
+	private static final String REGEX_NOME_COGN = ".*\\d.*";
+	private static final String REGEX_TEL = "[0-9]+";
 	private String nome;
 	private String cognome;
 	private String email;
@@ -16,22 +16,37 @@ public class Cliente  {
 		this.nTelefono = telefonoCliente;
 	}
 	
+	/**
+	 * @return customer's name
+	 */
 	public String getNome() {
 		return this.nome;
 	}
 	
+	/**
+	 * @return customer's surname
+	 */
 	public String getCognome() {
 		return this.cognome;
 	}
 	
+	/**
+	 * @return customer's email
+	 */
 	public String getEmail() {
 		return this.email;
 	}
 
+	/**
+	 * @return customer's phone number
+	 */
 	public String getTelefono() {
 		return this.nTelefono;
 	}
 	
+	/**
+	 * @return true if true if name, surname, email, telephone number respect certain constraints, false otherwise
+	 */
 	public boolean rispettaControlli() {
 		return this.controlloNome(this.nome) && this.controlloCognome(this.cognome) && 
 			   this.controlloEmail(this.email) && this.controlloTelefono(this.nTelefono);

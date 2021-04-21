@@ -1,7 +1,5 @@
 package model.piantina;
 
-
-
 public class Tavolo  {
 	
 	private int name;
@@ -12,12 +10,16 @@ public class Tavolo  {
 		this.maxPosti = maxPosti;
 	}
 
-	
+	/**
+	 * @return the name/id of the table
+	 */
 	public int getName() {
 		return this.name;
 	}
 
-	
+	/**
+	 * @return the maximum seats that can be occupied
+	 */
 	public int getMaxPosti() {
 		return this.maxPosti;
 	}

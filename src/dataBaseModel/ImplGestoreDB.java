@@ -24,9 +24,6 @@ public class ImplGestoreDB implements GestoreDB {
 
 
 	private Gson gson = new GsonBuilder().setPrettyPrinting().create();
-	//private static String PRANZO_FILE_PATH = "res/pranzo.json";
-	//private static String CENA_FILE_PATH = "res/cena.json";
-
 	private static String PRANZO_FILE_PATH = System.getProperty("user.home") + System.getProperty("file.separator") + "pranzo.json";  
 	private static String CENA_FILE_PATH = System.getProperty("user.home") + System.getProperty("file.separator") + "cena.json";
 	
@@ -35,7 +32,9 @@ public class ImplGestoreDB implements GestoreDB {
 		createFiles();
 	}
 
-	//Crea i file pranzo e cena se non sono presenti
+	/**
+	 * Create lunch and dinner files if they are not present
+	 */
 	private void createFiles() {
 		if(!new File(PRANZO_FILE_PATH).exists()) {
 			createNewFile(PRANZO_FILE_PATH);
@@ -98,7 +97,6 @@ public class ImplGestoreDB implements GestoreDB {
 
 	@Override
 	public void loadMapOnFile(Map<String, List<Prenotazione>> map, Periodo p) {
-
 		try {
 			Writer writer = Files.newBufferedWriter(Paths.get(getPath(p)));
 			gson.toJson(map, writer);
@@ -107,6 +105,5 @@ public class ImplGestoreDB implements GestoreDB {
 			e.printStackTrace();
 		}
 	}
-	
 
 }

@@ -49,14 +49,14 @@ public class GeneratoreCodice {
 	}
 
 	/**
-	 * @return una stringa composta da una lettera casuale e un numero crescente
+	 * @return a string consisting of a random letter and an increasing number
 	 */
 	public String ottieni() {
 		return this.codice;
 	}
 	
 	/**
-	 * Con il try-with-resources si scrive il numero finale del codice nel file
+	 * With try-with-resources writes the final number of the code in the file
 	 */
 	private void scriviUltimoCod() {
 		try (final BufferedWriter bw = new BufferedWriter(new FileWriter(PERCORSO_CODICE))) {
@@ -67,7 +67,7 @@ public class GeneratoreCodice {
 	}
 	
 	/**
-	 * Con il try-with-resources si legge e assegna il numero finale del codice dal file
+	 * With the try-with-resources reads and assign the final number of the code from the file
 	 */
 	private void leggiUltimoCod() {
 

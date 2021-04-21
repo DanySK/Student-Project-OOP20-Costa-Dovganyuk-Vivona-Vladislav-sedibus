@@ -3,8 +3,6 @@ package controllers.adminuser;
 
 
 import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
@@ -19,6 +17,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.utili.Utente;
+import view.eccezioni.AlertEccezione;
 import view.piantina.LoaderTableView;
 
 
@@ -36,9 +35,9 @@ public class ControllerAdminLogin  {
 	
 	private String fileUser;
 	private String filePassword;
+	
 	/**
-	 * loginData imposta i campi fileUser e filePassword, che verrano usati per il login, leggendo il file logindata.json
-	 * 
+	 * loginData sets the fileUser and filePassword fields, which will be used for login, by reading the logindata.json file
 	 */
 	private void loginData () {
 		InputStream res = ClassLoader.getSystemResourceAsStream(LOGIN_FILE_PATH);
@@ -49,10 +48,10 @@ public class ControllerAdminLogin  {
 		this.filePassword= jobj.get("password").getAsString();
 	}
 
-/**
- *  loadTableViewAdmin confronta il nome utente e password inseriti dall'utente con quelli presenti sul file logindata.json
- *  nel caso di successo viene caricata la view dei tavoli passando come argomento l'Enum utente impostato su admin
- */
+	/**
+	 * loadTableViewAdmin compares the username and password entered by the user with those present in the logindata.json file.
+	 * In case of success, the view of the tables is loaded passing the User Enum set on admin as the argument
+	 */
 	 @FXML
 	 public void loadTableViewAdmin(ActionEvent event) {
 		 
@@ -66,12 +65,13 @@ public class ControllerAdminLogin  {
 		LoaderTableView view= new LoaderTableView();
     	Stage currentStage = (Stage) this.user.getScene().getWindow();
     	LoaderTableView.loaderTableView(utente);
-		 try { 
-			 view.start(new Stage());
-			   currentStage.close();
+		try {
+			view.start(new Stage());
+			currentStage.close();
 	     } catch (Exception e) {
-	            e.printStackTrace();
-	        }
+	    	 AlertEccezione avviso = new AlertEccezione();
+	    	 avviso.err(e.getMessage());
+	     }
 	
 	  }
 	  

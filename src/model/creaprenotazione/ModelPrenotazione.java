@@ -6,82 +6,83 @@ import model.utili.Periodo;
 public interface ModelPrenotazione {
 
 	/**
-	 * Dal nome/id viene ricavato il tavolo scelto dall'utente
+	 * The table chosen by the user is obtained from the name/id
 	 * @param idTavolo
 	 */
 	void prendiTavolo(String idTavolo);
 	
 	/**
-	 * Necessario ad istanziare PilotaPosti (quando si modifica una prenotazione)
-	 * @param posti i posti che voleva occupare il cliente
+	 * Necessary to instantiate PilotaPosto (when modifying a reservation)
+	 * @param posti the seats the client wanted to occupy
 	 */
 	void settaPostiModifica(int posti);
 	
 	/**
-	 * Necessario ad istanziare PilotaPosti (quando si crea una prenotazione)
+	 * Necessary to instantiate PilotaPosto (when creating a reservation)
 	 */
 	void settaPostiCreazione();
 	
 	/**
-	 * Prende i parametri necessari ad identificare la vecchia prenotazione
-	 * @param codice il codice della vecchia prenotazione
-	 * @param periodo il periodo della vecchia prenotazione
+	 * It takes the parameters necessary to identify the old reservation
+	 * @param codice the code of the old reservation
+	 * @param periodo the period of the old reservation
+	 * @param data the date of the old reservation
 	 */
 	void prendiVecchiaPrenotazione(String codice, Periodo periodo, LocalDate data);
 	
 	/**
-	 * Aumenta di 1 i posti che il cliente vuole occupare
+	 * Increase the number of seats the customer wants to occupy by 1
 	 */
 	void incrementaPosti();
 	
 	/**
-	 * Diminuisce di 1 i posti che il cliente vuole occupare
+	 * Decreases the number of seats the customer wants to occupy by 1
 	 */
 	void decrementaPosti();
 	
 	/**
-	 * Porta i posti che il cliente puo' occupare al minimo
+	 * Bring the seats that the customer can occupy to minimum
 	 */
 	void inizializzaPosti();
 	
 	/**
-	 * @return i posti che il cliente vuole occupare
+	 * @return the number of seats the customer wants to occupy
 	 */
 	int postiCorrenti();
 	
 	/**
-	 * @param nome che l'utente ha inserito
-	 * @param cognome che l'utente ha inserito
-	 * @param email che l'utente ha inserito
-	 * @param telefono che l'utente ha inserito
-	 * @return vero se i dati in ingresso rispettano i controlli, falso altrimenti
+	 * @param nome the name user entered
+	 * @param cognome the surname the user entered
+	 * @param email that the user entered
+	 * @param telefono the phone number the user entered
+	 * @return true if the input complies with the controls, false otherwise
 	 */
 	boolean prendiDatiCliente(String nome, String cognome, String email, String telefono);
 	
 	/**
-	 * Estrapola il periodo dalla stringa in input
+	 * Extract the period from the input string
 	 * @param periodo
 	 */
 	void prendiPeriodo(String periodo);
 	
 	/**
-	 * @param dataScelta la data che ha scelto il cliente
+	 * @param dataScelta the date the customer chose
 	 */
 	void prendiData(LocalDate dataScelta);
 	
 	/**
-	 * Aggiunge una nuova prenotazione
+	 * Add a new reservation
 	 */
 	void aggiungiPrenotazione();
 	
 	/**
-	 * Affida al cliente il primo tavolo della piantina con le caratteristiche volute
-	 * @return vero se e' stato trovato un tavolo, falso altrimenti
+	 * Entrust the customer with the first free table of the map with the desired characteristics
+	 * @return true if a table was found, false otherwise
 	 */
 	boolean cercaTavolo();
 	
 	/**
-	 * Modifica una prenotazione esistente, eliminando la vecchia ma preservando il codice
+	 * Modify an existing reservation, deleting the old one but keeping the code
 	 */
 	void modificaPrenotazione();
 	

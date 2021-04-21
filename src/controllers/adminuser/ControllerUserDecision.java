@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import model.utili.Utente;
 import view.cercaprenotazione.LoaderCercaPrenotazione;
+import view.eccezioni.AlertEccezione;
 import view.piantina.LoaderTableView;
 import model.utili.AzioneUtente;
 
@@ -30,9 +31,9 @@ public class ControllerUserDecision {
 		try { 
 			 view.start(new Stage());
 			   currentStage.close();
-	     } catch (Exception e) {
-	            e.printStackTrace();
-	        }
+	    } catch (Exception e) {
+	    	this.errore(e.getMessage());
+	    }
      }
 	
 	@FXML
@@ -47,7 +48,7 @@ public class ControllerUserDecision {
 			view.start(new Stage());
 			currentStage.close();
 		} catch (Exception e) {
-			e.printStackTrace();
+			this.errore(e.getMessage());
 		}
 	}
 	
@@ -63,7 +64,13 @@ public class ControllerUserDecision {
 			view.start(new Stage());
 			currentStage.close();
 		} catch (Exception e) {
-			e.printStackTrace();
+			this.errore(e.getMessage());
 		}
 	}
+	
+	private void errore(String mex) {
+		AlertEccezione avviso = new AlertEccezione();
+		avviso.err(mex);
+	}
+	
 }

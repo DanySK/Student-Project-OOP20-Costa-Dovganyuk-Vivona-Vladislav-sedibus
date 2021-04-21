@@ -1,5 +1,4 @@
 package view.piantina;
-	
 
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -11,7 +10,6 @@ import javafx.fxml.FXMLLoader;
 
 
 public class LoaderTableView extends Application {
-	
 	
 	private Text testoUtente;
 	private static Utente utente;
@@ -44,12 +42,6 @@ public class LoaderTableView extends Application {
             e.printStackTrace();
         }
 		
-		
 	}
-	
-	
-	
-	
-	
 	
 }

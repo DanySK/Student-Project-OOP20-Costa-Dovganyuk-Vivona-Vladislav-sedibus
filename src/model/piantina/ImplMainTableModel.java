@@ -5,15 +5,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
-
 import model.utili.Cliente;
 import model.utili.Periodo;
 
 public class ImplMainTableModel implements MainTableModel {
 
 	private Ristorante ristorante = new ImplRistorante();
-	//lista totale dei Tavoli
-	private List<Tavolo> listaTavoli = new ArrayList<>();
+	private List<Tavolo> listaTavoli = new ArrayList<>();  //lista totale dei Tavoli
 	private Periodo periodo;
 	private LocalDate data;
 	
@@ -61,12 +59,10 @@ public class ImplMainTableModel implements MainTableModel {
 		return getCliente(idTavolo).getTelefono();
 	}
 
-
 	@Override
 	public String getEmailCliente(int idTavolo) {
 		return getCliente(idTavolo).getEmail();
 	}
-	
 	
 	private Optional<Prenotazione> getInformazioniPrenotazione(int idTavolo) {
 		return streamPrenotazioni().filter(p -> p.getTavolo().getName() == idTavolo).findFirst();
@@ -90,7 +86,5 @@ public class ImplMainTableModel implements MainTableModel {
 	public int getIdTavolo(String codicePrenotazione) {
 		return streamPrenotazioni().filter(p -> p.getCodicePrenotazione().equals(codicePrenotazione)).findFirst().get().getTavolo().getName();
 	}
-
-
 
 }

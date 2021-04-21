@@ -55,7 +55,6 @@ public class ImplRistorante implements Ristorante {
 
 	private void loadTavolifromFile() throws IOException {
 		try {
-			//FileReader f = new FileReader(Main.class.getResourceAsStream(FILE_PATH));
 			InputStream res = ClassLoader.getSystemResourceAsStream(FILE_PATH);
 		    BufferedReader b = new BufferedReader(new InputStreamReader(res));
 		    String s;

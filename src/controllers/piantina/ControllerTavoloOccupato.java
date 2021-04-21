@@ -3,7 +3,6 @@ package controllers.piantina;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
-
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ButtonType;
@@ -19,9 +18,9 @@ import model.utili.Cliente;
 import model.utili.Periodo;
 import model.utili.Utente;
 import view.creaprenotazione.LoaderPrenotazione;
+import view.eccezioni.AlertEccezione;
 import view.eliminaprenotazione.ViewAlert;
 import view.piantina.LoaderTableView;
-
 
 
 public class ControllerTavoloOccupato implements Initializable  {
@@ -68,7 +67,8 @@ public class ControllerTavoloOccupato implements Initializable  {
 		try {
 			viewPrenotazione.start(new Stage());
 		} catch (Exception e) {
-			e.printStackTrace();
+			AlertEccezione avviso = new AlertEccezione();
+	    	avviso.err(e.getMessage());
 		}
 		closeCurrentStage();
 		this.stageMappaTavoli.close();
@@ -81,7 +81,6 @@ public class ControllerTavoloOccupato implements Initializable  {
 			setModel();
 		}
 		
-		
 		if(alert.alertEliminazionePrenotazione(prenotazione, data, periodo).equals(ButtonType.YES)) {
 			if(ristorante.eliminaPrenotazione(periodo, codicePrenotazione, this.cliente.getCognome())) {
 				//chiudo lo stage corrente
@@ -93,8 +92,6 @@ public class ControllerTavoloOccupato implements Initializable  {
 			}
 			
 		}
-		
-		
 		
 	}
 	
@@ -123,9 +120,7 @@ public class ControllerTavoloOccupato implements Initializable  {
 		this.codicePrenotazione = this.textCodice.getText();
 		this.idTavolo = this.model.getIdTavolo(this.codicePrenotazione);	
 		this.prenotazione = this.model.getPrenotazione(this.codicePrenotazione);
-		this.cliente = this.prenotazione.getCliente();
-		
-		          
+		this.cliente = this.prenotazione.getCliente();          
 	}
 	
 }

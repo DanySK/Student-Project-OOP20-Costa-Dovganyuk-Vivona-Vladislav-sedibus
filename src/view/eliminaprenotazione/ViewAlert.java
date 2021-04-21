@@ -36,7 +36,9 @@ public class ViewAlert {
 				"\na nome di " + p.getCliente().getNome() + " " + p.getCliente().getCognome();
 	}
 	
-	
+	/**
+	 * "window" called to confirm the deletion
+	 */
 	public void alertConfermaEliminazione() {
 		alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle(TITOLO_ELIMINAZIONE_CONFERMATA);
@@ -45,6 +47,10 @@ public class ViewAlert {
 		
 	}
 	
+	/**
+	 * "window" to be called in case of error
+	 * @param messaggio the message to be displayed
+	 */
 	public void alertErrore(String messaggio) {
 		alert = new Alert(AlertType.ERROR);
 		alert.setHeaderText(messaggio);

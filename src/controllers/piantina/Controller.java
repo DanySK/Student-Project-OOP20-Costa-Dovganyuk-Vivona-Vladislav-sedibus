@@ -1,20 +1,15 @@
 package controllers.piantina;
 
-import java.awt.event.ActionListener;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-
-
-
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -23,12 +18,12 @@ import model.piantina.MainTableModel;
 import model.utili.Periodo;
 import model.utili.Utente;
 import view.adminuser.LoaderAdminUserSelection;
+import view.eccezioni.AlertEccezione;
 import view.piantina.LoaderTavoloRossoOccupato;
 import view.piantina.LoaderTavoloVerdeLibero;
 
 public class Controller implements Initializable {
 
-	
 	private static String TAVOLO_VERDE_STYLE_PATH = "layouts/tavoloLibero.css";
 	private static String TAVOLO_ROSSO_STYLE_PATH = "layouts/tavoloOccupato.css";
 	private static String ORARIO_PRANZO = "12.00 - 13.30";
@@ -45,7 +40,7 @@ public class Controller implements Initializable {
 	private LocalDate localDate = LocalDate.now() ;
 	private List<Button> listButton = new ArrayList<>();
 	private List<Button> listRedButton = new ArrayList<>();
-	private MainTableModel model; // = new ImplMainTableModel();
+	private MainTableModel model;
 	private Periodo periodo;
 	private boolean primaChiamata = true;
 	//boolean per la visualizzazione dei tavoli ROSSI
@@ -118,7 +113,7 @@ public class Controller implements Initializable {
     				try {
 						tavoloRossoView.start(new Stage());
 					} catch (Exception exception) {
-						exception.printStackTrace();
+						this.errore(exception.getMessage());
 					}
     			}else{
     				if(this.listRedButton.contains(b)) {
@@ -129,7 +124,7 @@ public class Controller implements Initializable {
         				try {
     						tavoloVerdeView.start(new Stage());
     					} catch (Exception exception) {
-    						exception.printStackTrace();
+    						this.errore(exception.getMessage());
     					}
     				}
     				
@@ -163,9 +158,7 @@ public class Controller implements Initializable {
     
     
     private void getIDTavoliPrenotati(LocalDate data, Periodo p) {
-    	model = new ImplMainTableModel(p,data);
-    	//System.out.print("ID dei Tavoli prenotati - ");
-    	//System.out.println("Per la data " + data + " e Periodo: " + p);    		
+    	model = new ImplMainTableModel(p,data);   		
     	coloraTavoli(this.model.tavoliPrenotati(localDate, periodo));	
 
     }
@@ -178,8 +171,7 @@ public class Controller implements Initializable {
 			view.start(new Stage());
 			currentStage.close();
 		} catch (Exception e) {
-			e.printStackTrace();
-			
+			this.errore(e.getMessage());
 		}
     }
     
@@ -187,5 +179,9 @@ public class Controller implements Initializable {
     	this.testoOrario.setText(testo);
     }
     
-
+    private void errore(String mex) {
+    	AlertEccezione avviso = new AlertEccezione();
+    	avviso.err(mex);
+    }
+    
 }

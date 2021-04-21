@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 import model.utili.AzioneUtente;
 import model.utili.Periodo;
 import model.utili.Utente;
+import view.eccezioni.AlertEccezione;
 
 public class LoaderPrenotazione extends Application {
 
@@ -70,7 +71,6 @@ public class LoaderPrenotazione extends Application {
 			final Scene miaScena = new Scene(radice);
 			scenaPrimaria.setScene(miaScena);
 			scenaPrimaria.setResizable(false);
-	        //scenaPrimaria.initModality(Modality.APPLICATION_MODAL);
 			
 			this.testoData = (DatePicker) caricatore.getNamespace().get("testoData");
 			this.testoData.setValue(this.data);
@@ -98,7 +98,8 @@ public class LoaderPrenotazione extends Application {
 			
 			scenaPrimaria.show();
 		} catch (IOException e) {
-			e.printStackTrace();
+			AlertEccezione a = new AlertEccezione();
+			a.err(e.getMessage());
 		}
 	}
 
