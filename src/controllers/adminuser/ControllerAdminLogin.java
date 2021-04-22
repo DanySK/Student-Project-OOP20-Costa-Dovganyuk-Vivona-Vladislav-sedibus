@@ -1,7 +1,5 @@
 package controllers.adminuser;
 
-
-
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -21,10 +19,9 @@ import view.adminuser.LoaderAdminUserSelection;
 import view.eccezioni.AlertEccezione;
 import view.piantina.LoaderTableView;
 
-
-public class ControllerAdminLogin  {
-	//private static String LOGIN_FILE_PATH = System.getProperty("user.home") + System.getProperty("file.separator") +"logindata.json";
-	private static String LOGIN_FILE_PATH = "logindata.json";
+public final class ControllerAdminLogin  {
+	
+	private static final String LOGIN_FILE_PATH = "logindata.json";
 	
 	@FXML
 	private TextField user;
@@ -41,12 +38,11 @@ public class ControllerAdminLogin  {
 	 * loginData sets the fileUser and filePassword fields, which will be used for login, by reading the logindata.json file
 	 */
 	private void loginData () {
-		InputStream res = ClassLoader.getSystemResourceAsStream(LOGIN_FILE_PATH);
-		    //BufferedReader b = new BufferedReader(new InputStreamReader(res));
-		Reader reader = new BufferedReader(new InputStreamReader(res));//creo il file reader per il file logindata.json
-		JsonObject jobj = new Gson().fromJson(reader,JsonObject.class);//creo il JsonObject da cui andro a leggere i dati presenti su file 
-		this.fileUser=jobj.get("utente").getAsString();//uso il metodo getAsString invece di toString in modo che la stringa restituita non abbia i quote marks
-		this.filePassword= jobj.get("password").getAsString();
+		final InputStream res = ClassLoader.getSystemResourceAsStream(LOGIN_FILE_PATH);
+		final Reader reader = new BufferedReader(new InputStreamReader(res));//creo il file reader per il file logindata.json
+		final JsonObject jobj = new Gson().fromJson(reader,JsonObject.class);//creo il JsonObject da cui andro a leggere i dati presenti su file 
+		this.fileUser = jobj.get("utente").getAsString();//uso il metodo getAsString invece di toString in modo che la stringa restituita non abbia i quote marks
+		this.filePassword = jobj.get("password").getAsString();
 	}
 
 	/**
@@ -63,14 +59,14 @@ public class ControllerAdminLogin  {
 	  {	
 		utente=Utente.ADMIN;
 		
-		LoaderTableView view= new LoaderTableView();
-    	Stage currentStage = (Stage) this.user.getScene().getWindow();
+		final LoaderTableView view = new LoaderTableView();
+    	final Stage currentStage = (Stage) this.user.getScene().getWindow();
     	LoaderTableView.loaderTableView(utente);
 		try {
 			view.start(new Stage());
 			currentStage.close();
 	     } catch (Exception e) {
-	    	 AlertEccezione avviso = new AlertEccezione();
+	    	 final AlertEccezione avviso = new AlertEccezione();
 	    	 avviso.err(e.getMessage());
 	     }
 	
@@ -82,14 +78,14 @@ public class ControllerAdminLogin  {
 	 @FXML
 	 public void goBack (ActionEvent event){
 		 
-		    LoaderAdminUserSelection view= new LoaderAdminUserSelection();
-	        Stage currentStage = (Stage) this.user.getScene().getWindow();
+		    final LoaderAdminUserSelection view= new LoaderAdminUserSelection();
+	        final Stage currentStage = (Stage) this.user.getScene().getWindow();
 	  
 			try {
 				view.start(new Stage());
 				currentStage.close();
 		     } catch (Exception e) {
-		    	 AlertEccezione avviso = new AlertEccezione();
+		    	 final AlertEccezione avviso = new AlertEccezione();
 		    	 avviso.err(e.getMessage());
 		     }
 	 }

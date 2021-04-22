@@ -7,9 +7,9 @@ import model.piantina.Prenotazione;
 import model.piantina.Ristorante;
 import model.utili.Periodo;
 
-public class ModelCercaPrenotazioneImpl implements ModelCercaPrenotazione {
+public final class ModelCercaPrenotazioneImpl implements ModelCercaPrenotazione {
 
-	private Ristorante ristorante = new ImplRistorante();
+	private final Ristorante ristorante = new ImplRistorante();
 	private boolean prenotazTrovata;
 	private LocalDate data;
 	private Prenotazione prenotazione;

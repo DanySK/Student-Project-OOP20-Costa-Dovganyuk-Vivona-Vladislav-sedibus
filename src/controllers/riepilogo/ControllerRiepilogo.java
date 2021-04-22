@@ -14,7 +14,7 @@ import model.utili.Utente;
 import view.adminuser.LoaderAdminUserSelection;
 import view.piantina.LoaderTableView;
 
-public class ControllerRiepilogo implements Initializable {
+public final class ControllerRiepilogo implements Initializable {
 
 	@FXML private Label spazioTitolo;
 	@FXML private Label spazioNome;

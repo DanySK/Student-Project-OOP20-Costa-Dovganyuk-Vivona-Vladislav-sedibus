@@ -1,6 +1,6 @@
 package model.creaprenotazione;
 
-public class PilotaPosti {
+public final class PilotaPosti {
 
 	private final static int MIN_POSTI = 1;
 	private int nPosti;

@@ -8,33 +8,33 @@ import view.adminuser.LoaderUserDecision;
 import view.eccezioni.AlertEccezione;
 import javafx.scene.control.Button;
 
-public class ControllerAdminUserSelection  {
+public final class ControllerAdminUserSelection  {
 	
 	@FXML
 	private Button Admin;
 	
 	@FXML
 	public void loadAdminLogin (ActionEvent event ){
-		LoaderAdminLogin view = new LoaderAdminLogin();
-    	Stage currentStage = (Stage) this.Admin.getScene().getWindow();
+		final LoaderAdminLogin view = new LoaderAdminLogin();
+    	final Stage currentStage = (Stage) this.Admin.getScene().getWindow();
     	try { 
     		view.start(new Stage());
     		currentStage.close();
 	    } catch (Exception e) {
-	    	AlertEccezione avviso = new AlertEccezione();
+	    	final AlertEccezione avviso = new AlertEccezione();
 			avviso.err(e.getMessage());
 	    }
 	}
 	
 	@FXML
 	public void loadUserDecision (ActionEvent event ){
-		LoaderUserDecision view = new LoaderUserDecision();
-    	Stage currentStage = (Stage) this.Admin.getScene().getWindow();
+		final LoaderUserDecision view = new LoaderUserDecision();
+    	final Stage currentStage = (Stage) this.Admin.getScene().getWindow();
 		try {
 			view.start(new Stage());
 			currentStage.close();
 	    } catch (Exception e) {
-	    	AlertEccezione avviso = new AlertEccezione();
+	    	final AlertEccezione avviso = new AlertEccezione();
 			avviso.err(e.getMessage());
 	    }
 	}

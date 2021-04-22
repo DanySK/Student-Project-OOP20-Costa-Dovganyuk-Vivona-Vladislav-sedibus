@@ -16,14 +16,13 @@ import dataBaseModel.GestoreDB;
 import dataBaseModel.ImplGestoreDB;
 import model.utili.Periodo;
 
-public class ImplRistorante implements Ristorante {
+public final class ImplRistorante implements Ristorante {
 
-	
-	private static String FILE_PATH = "tavoli.txt"; //"restourant-conf/tavoli.txt";
+	private static final String FILE_PATH = "tavoli.txt";
 	private static final int POS_ID_TAVOLO = 0;
 	private static final int POS_MAX_POSTI_TAVOLO = 1;
-	private List<Tavolo> tavoli = new ArrayList<>();
-	private GestoreDB getsoreDB =  new ImplGestoreDB();
+	private final List<Tavolo> tavoli = new ArrayList<>();
+	private final GestoreDB getsoreDB =  new ImplGestoreDB();
 	private Optional<Periodo> periodoAttuale = Optional.empty();
 	private Map<String,List<Prenotazione>> prenotazioni = new HashMap<>();
 	private boolean risultatoEliminazione = false;
@@ -46,8 +45,7 @@ public class ImplRistorante implements Ristorante {
 		return this.getsoreDB.getMapPrenotazioni(p);
 	}
 	
-	
-	
+
 	@Override
 	public List<Tavolo> tavoliRistorante() {
 		return this.tavoli;
@@ -55,8 +53,8 @@ public class ImplRistorante implements Ristorante {
 
 	private void loadTavolifromFile() throws IOException {
 		try {
-			InputStream res = ClassLoader.getSystemResourceAsStream(FILE_PATH);
-		    BufferedReader b = new BufferedReader(new InputStreamReader(res));
+			final InputStream res = ClassLoader.getSystemResourceAsStream(FILE_PATH);
+		    final BufferedReader b = new BufferedReader(new InputStreamReader(res));
 		    String s;
 		    while(true) {
 		    	s = b.readLine();
@@ -76,8 +74,8 @@ public class ImplRistorante implements Ristorante {
 	@Override
 	public List<Tavolo> tavoliPrenotati(LocalDate data, Periodo p) {
 		
-		var mappa = getPrenotazioni(p);
-		List<Tavolo> list = new ArrayList<>();
+		final var mappa = getPrenotazioni(p);
+		final List<Tavolo> list = new ArrayList<>();
 		
 		if(!mappa.isEmpty()) {
 			mappa.keySet().forEach(k -> {
@@ -89,9 +87,8 @@ public class ImplRistorante implements Ristorante {
 			});
 		}
 		
-		
 		return list;
-		
+
 	}
 	
 	
@@ -102,12 +99,9 @@ public class ImplRistorante implements Ristorante {
 			this.periodoAttuale = Optional.of(p);
 		}
 		
-		
-		
-		for (var entry : prenotazioni.entrySet()) {
+		for (final var entry : prenotazioni.entrySet()) {
 			if(entry.getKey().equals(data.toString())) {
 				return entry.getValue();
-				
 			}
 		}
 		
@@ -118,7 +112,7 @@ public class ImplRistorante implements Ristorante {
 	@Override
 	public boolean eliminaPrenotazione(Periodo p, String codicePrenotazione, String cognome) {
 		this.risultatoEliminazione = false;
-		var map = getPrenotazioni(p);
+		final var map = getPrenotazioni(p);
 		
 		map.entrySet().forEach(v -> {
 			if(v.getValue().removeIf(e -> e.getCodicePrenotazione().equals(codicePrenotazione) && 
@@ -133,7 +127,5 @@ public class ImplRistorante implements Ristorante {
 		
 		return this.risultatoEliminazione;
 	}
-	
-	
 	
 }

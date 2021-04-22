@@ -19,14 +19,14 @@ import view.creaprenotazione.LoaderPrenotazione;
 import view.eccezioni.AlertEccezione;
 import view.eliminaprenotazione.ViewAlert;
 
-public class ControllerCercaPrenotazione implements Initializable {
+public final class ControllerCercaPrenotazione implements Initializable {
 
 	private AzioneUtente azione;
 	@FXML private TextField testoCodice;
 	@FXML private TextField testoCognome;
 	@FXML private Label testoErrore;
 	@FXML private ToggleGroup turno;
-	private ModelCercaPrenotazione modello = new ModelCercaPrenotazioneImpl();
+	private final ModelCercaPrenotazione modello = new ModelCercaPrenotazioneImpl();
 	
 	public ControllerCercaPrenotazione(AzioneUtente azione) { 
 		this.azione = azione;
@@ -44,7 +44,7 @@ public class ControllerCercaPrenotazione implements Initializable {
 		if (this.sceltaTurno().isPresent() && this.modello.cercaDati()) {
 			
 			if(this.azione.equals(AzioneUtente.MODIFICA)) {  //se MODIFICA
-				LoaderPrenotazione modifica = new LoaderPrenotazione(
+				final LoaderPrenotazione modifica = new LoaderPrenotazione(
 						Utente.USER, AzioneUtente.MODIFICA, this.modello.getNome(), 
 						this.testoCognome.getText(), this.modello.getEmail(), 
 						this.modello.getTelefono(), this.modello.getData(),
@@ -53,11 +53,11 @@ public class ControllerCercaPrenotazione implements Initializable {
 				try {
 					modifica.start(new Stage());
 				} catch (Exception e) {
-					AlertEccezione avviso = new AlertEccezione();
+					final AlertEccezione avviso = new AlertEccezione();
 			    	avviso.err(e.getMessage());
 				}
 			} else {  //altrimenti se ELIMINA
-				ViewAlert alert = new ViewAlert();
+				final ViewAlert alert = new ViewAlert();
 				if(alert.alertEliminazionePrenotazione(this.modello.getPrenotazione(), 
 						this.modello.getData(), this.getTurno()).equals(ButtonType.YES)) {
 					if(this.modello.eliminaPrenotazione()) {
@@ -65,7 +65,7 @@ public class ControllerCercaPrenotazione implements Initializable {
 						final LoaderAdminUserSelection viewSelectionUser = new LoaderAdminUserSelection();
 						viewSelectionUser.start(new Stage());
 					} else {
-						alert.alertErrore("ERRORE");
+						alert.alertErrore("ERRORE - eliminazione non andata a buon fine..");
 					}
 				}
 			}
@@ -77,7 +77,7 @@ public class ControllerCercaPrenotazione implements Initializable {
 	}
 	
 	public void handlerAnnulla() {
-		LoaderUserDecision precedente = new LoaderUserDecision();
+		final LoaderUserDecision precedente = new LoaderUserDecision();
 		precedente.start(new Stage());
 		this.chiudiPagina();
 	}

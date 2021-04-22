@@ -11,8 +11,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-public class GeneratoreCodice {
-
+public final class GeneratoreCodice {
 
 	private final static String PERCORSO_CODICE = System.getProperty("user.home") + System.getProperty("file.separator") + "codice.txt";
 
@@ -67,12 +66,10 @@ public class GeneratoreCodice {
 	}
 	
 	/**
-	 * With the try-with-resources reads and assign the final number of the code from the file
+	 * With try-with-resources reads and assign the final number of the code from the file
 	 */
 	private void leggiUltimoCod() {
-
 		try (final BufferedReader br = new BufferedReader(new FileReader(PERCORSO_CODICE))) {
-
 			this.n = Integer.parseInt(br.readLine());
 		} catch (IOException e) {
 			e.printStackTrace();

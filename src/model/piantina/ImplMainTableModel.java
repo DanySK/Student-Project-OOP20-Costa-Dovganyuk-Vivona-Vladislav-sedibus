@@ -8,9 +8,9 @@ import java.util.stream.Stream;
 import model.utili.Cliente;
 import model.utili.Periodo;
 
-public class ImplMainTableModel implements MainTableModel {
+public final class ImplMainTableModel implements MainTableModel {
 
-	private Ristorante ristorante = new ImplRistorante();
+	private final Ristorante ristorante = new ImplRistorante();
 	private List<Tavolo> listaTavoli = new ArrayList<>();  //lista totale dei Tavoli
 	private Periodo periodo;
 	private LocalDate data;
@@ -25,7 +25,7 @@ public class ImplMainTableModel implements MainTableModel {
 	
 	@Override
 	public List<Integer> tavoliPrenotati(LocalDate date, Periodo p) {
-		List<Integer> listaID = new ArrayList<>();
+		final List<Integer> listaID = new ArrayList<>();
 		ristorante.tavoliPrenotati(data, periodo).forEach(t ->{
 			listaID.add(t.getName());
 		});
@@ -45,7 +45,7 @@ public class ImplMainTableModel implements MainTableModel {
 
 	@Override
 	public String getCognomeNomeCliente(int idTavolo) {
-		Cliente c = getCliente(idTavolo);
+		final Cliente c = getCliente(idTavolo);
 		return c.getNome().concat(" "+c.getCognome());
 	}
 	

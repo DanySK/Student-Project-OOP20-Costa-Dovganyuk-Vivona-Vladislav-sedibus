@@ -13,10 +13,11 @@ import javafx.stage.Stage;
 import model.utili.Periodo;
 import model.utili.Utente;
 
-public class LoaderTavoloVerdeLibero extends Application{
+public final class LoaderTavoloVerdeLibero extends Application{
 
-	private final String TITLE = "Tavolo LIBERO";
-	private final String PATH_LAYOUT = "/layouts/TavoloVerdeLibero.fxml";
+	private static final String TITLE = "Tavolo LIBERO";
+	private static final String PATH_LAYOUT = "/layouts/TavoloVerdeLibero.fxml";
+	private static final double OPACITY = 0.95;
 	
 	private Text testoSuperiore;
 	private Text testoPeriodo;
@@ -27,7 +28,6 @@ public class LoaderTavoloVerdeLibero extends Application{
 	private String TESTO_SUPERIORE;
 	private Periodo periodo;
 	private LocalDate data;
-	private final double OPACITY = 0.95;
 	private Stage previousStage;
 	private Utente utente;
 	

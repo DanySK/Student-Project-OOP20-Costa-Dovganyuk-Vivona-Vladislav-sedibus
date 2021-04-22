@@ -1,11 +1,7 @@
 package controllers.piantina;
 
-import java.net.URL;
 import java.time.LocalDate;
-import java.util.ResourceBundle;
-
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -15,7 +11,7 @@ import model.utili.Utente;
 import view.creaprenotazione.LoaderPrenotazione;
 import view.eccezioni.AlertEccezione;
 
-public class ControllerTavoloLibero implements Initializable {
+public final class ControllerTavoloLibero {
 
 	private final int POS_NUM_TAVOLO = 1;
 	@FXML private VBox vBoxPrincipale;
@@ -24,18 +20,13 @@ public class ControllerTavoloLibero implements Initializable {
 	@FXML private Text testoSuperiore;
 	@FXML private Text testoUtente;
 	
-	@Override
-	public void initialize(URL url, ResourceBundle rsrc) {
-		
-	}
-	
 	
 	public void handlerConferma() {
-		LoaderPrenotazione view = new LoaderPrenotazione(getUtente(),AzioneUtente.CREAZIONE,getPeriodo(),getData(),getIdTavolo());
+		final LoaderPrenotazione view = new LoaderPrenotazione(getUtente(),AzioneUtente.CREAZIONE,getPeriodo(),getData(),getIdTavolo());
 		try {
 			view.start(new Stage());
 		} catch (Exception e) {
-			AlertEccezione avviso = new AlertEccezione();
+			final AlertEccezione avviso = new AlertEccezione();
 	    	avviso.err(e.getMessage());
 		}
 		closeCurrentStage();
@@ -48,7 +39,7 @@ public class ControllerTavoloLibero implements Initializable {
 	}
 	
 	private void closeCurrentStage() {
-		var s = (Stage) this.vBoxPrincipale.getScene().getWindow();
+		final var s = (Stage) this.vBoxPrincipale.getScene().getWindow();
 		s.close();
 	}
 	

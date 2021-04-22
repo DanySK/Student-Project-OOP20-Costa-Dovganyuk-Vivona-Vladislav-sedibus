@@ -2,13 +2,12 @@ package model.piantina;
 
 import model.utili.Cliente;
 
-public class Prenotazione  {
+public class Prenotazione {
 
 	private String codicePrenotazione;
 	private Cliente cliente;
 	private Tavolo tavolo;
 	private int nPostiPrenotati;
-	
 	
 	public Prenotazione(String codicePrenotazione, Cliente cliente, Tavolo tavolo, int nPostiPrenotati) {
 		super();

@@ -12,11 +12,11 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.utili.Periodo;
 
-public class LoaderTavoloRossoOccupato extends Application {
+public final class LoaderTavoloRossoOccupato extends Application {
 
-	private final double OPACITY = 0.95;
-	private final String TITLE = "Tavolo Occupato";
-	private final String PATH_LAYOUT = "/layouts/TavoloRossoOccupato.fxml";
+	private static final double OPACITY = 0.95;
+	private static final String TITLE = "Tavolo Occupato";
+	private static final String PATH_LAYOUT = "/layouts/TavoloRossoOccupato.fxml";
 	//DA FXML
 	private Text testoSuperiore;
 	private Text textCodice;
@@ -56,7 +56,7 @@ public class LoaderTavoloRossoOccupato extends Application {
 		final FXMLLoader loader = new FXMLLoader(getClass().getResource(PATH_LAYOUT));
 		
 		try {
-			ControllerTavoloOccupato controller = new ControllerTavoloOccupato(this.previousStage);
+			final ControllerTavoloOccupato controller = new ControllerTavoloOccupato(this.previousStage);
 			loader.setController(controller);
             final Parent root = loader.load();
             final Scene scene = new Scene(root);

@@ -22,12 +22,12 @@ import view.eccezioni.AlertEccezione;
 import view.piantina.LoaderTavoloRossoOccupato;
 import view.piantina.LoaderTavoloVerdeLibero;
 
-public class Controller implements Initializable {
+public final class Controller implements Initializable {
 
-	private static String TAVOLO_VERDE_STYLE_PATH = "layouts/tavoloLibero.css";
-	private static String TAVOLO_ROSSO_STYLE_PATH = "layouts/tavoloOccupato.css";
-	private static String ORARIO_PRANZO = "12.00 - 13.30";
-	private static String ORARIO_CENA = "18.00 - 19.30";
+	private static final String TAVOLO_VERDE_STYLE_PATH = "layouts/tavoloLibero.css";
+	private static final String TAVOLO_ROSSO_STYLE_PATH = "layouts/tavoloOccupato.css";
+	private static final String ORARIO_PRANZO = "12.00 - 13.30";
+	private static final String ORARIO_CENA = "18.00 - 19.30";
 	
 	@FXML private AnchorPane panePrincipale;
 	@FXML private DatePicker datePicker;
@@ -38,8 +38,8 @@ public class Controller implements Initializable {
 	@FXML private Text testoOrario;
 	
 	private LocalDate localDate = LocalDate.now() ;
-	private List<Button> listButton = new ArrayList<>();
-	private List<Button> listRedButton = new ArrayList<>();
+	private final List<Button> listButton = new ArrayList<>();
+	private final List<Button> listRedButton = new ArrayList<>();
 	private MainTableModel model;
 	private Periodo periodo;
 	private boolean primaChiamata = true;
@@ -75,7 +75,7 @@ public class Controller implements Initializable {
     	
     	this.listRedButton.clear();
     	this.paneTavoli.getChildren().forEach(e -> {
-        	Button b = (Button)e;
+        	final Button b = (Button)e;
         	
         	b.getStylesheets().clear();
         	
@@ -100,11 +100,11 @@ public class Controller implements Initializable {
     	this.listButton.forEach(b -> {
 
     		b.setOnAction(e -> {
-    			var currentStage = (Stage) this.datePicker.getScene().getWindow();
+    			final var currentStage = (Stage) this.datePicker.getScene().getWindow();
     			if(this.listRedButton.contains(b) && isAdmin()) {
     				//apro la view dell'admin
-    				int idTavolo = Integer.parseInt(b.getId());
-    				LoaderTavoloRossoOccupato tavoloRossoView = new LoaderTavoloRossoOccupato(b.getId(),
+    				final int idTavolo = Integer.parseInt(b.getId());
+    				final LoaderTavoloRossoOccupato tavoloRossoView = new LoaderTavoloRossoOccupato(b.getId(),
     						this.model.getCodicePrenotazione(idTavolo), 
     						this.model.getCognomeNomeCliente(idTavolo),
     						this.model.getPostiPrenotati(idTavolo),
@@ -120,7 +120,7 @@ public class Controller implements Initializable {
     					
     				}else {
     					
-    					LoaderTavoloVerdeLibero tavoloVerdeView = new LoaderTavoloVerdeLibero(getUtente(),b.getId(),this.periodo,this.localDate,currentStage);
+    					final LoaderTavoloVerdeLibero tavoloVerdeView = new LoaderTavoloVerdeLibero(getUtente(),b.getId(),this.periodo,this.localDate,currentStage);
         				try {
     						tavoloVerdeView.start(new Stage());
     					} catch (Exception exception) {
@@ -165,8 +165,8 @@ public class Controller implements Initializable {
     
     
     public void tornaIndietroHandler() {
-    	LoaderAdminUserSelection view = new LoaderAdminUserSelection();
-    	Stage currentStage = (Stage) this.datePicker.getScene().getWindow();
+    	final LoaderAdminUserSelection view = new LoaderAdminUserSelection();
+    	final Stage currentStage = (Stage) this.datePicker.getScene().getWindow();
     	try {
 			view.start(new Stage());
 			currentStage.close();
@@ -180,7 +180,7 @@ public class Controller implements Initializable {
     }
     
     private void errore(String mex) {
-    	AlertEccezione avviso = new AlertEccezione();
+    	final AlertEccezione avviso = new AlertEccezione();
     	avviso.err(mex);
     }
     
