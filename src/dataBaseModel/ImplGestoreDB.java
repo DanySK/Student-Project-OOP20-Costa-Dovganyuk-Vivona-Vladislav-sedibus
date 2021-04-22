@@ -20,12 +20,11 @@ import model.piantina.Prenotazione;
 import model.utili.Periodo;
 import model.piantina.PrenotazioneEstesa;
 
-public class ImplGestoreDB implements GestoreDB {
+public final class ImplGestoreDB implements GestoreDB {
 
-
-	private Gson gson = new GsonBuilder().setPrettyPrinting().create();
-	private static String PRANZO_FILE_PATH = System.getProperty("user.home") + System.getProperty("file.separator") + "pranzo.json";  
-	private static String CENA_FILE_PATH = System.getProperty("user.home") + System.getProperty("file.separator") + "cena.json";
+	private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
+	private static final String PRANZO_FILE_PATH = System.getProperty("user.home") + System.getProperty("file.separator") + "pranzo.json";  
+	private static final String CENA_FILE_PATH = System.getProperty("user.home") + System.getProperty("file.separator") + "cena.json";
 	
 	
 	public ImplGestoreDB() {
@@ -63,10 +62,10 @@ public class ImplGestoreDB implements GestoreDB {
 		// variabile "nuova" che conterra la mappa aggiornata
 		Map<String, List<Prenotazione>> mappa = new HashMap<>();
 		try {
-			Reader reader = Files.newBufferedReader(Paths.get(getPath(p)));
+			final Reader reader = Files.newBufferedReader(Paths.get(getPath(p)));
 			
-			Type type = new TypeToken<Map<String, List<Prenotazione>>>(){}.getType();
-			Map<String, List<Prenotazione>> map =  gson.fromJson(reader, type) ;
+			final Type type = new TypeToken<Map<String, List<Prenotazione>>>(){}.getType();
+			final Map<String, List<Prenotazione>> map =  gson.fromJson(reader, type) ;
 			
 			//se il file e vuoto il map sara null e non empty
 			mappa = map == null ? mappa : map;
@@ -83,7 +82,7 @@ public class ImplGestoreDB implements GestoreDB {
 	@Override
 	public void addToFile(PrenotazioneEstesa prenotazione) {
 		// viene prelevata la mappa dal file giusto, cosi per poi aggiungere il nuovo elemento
-		var map = getMapPrenotazioni(prenotazione.getPeriodo());
+		final var map = getMapPrenotazioni(prenotazione.getPeriodo());
 		
 		if (map.isEmpty() || !map.keySet().contains(prenotazione.getLocalData())) {
 			map.put(prenotazione.getLocalData(), Arrays.asList(prenotazione.getPrenotazione()));
@@ -98,7 +97,7 @@ public class ImplGestoreDB implements GestoreDB {
 	@Override
 	public void loadMapOnFile(Map<String, List<Prenotazione>> map, Periodo p) {
 		try {
-			Writer writer = Files.newBufferedWriter(Paths.get(getPath(p)));
+			final Writer writer = Files.newBufferedWriter(Paths.get(getPath(p)));
 			gson.toJson(map, writer);
 			writer.close();
 		} catch (IOException e) {

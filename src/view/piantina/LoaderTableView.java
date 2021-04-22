@@ -12,13 +12,15 @@ import javafx.scene.text.Text;
 import javafx.fxml.FXMLLoader;
 
 
-public class LoaderTableView extends Application {
+public final class LoaderTableView extends Application {
 	
 	private Text testoUtente;
 	private static Utente utente;
-	private final String PATH_LAYOUT = "/layouts/MappaTavoli.fxml";
+
+	private static final String PATH_LAYOUT = "/layouts/MappaTavoli.fxml";
 	private final double PROPORTION_WIDTH = 1.90;
 	private final double PROPORTION_HEIGHT = 2.10;
+
 	
 	public static void loaderTableView(Utente utente) {
 		LoaderTableView.utente = utente;

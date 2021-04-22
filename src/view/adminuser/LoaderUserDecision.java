@@ -6,22 +6,21 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class LoaderUserDecision extends Application{
+public final class LoaderUserDecision extends Application{
 	
 	private static final String PER_USERDECISION= "/layouts/UserDecision.fxml";
 	
 	public void start(Stage stage) {
 		try {
-		
-		  final Parent root = FXMLLoader.load(getClass().getResource(PER_USERDECISION));
-          final Scene scene = new Scene(root, 600, 500);
+			final Parent root = FXMLLoader.load(getClass().getResource(PER_USERDECISION));
+			final Scene scene = new Scene(root, 600, 500);
     
-           stage.setTitle("Sedibus");
-           stage.setScene(scene);
-           stage.show();
-	    } catch(Exception e) {
-    	e.printStackTrace();
-	}
+			stage.setTitle("Sedibus");
+			stage.setScene(scene);
+			stage.show();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 }

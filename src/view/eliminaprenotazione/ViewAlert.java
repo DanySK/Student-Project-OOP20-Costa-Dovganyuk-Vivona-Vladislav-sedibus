@@ -8,7 +8,7 @@ import javafx.scene.control.Alert.AlertType;
 import model.piantina.Prenotazione;
 import model.utili.Periodo;
 
-public class ViewAlert {
+public final class ViewAlert {
 
 	private final String TITOLO_ELIMINAZIONE = "Conferma Eliminazione Prenotazione";
 	private final String HEADER_ELIMINAZIONE = "Confermi voler eliminare la prenotazione";

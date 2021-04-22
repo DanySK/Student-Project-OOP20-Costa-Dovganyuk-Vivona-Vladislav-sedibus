@@ -11,7 +11,7 @@ import view.eccezioni.AlertEccezione;
 import view.piantina.LoaderTableView;
 import model.utili.AzioneUtente;
 
-public class ControllerUserDecision {
+public final class ControllerUserDecision {
 	
 	private static Utente utente;
 	private static AzioneUtente azioneUtente;
@@ -26,8 +26,8 @@ public class ControllerUserDecision {
 
 		utente=Utente.USER;
 		
-		LoaderTableView view= new LoaderTableView();
-   	    Stage currentStage = (Stage) this.prenota.getScene().getWindow();
+		final LoaderTableView view= new LoaderTableView();
+   	    final Stage currentStage = (Stage) this.prenota.getScene().getWindow();
    	    LoaderTableView.loaderTableView(utente);
 		try { 
 			 view.start(new Stage());
@@ -42,8 +42,8 @@ public class ControllerUserDecision {
 		
 		azioneUtente=AzioneUtente.MODIFICA;
 		
-		Stage currentStage = (Stage) this.prenota.getScene().getWindow();
-		LoaderCercaPrenotazione view= new LoaderCercaPrenotazione();
+		final Stage currentStage = (Stage) this.prenota.getScene().getWindow();
+		final LoaderCercaPrenotazione view = new LoaderCercaPrenotazione();
 		LoaderCercaPrenotazione.loadCercaPrenotazione(azioneUtente);
 		try {
 			view.start(new Stage());
@@ -58,8 +58,8 @@ public class ControllerUserDecision {
 		
 		azioneUtente=AzioneUtente.CANCELLA;
 		
-		Stage currentStage = (Stage) this.prenota.getScene().getWindow();
-		LoaderCercaPrenotazione view= new LoaderCercaPrenotazione();
+		final Stage currentStage = (Stage) this.prenota.getScene().getWindow();
+		final LoaderCercaPrenotazione view = new LoaderCercaPrenotazione();
 		LoaderCercaPrenotazione.loadCercaPrenotazione(azioneUtente);
 		try {
 			view.start(new Stage());
@@ -69,16 +69,11 @@ public class ControllerUserDecision {
 		}
 	}
 	
-	private void errore(String mex) {
-		AlertEccezione avviso = new AlertEccezione();
-		avviso.err(mex);
-	}
-	
 	@FXML
 	public void goBack (ActionEvent Event) {
 		
-		Stage currentStage = (Stage) this.prenota.getScene().getWindow();
-		LoaderAdminUserSelection view= new LoaderAdminUserSelection();
+		final Stage currentStage = (Stage) this.prenota.getScene().getWindow();
+		final LoaderAdminUserSelection view= new LoaderAdminUserSelection();
 		
 		try {
 			view.start(new Stage());
@@ -88,7 +83,9 @@ public class ControllerUserDecision {
 		}
 	}
 	
-	
-	
+	private void errore(String mex) {
+		final AlertEccezione avviso = new AlertEccezione();
+		avviso.err(mex);
+	}
 	
 }

@@ -11,10 +11,10 @@ import model.piantina.Tavolo;
 import model.utili.Cliente;
 import model.utili.Periodo;
 
-public class ModelPrenotazioneImpl implements ModelPrenotazione {
+public final class ModelPrenotazioneImpl implements ModelPrenotazione {
 	
 	private Cliente cliente;
-	private Ristorante ristorante = new ImplRistorante();
+	private final Ristorante ristorante = new ImplRistorante();
 	private Tavolo tavoloScelto;
 	private PilotaPosti gestorePosti;
 	private Periodo periodoScelto;
@@ -27,7 +27,7 @@ public class ModelPrenotazioneImpl implements ModelPrenotazione {
 	
 	@Override
 	public void prendiTavolo(String idTavolo) {
-		int id = Integer.parseInt(idTavolo);
+		final int id = Integer.parseInt(idTavolo);
 		this.ristorante.tavoliRistorante().forEach(t -> {
 			if(t.getName() == id) {
 				this.tavoloScelto = new Tavolo(id, t.getMaxPosti());
@@ -112,14 +112,16 @@ public class ModelPrenotazioneImpl implements ModelPrenotazione {
 
 	@Override
 	public boolean cercaTavolo() {
-		int postiScelti = this.gestorePosti.getNumeroPosti();
-		if(postiScelti <= this.tavoloScelto.getMaxPosti() && this.vecchiaData.equals(this.dataScelta) && this.vecchioPeriodo.equals(this.periodoScelto)) {
+		final int postiScelti = this.gestorePosti.getNumeroPosti();
+		if (postiScelti <= this.tavoloScelto.getMaxPosti() && 
+			this.vecchiaData.equals(this.dataScelta) && 
+			this.vecchioPeriodo.equals(this.periodoScelto)) {
 			return true;
 		}
-		List<Integer> pieni = this.ristorante.tavoliPrenotati(this.dataScelta, this.periodoScelto).stream()
+		final List<Integer> pieni = this.ristorante.tavoliPrenotati(this.dataScelta, this.periodoScelto).stream()
 				.map(tp -> tp.getName())
 				.collect(Collectors.toList());
-		Optional<Tavolo> libero = this.ristorante.tavoliRistorante().stream()
+		final Optional<Tavolo> libero = this.ristorante.tavoliRistorante().stream()
 				.filter(t -> !pieni.contains(t.getName()) && t.getMaxPosti() >= postiScelti)
 				.findFirst();
 		if(libero.isPresent()) {

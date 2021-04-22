@@ -1,6 +1,6 @@
 package model.piantina;
 
-public class Tavolo  {
+public final class Tavolo  {
 	
 	private int name;
 	private int maxPosti;

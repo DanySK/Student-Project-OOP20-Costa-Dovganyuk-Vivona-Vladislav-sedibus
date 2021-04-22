@@ -17,8 +17,10 @@ import view.eccezioni.AlertEccezione;
 import view.piantina.LoaderTableView;
 import view.riepilogo.LoaderRiepilogo;
 
-public class ControllerPrenotazione implements Initializable {
+public final class ControllerPrenotazione implements Initializable {
 	
+	private static final String ERR_DATI_INS = "Attenzione - dati inseriti non corretti!";
+	private static final String ERR_NO_TAVOLO = "Tutto esaurito - cambiare data, periodo o n.posti";
 	private AzioneUtente azione;
 	private Utente utente;
 	private String idTavolo;
@@ -30,7 +32,7 @@ public class ControllerPrenotazione implements Initializable {
 	@FXML private ChoiceBox<Periodo> testoPeriodo;
 	@FXML private Label testoPosti;
 	@FXML private Label errore;
-	private ModelPrenotazione modello = new ModelPrenotazioneImpl();
+	private final ModelPrenotazione modello = new ModelPrenotazioneImpl();
 	
 	public ControllerPrenotazione(Utente utente, AzioneUtente azione, String idTavolo, 
 			String codPrenotaz, LocalDate data, Periodo periodo, String nPosti) { 
@@ -40,7 +42,6 @@ public class ControllerPrenotazione implements Initializable {
 		
 		this.modello.prendiTavolo(idTavolo);
 		if(azione.equals(AzioneUtente.MODIFICA)) {
-			
 			this.modello.prendiVecchiaPrenotazione(codPrenotaz, periodo, data);
 			this.modello.settaPostiModifica(Integer.parseInt(nPosti));
 		} else {
@@ -94,12 +95,12 @@ public class ControllerPrenotazione implements Initializable {
 					this.chiudiScena();
 					this.apriRiepilogo();
 				} else {
-					this.errore.setText("Tutto esaurito - cambiare data, periodo o n.posti");
+					this.errore.setText(ERR_NO_TAVOLO);
 				}
 			}
 			
 		} else {
-			this.errore.setText("Attenzione - dati inseriti non corretti!");
+			this.errore.setText(ERR_DATI_INS);
 		}
 	}
 	
@@ -120,13 +121,13 @@ public class ControllerPrenotazione implements Initializable {
 	}
 	
 	private void apriRiepilogo() {
-		LoaderRiepilogo riepilogo = new LoaderRiepilogo(this.utente, 
+		final LoaderRiepilogo riepilogo = new LoaderRiepilogo(this.utente, 
 				this.azione, this.testoPeriodo.getValue(), 
 				this.testoData.getValue(), this.idTavolo);
 		try {
 			riepilogo.start(new Stage());
 		} catch (Exception e) {
-			AlertEccezione avviso = new AlertEccezione();
+			final AlertEccezione avviso = new AlertEccezione();
 	    	avviso.err(e.getMessage());
 		}
 	}

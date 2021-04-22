@@ -6,9 +6,9 @@ import model.piantina.Prenotazione;
 import model.piantina.Ristorante;
 import model.utili.Periodo;
 
-public class ModelRiepilogoImpl implements ModelRiepilogo {
+public final class ModelRiepilogoImpl implements ModelRiepilogo {
 
-	private Ristorante ristorante = new ImplRistorante();
+	private final Ristorante ristorante = new ImplRistorante();
 	private Prenotazione prenotazione;
 
 	public ModelRiepilogoImpl(Periodo periodoPrenotato, LocalDate dataPrenotata, String idTavoloPrenotato) {

@@ -23,15 +23,15 @@ import view.eliminaprenotazione.ViewAlert;
 import view.piantina.LoaderTableView;
 
 
-public class ControllerTavoloOccupato implements Initializable  {
+public final class ControllerTavoloOccupato implements Initializable  {
 
 	@FXML private Text textCodice;
 	@FXML private Text textData;
 	@FXML private Text textPeriodo;
 	private Stage stageMappaTavoli;
 	private MainTableModel model = null;
-	private Ristorante ristorante = new ImplRistorante();
-	private ViewAlert alert = new ViewAlert();
+	private final Ristorante ristorante = new ImplRistorante();
+	private final ViewAlert alert = new ViewAlert();
 	
 	private Cliente cliente;
 	private Prenotazione prenotazione;
@@ -59,7 +59,7 @@ public class ControllerTavoloOccupato implements Initializable  {
 			setModel();
 		}
 		
-		LoaderPrenotazione viewPrenotazione = new LoaderPrenotazione(this.utente, this.azione, 
+		final LoaderPrenotazione viewPrenotazione = new LoaderPrenotazione(this.utente, this.azione, 
 				this.cliente.getNome(), this.cliente.getCognome(), 
 				this.cliente.getEmail(), this.cliente.getTelefono(),
 				data, periodo, String.valueOf(prenotazione.getPostiPrenotati()) , String.valueOf(this.idTavolo) , this.codicePrenotazione);
@@ -67,7 +67,7 @@ public class ControllerTavoloOccupato implements Initializable  {
 		try {
 			viewPrenotazione.start(new Stage());
 		} catch (Exception e) {
-			AlertEccezione avviso = new AlertEccezione();
+			final AlertEccezione avviso = new AlertEccezione();
 	    	avviso.err(e.getMessage());
 		}
 		closeCurrentStage();
@@ -101,13 +101,13 @@ public class ControllerTavoloOccupato implements Initializable  {
 	
 	//chiude la vecchia mappa tavoli e apre quella nuova aggiornata
 	private void openCloseMappaTavoli() {
-		LoaderTableView mappaTavoli = new LoaderTableView();
+		final LoaderTableView mappaTavoli = new LoaderTableView();
 		LoaderTableView.loaderTableView(Utente.ADMIN);
 		mappaTavoli.start(stageMappaTavoli);
 	}
 	
 	private void closeCurrentStage() {
-		var stage = (Stage) this.textCodice.getScene().getWindow();
+		final var stage = (Stage) this.textCodice.getScene().getWindow();
 		stage.close();
 	}
 	

@@ -3,7 +3,7 @@ package view.eccezioni;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
-public class AlertEccezione {
+public final class AlertEccezione {
 
 	private static final String MEX_ERRORE = "Attenzione si e\' verificato un errore";
 	private Alert alert;

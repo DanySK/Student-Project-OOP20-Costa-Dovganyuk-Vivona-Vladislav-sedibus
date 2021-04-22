@@ -10,7 +10,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import model.utili.AzioneUtente;
 
-public class LoaderCercaPrenotazione extends Application  {
+public final class LoaderCercaPrenotazione extends Application  {
 
 	private static final String PERC_SCENA = "/layouts/CercaPrenotazione.fxml";
 	private static AzioneUtente azione;
@@ -27,7 +27,7 @@ public class LoaderCercaPrenotazione extends Application  {
 		final ControllerCercaPrenotazione cercaPrenotazione = new ControllerCercaPrenotazione(LoaderCercaPrenotazione.azione);
 		try {
 			caricatore.setController(cercaPrenotazione);
-			Parent radice = caricatore.load();
+			final Parent radice = caricatore.load();
 			final Scene miaScena = new Scene(radice);
 			scenaPrimaria.setScene(miaScena);
 			scenaPrimaria.setResizable(false);

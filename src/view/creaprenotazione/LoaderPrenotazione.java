@@ -16,9 +16,8 @@ import javafx.stage.Stage;
 import model.utili.AzioneUtente;
 import model.utili.Periodo;
 import model.utili.Utente;
-import view.eccezioni.AlertEccezione;
 
-public class LoaderPrenotazione extends Application {
+public final class LoaderPrenotazione extends Application {
 
 	private static final String PERC_SCENA = "/layouts/ScenePrenotazione.fxml";
 	private AzioneUtente azione;
@@ -63,7 +62,7 @@ public class LoaderPrenotazione extends Application {
 	@Override
 	public void start(Stage scenaPrimaria) throws Exception {
 		final FXMLLoader caricatore = new FXMLLoader(getClass().getResource(PERC_SCENA));
-		ControllerPrenotazione crea = new ControllerPrenotazione(this.utente, this.azione, 
+		final ControllerPrenotazione crea = new ControllerPrenotazione(this.utente, this.azione, 
 			this.idTavolo, this.codicePrenotazione, this.data, this.periodo, this.vecchiPosti);
 		try {
 			caricatore.setController(crea);
@@ -98,8 +97,7 @@ public class LoaderPrenotazione extends Application {
 			
 			scenaPrimaria.show();
 		} catch (IOException e) {
-			AlertEccezione a = new AlertEccezione();
-			a.err(e.getMessage());
+			e.printStackTrace();
 		}
 	}
 
