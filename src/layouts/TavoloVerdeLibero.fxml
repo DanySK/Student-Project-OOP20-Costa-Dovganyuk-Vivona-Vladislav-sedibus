@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
@@ -7,9 +8,9 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
 
-<VBox fx:id="vBoxPrincipale" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="255.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.piantina.ControllerTavoloLibero">
+<VBox fx:id="vBoxPrincipale" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.piantina.ControllerTavoloLibero">
    <children>
-      <TextFlow prefHeight="56.0" prefWidth="600.0" style="-fx-background-color: #E5FFEA; -fx-border-color: #00DF2D;" textAlignment="CENTER">
+      <TextFlow prefWidth="600.0" style="-fx-background-color: #E5FFEA; -fx-border-color: #00DF2D;" textAlignment="CENTER">
          <children>
             <Text fx:id="testoSuperiore" fill="#00df2d" strokeType="OUTSIDE" strokeWidth="0.0" text="" textAlignment="CENTER">
                <font>
@@ -18,7 +19,7 @@
             </Text>
          </children>
       </TextFlow>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #E5FFEA; -fx-border-color: #9EFF97;">
+      <AnchorPane style="-fx-background-color: #E5FFEA; -fx-border-color: #9EFF97;">
          <children>
             <Button fx:id="buttonConferma" layoutX="59.0" layoutY="61.0" mnemonicParsing="false" onAction="#handlerConferma" prefHeight="80.0" prefWidth="177.0" style="-fx-background-color: #9EFF97; -fx-border-color: #00DF2D;" text="CONFERMA" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="60.0">
                <font>
@@ -30,22 +31,25 @@
                   <Font name="Segoe UI Symbol" size="22.0" />
                </font>
             </Button>
-            <Text fx:id="testoPeriodo" layoutX="258.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" text="" textAlignment="CENTER" wrappingWidth="84.0">
+            <Text fx:id="testoPeriodo" boundsType="LOGICAL_VERTICAL_CENTER" layoutX="258.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" text="" textAlignment="CENTER" wrappingWidth="84.0">
                <font>
                   <Font name="Segoe UI Light" size="16.0" />
                </font>
             </Text>
-            <Text fx:id="testoData" layoutX="258.0" layoutY="174.0" strokeType="OUTSIDE" strokeWidth="0.0" text="" textAlignment="CENTER" wrappingWidth="84.0">
+            <Text fx:id="testoData" boundsType="LOGICAL_VERTICAL_CENTER" layoutX="258.0" layoutY="174.0" strokeType="OUTSIDE" strokeWidth="0.0" text="" textAlignment="CENTER" wrappingWidth="84.0">
                <font>
                   <Font name="Segoe UI Light" size="16.0" />
                </font>
             </Text>
-            <Text fx:id="testoUtente" layoutX="275.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ADMIN" textAlignment="CENTER">
+            <Text fx:id="testoUtente" boundsType="LOGICAL_VERTICAL_CENTER" layoutX="275.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ADMIN" textAlignment="CENTER">
                <font>
                   <Font name="Century Gothic" size="15.0" />
                </font>
             </Text>
          </children>
+         <padding>
+            <Insets bottom="15.0" />
+         </padding>
       </AnchorPane>
    </children>
 </VBox>

@@ -1,5 +1,7 @@
 package view.piantina;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.time.LocalDate;
 
 import controllers.piantina.ControllerTavoloOccupato;
@@ -37,6 +39,9 @@ public class LoaderTavoloRossoOccupato extends Application {
 	private String periodo;
 	private String data;
 	
+	private final double PROPORTION_WIDTH = 3.2;
+	private final double PROPORTION_HEIGHT = 2.8;
+	
 	public LoaderTavoloRossoOccupato(String idTavolo, 
 			String codicePrenotazione, String cognomeNomeCliente,
 			String postiPrenotati, String numTelefono, String email, Periodo periodo, LocalDate data, Stage previousStage) {
@@ -59,7 +64,12 @@ public class LoaderTavoloRossoOccupato extends Application {
 			ControllerTavoloOccupato controller = new ControllerTavoloOccupato(this.previousStage);
 			loader.setController(controller);
             final Parent root = loader.load();
-            final Scene scene = new Scene(root);
+            
+            final Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+            final int sw = (int) screen.getWidth();
+            final int sh = (int) screen.getHeight();
+            
+            final Scene scene = new Scene(root, sw/PROPORTION_WIDTH, sh/PROPORTION_HEIGHT);
             
             setAllTexts(loader);
             

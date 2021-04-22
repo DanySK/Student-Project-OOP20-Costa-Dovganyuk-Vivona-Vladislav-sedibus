@@ -1,5 +1,8 @@
 package view.piantina;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
+
 import javafx.application.Application;
 import javafx.stage.Stage;
 import model.utili.Utente;
@@ -14,7 +17,8 @@ public class LoaderTableView extends Application {
 	private Text testoUtente;
 	private static Utente utente;
 	private final String PATH_LAYOUT = "/layouts/MappaTavoli.fxml";
-	
+	private final double PROPORTION_WIDTH = 1.90;
+	private final double PROPORTION_HEIGHT = 2.10;
 	
 	public static void loaderTableView(Utente utente) {
 		LoaderTableView.utente = utente;
@@ -27,13 +31,19 @@ public class LoaderTableView extends Application {
 		try {
             final FXMLLoader loader = new FXMLLoader(getClass().getResource(PATH_LAYOUT));
             final Parent root = loader.load();
-            final Scene scene = new Scene(root);
+            final Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+            final int sw = (int) screen.getWidth();
+            final int sh = (int) screen.getHeight();
+            
+            final Scene scene = new Scene(root,sw/PROPORTION_WIDTH,sh/PROPORTION_HEIGHT);
             
             this.testoUtente = (Text) loader.getNamespace().get("testoUtente");
             this.testoUtente.setText(LoaderTableView.utente.toString());
             
             primaryStage.setResizable(false);
             primaryStage.setTitle("Visione Tavoli - " + LoaderTableView.utente);
+            primaryStage.centerOnScreen();
+            
 	        primaryStage.setScene(scene);
 	        primaryStage.show();
 	        

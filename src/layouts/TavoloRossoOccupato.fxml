@@ -9,9 +9,9 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: #F8EAEA; -fx-border-color: #FF0000;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" >
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: #F8EAEA; -fx-border-color: #FF0000;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TextFlow prefHeight="56.0" prefWidth="600.0" style="-fx-border-color: #FF0000;" textAlignment="CENTER">
+      <TextFlow style="-fx-border-color: #FF0000;" textAlignment="CENTER">
          <children>
             <Text fx:id="testoSuperiore" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="" textAlignment="CENTER">
                <font>
@@ -20,7 +20,7 @@
             </Text>
          </children>
       </TextFlow>
-      <AnchorPane prefHeight="242.0" prefWidth="600.0" style="-fx-border-color: #FF0000;">
+      <AnchorPane prefWidth="600.0" style="-fx-border-color: #FF0000;">
          <children>
             <Text fill="#b90000" layoutX="47.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Codice Pren." wrappingWidth="122.51953125" AnchorPane.bottomAnchor="210.0">
                <font>
@@ -109,22 +109,25 @@
             <Insets />
          </VBox.margin>
          <children>
-            <Button fx:id="buttonModifica" layoutX="26.0" layoutY="9.0" mnemonicParsing="false" onAction="#handlerModifica" prefHeight="48.0" prefWidth="123.0" style="-fx-background-color: #FBDBDB; -fx-border-color: #FF0000;" text="MODIFICA" textFill="#c60000" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="10.0" >
+            <Button fx:id="buttonModifica" layoutX="26.0" layoutY="9.0" mnemonicParsing="false" onAction="#handlerModifica" prefHeight="48.0" prefWidth="123.0" style="-fx-background-color: #FBDBDB; -fx-border-color: #FF0000;" text="MODIFICA" textFill="#c60000" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="10.0">
                <font>
                   <Font name="Segoe UI Historic" size="16.0" />
                </font>
             </Button>
-            <Button fx:id="buttonElimina" layoutX="238.0" layoutY="9.0" mnemonicParsing="false" onAction="#handlerElimina" prefHeight="48.0" prefWidth="123.0" style="-fx-background-color: #FBDBDB; -fx-border-color: #FF0000;" text="ELIMINA" textFill="#c60000" AnchorPane.bottomAnchor="10.0" AnchorPane.topAnchor="10.0" >
+            <Button fx:id="buttonElimina" layoutX="238.0" layoutY="9.0" mnemonicParsing="false" onAction="#handlerElimina" prefHeight="48.0" prefWidth="123.0" style="-fx-background-color: #FBDBDB; -fx-border-color: #FF0000;" text="ELIMINA" textFill="#c60000" AnchorPane.bottomAnchor="10.0" AnchorPane.topAnchor="10.0">
                <font>
                   <Font name="Segoe UI Historic" size="16.0" />
                </font>
             </Button>
-            <Button fx:id="buttonAnnulla" layoutX="461.0" layoutY="9.0" mnemonicParsing="false" onAction="#handlerAnnulla" prefHeight="48.0" prefWidth="123.0" style="-fx-background-color: #FBDBDB; -fx-border-color: #FF0000;" text="ANNULLA" textFill="#c60000" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="10.0" >
+            <Button fx:id="buttonAnnulla" layoutX="461.0" layoutY="9.0" mnemonicParsing="false" onAction="#handlerAnnulla" prefHeight="48.0" prefWidth="123.0" style="-fx-background-color: #FBDBDB; -fx-border-color: #FF0000;" text="ANNULLA" textFill="#c60000" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="10.0">
                <font>
                   <Font name="Segoe UI Historic" size="16.0" />
                </font>
             </Button>
          </children>
+         <padding>
+            <Insets bottom="8.0" />
+         </padding>
       </AnchorPane>
    </children>
 </VBox>
