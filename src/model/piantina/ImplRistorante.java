@@ -28,11 +28,7 @@ public final class ImplRistorante implements Ristorante {
 	private boolean risultatoEliminazione = false;
 	
 	public ImplRistorante() {
-		try {
-			loadTavolifromFile();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		loadTavolifromFile();
 	}
 	
 	
@@ -51,7 +47,7 @@ public final class ImplRistorante implements Ristorante {
 		return this.tavoli;
 	}
 
-	private void loadTavolifromFile() throws IOException {
+	private void loadTavolifromFile() {
 		try {
 			final InputStream res = ClassLoader.getSystemResourceAsStream(FILE_PATH);
 		    final BufferedReader b = new BufferedReader(new InputStreamReader(res));
@@ -67,6 +63,8 @@ public final class ImplRistorante implements Ristorante {
 		    
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
+		}catch(IOException exc) {
+			exc.printStackTrace();
 		}
 	}
 
