@@ -1,8 +1,6 @@
 package view.creaprenotazione;
 
-import java.io.IOException;
 import java.time.LocalDate;
-
 import controllers.creaprenotazione.ControllerPrenotazione;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -64,41 +62,37 @@ public final class LoaderPrenotazione extends Application {
 		final FXMLLoader caricatore = new FXMLLoader(getClass().getResource(PERC_SCENA));
 		final ControllerPrenotazione crea = new ControllerPrenotazione(this.utente, this.azione, 
 			this.idTavolo, this.codicePrenotazione, this.data, this.periodo, this.vecchiPosti);
-		try {
-			caricatore.setController(crea);
-			final Parent radice = caricatore.load();
-			final Scene miaScena = new Scene(radice);
-			scenaPrimaria.setScene(miaScena);
-			scenaPrimaria.setResizable(false);
-			
-			this.testoData = (DatePicker) caricatore.getNamespace().get("testoData");
-			this.testoData.setValue(this.data);
-			this.testoData.getEditor().setDisable(true);
-			
-			this.testoPeriodo = (ChoiceBox<Periodo>) caricatore.getNamespace().get("testoPeriodo");
-			this.testoPeriodo.setValue(this.periodo);
-			this.testoPeriodo.getItems().addAll(Periodo.PRANZO, Periodo.CENA);
-			
-			if(this.azione.equals(AzioneUtente.MODIFICA)) {
-				this.testoNome = (TextField) caricatore.getNamespace().get("testoNome");
-				this.testoNome.setText(this.vecchioNome);
-				this.testoCognome = (TextField) caricatore.getNamespace().get("testoCognome");
-				this.testoCognome.setText(this.vecchioCognome);
-				this.testoEmail = (TextField) caricatore.getNamespace().get("testoEmail");
-				this.testoEmail.setText(this.vecchiaEmail);
-				this.testoTelefono = (TextField) caricatore.getNamespace().get("testoTelefono");
-				this.testoTelefono.setText(this.vecchioTelefono);
-				this.testoPosti = (Label) caricatore.getNamespace().get("testoPosti");
-				this.testoPosti.setText(this.vecchiPosti);
-			} else {
-				this.testoPeriodo.setDisable(true);
-				this.testoData.setDisable(true);
-			}
-			
-			scenaPrimaria.show();
-		} catch (IOException e) {
-			e.printStackTrace();
+		caricatore.setController(crea);
+		final Parent radice = caricatore.load();
+		final Scene miaScena = new Scene(radice);
+		scenaPrimaria.setScene(miaScena);
+		scenaPrimaria.setResizable(false);
+		
+		this.testoData = (DatePicker) caricatore.getNamespace().get("testoData");
+		this.testoData.setValue(this.data);
+		this.testoData.getEditor().setDisable(true);
+		
+		this.testoPeriodo = (ChoiceBox<Periodo>) caricatore.getNamespace().get("testoPeriodo");
+		this.testoPeriodo.setValue(this.periodo);
+		this.testoPeriodo.getItems().addAll(Periodo.PRANZO, Periodo.CENA);
+		
+		if(this.azione.equals(AzioneUtente.MODIFICA)) {
+			this.testoNome = (TextField) caricatore.getNamespace().get("testoNome");
+			this.testoNome.setText(this.vecchioNome);
+			this.testoCognome = (TextField) caricatore.getNamespace().get("testoCognome");
+			this.testoCognome.setText(this.vecchioCognome);
+			this.testoEmail = (TextField) caricatore.getNamespace().get("testoEmail");
+			this.testoEmail.setText(this.vecchiaEmail);
+			this.testoTelefono = (TextField) caricatore.getNamespace().get("testoTelefono");
+			this.testoTelefono.setText(this.vecchioTelefono);
+			this.testoPosti = (Label) caricatore.getNamespace().get("testoPosti");
+			this.testoPosti.setText(this.vecchiPosti);
+		} else {
+			this.testoPeriodo.setDisable(true);
+			this.testoData.setDisable(true);
 		}
+		
+		scenaPrimaria.show();
 	}
 
 }

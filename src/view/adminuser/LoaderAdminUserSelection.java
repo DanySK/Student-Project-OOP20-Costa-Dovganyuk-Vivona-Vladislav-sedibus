@@ -25,18 +25,14 @@ public final class LoaderAdminUserSelection extends Application {
 	}
 	
 	@Override
-    public void start(Stage stage) {
-		try {
-			final Parent root = FXMLLoader.load(getClass().getResource(PERC_ADMINUSER));
-		
-			final Scene scene = new Scene(root, width/resize, height/resize);
+    public void start(Stage stage) throws Exception {
+		final Parent root = FXMLLoader.load(getClass().getResource(PERC_ADMINUSER));
 	
-			stage.setTitle("Sedibus");
-			stage.setScene(scene);
-			stage.show();
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
+		final Scene scene = new Scene(root, width/resize, height/resize);
+
+		stage.setTitle("Sedibus");
+		stage.setScene(scene);
+		stage.show();
 	}
 	
 }

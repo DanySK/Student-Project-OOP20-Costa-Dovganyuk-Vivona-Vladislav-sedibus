@@ -46,49 +46,38 @@ public final class LoaderTavoloVerdeLibero extends Application{
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		
-		try {
-			
-            final FXMLLoader loader = new FXMLLoader(getClass().getResource(PATH_LAYOUT));
-            final Parent root = loader.load();
-            
-            final Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
-            final int sw = (int) screen.getWidth();
-            final int sh = (int) screen.getHeight();
-            
-            final Scene scene = new Scene(root,sw/PROPORTION_WIDTH,sh/PROPORTION_HEIGTH);
-            
-            
-            this.testoSuperiore = (Text) loader.getNamespace().get("testoSuperiore");
-            this.testoPeriodo = (Text) loader.getNamespace().get("testoPeriodo");
-            this.testoData = (Text) loader.getNamespace().get("testoData");
-            this.testoUtente = (Text) loader.getNamespace().get("testoUtente");
-            
-            this.testoSuperiore.setText(TESTO_SUPERIORE);
-            this.testoPeriodo.setText(this.periodo.toString());
-            this.testoData.setText(this.data.toString());
-            this.testoUtente.setText(this.utente.toString());
-            
-            this.buttonConferma = (Button) loader.getNamespace().get("buttonConferma");
-            //chiudo lo stage della visione tavolo, che verra riaperta dal Controller Prenotazione
-            this.buttonConferma.setOnMouseReleased(e->{
-            	this.previousStage.close();
-            });
-            
-            primaryStage.setResizable(false);
-            primaryStage.initModality(Modality.APPLICATION_MODAL);
-            primaryStage.setOpacity(OPACITY);
-            primaryStage.setTitle(TITLE);
-	        primaryStage.setScene(scene);
-	        primaryStage.show();
-	        
-	        
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-		
+		final FXMLLoader loader = new FXMLLoader(getClass().getResource(PATH_LAYOUT));
+        final Parent root = loader.load();
+        
+        final Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+        final int sw = (int) screen.getWidth();
+        final int sh = (int) screen.getHeight();
+        
+        final Scene scene = new Scene(root,sw/PROPORTION_WIDTH,sh/PROPORTION_HEIGTH);
+        
+        
+        this.testoSuperiore = (Text) loader.getNamespace().get("testoSuperiore");
+        this.testoPeriodo = (Text) loader.getNamespace().get("testoPeriodo");
+        this.testoData = (Text) loader.getNamespace().get("testoData");
+        this.testoUtente = (Text) loader.getNamespace().get("testoUtente");
+        
+        this.testoSuperiore.setText(TESTO_SUPERIORE);
+        this.testoPeriodo.setText(this.periodo.toString());
+        this.testoData.setText(this.data.toString());
+        this.testoUtente.setText(this.utente.toString());
+        
+        this.buttonConferma = (Button) loader.getNamespace().get("buttonConferma");
+        //chiudo lo stage della visione tavolo, che verra riaperta dal Controller Prenotazione
+        this.buttonConferma.setOnMouseReleased(e->{
+        	this.previousStage.close();
+        });
+        
+        primaryStage.setResizable(false);
+        primaryStage.initModality(Modality.APPLICATION_MODAL);
+        primaryStage.setOpacity(OPACITY);
+        primaryStage.setTitle(TITLE);
+        primaryStage.setScene(scene);
+        primaryStage.show();
 	}
-	
-
 
 }

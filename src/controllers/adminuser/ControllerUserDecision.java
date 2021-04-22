@@ -19,8 +19,6 @@ public final class ControllerUserDecision {
 	@FXML
 	private Button prenota;
 	
-	
-
 	@FXML
 	 public void loadTableViewUser(ActionEvent event) {
 
@@ -33,7 +31,7 @@ public final class ControllerUserDecision {
 			 view.start(new Stage());
 			   currentStage.close();
 	    } catch (Exception e) {
-	    	this.errore(e.getMessage());
+	    	this.errore();
 	    }
      }
 	
@@ -49,7 +47,7 @@ public final class ControllerUserDecision {
 			view.start(new Stage());
 			currentStage.close();
 		} catch (Exception e) {
-			this.errore(e.getMessage());
+			this.errore();
 		}
 	}
 	
@@ -65,7 +63,7 @@ public final class ControllerUserDecision {
 			view.start(new Stage());
 			currentStage.close();
 		} catch (Exception e) {
-			this.errore(e.getMessage());
+			this.errore();
 		}
 	}
 	
@@ -79,13 +77,13 @@ public final class ControllerUserDecision {
 			view.start(new Stage());
 			currentStage.close();
 		} catch (Exception e) {
-			this.errore(e.getMessage());
+			this.errore();
 		}
 	}
 	
-	private void errore(String mex) {
+	private void errore() {
 		final AlertEccezione avviso = new AlertEccezione();
-		avviso.err(mex);
+		avviso.err();
 	}
 	
 }

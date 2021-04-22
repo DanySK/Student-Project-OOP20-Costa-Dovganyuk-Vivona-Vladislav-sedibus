@@ -116,7 +116,11 @@ public final class ControllerPrenotazione implements Initializable {
 	public void handlerAnnulla() {
 		final LoaderTableView piantinaTavoli = new LoaderTableView();
 		LoaderTableView.loaderTableView(this.utente);
-		piantinaTavoli.start(new Stage());
+		try {
+			piantinaTavoli.start(new Stage());
+		} catch (Exception e) {
+			this.mostraErrore();
+		}
 		this.chiudiScena();
 	}
 	
@@ -127,13 +131,17 @@ public final class ControllerPrenotazione implements Initializable {
 		try {
 			riepilogo.start(new Stage());
 		} catch (Exception e) {
-			final AlertEccezione avviso = new AlertEccezione();
-	    	avviso.err(e.getMessage());
+			this.mostraErrore();
 		}
 	}
 	
 	private void chiudiScena() {
 		this.testoNome.getScene().getWindow().hide();
+	}
+	
+	private void mostraErrore() {
+		final AlertEccezione avviso = new AlertEccezione();
+    	avviso.err();
 	}
 	
 }

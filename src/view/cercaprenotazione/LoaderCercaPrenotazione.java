@@ -1,7 +1,5 @@
 package view.cercaprenotazione;
 
-import java.io.IOException;
-
 import controllers.cercaprenotazione.ControllerCercaPrenotazione;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -25,16 +23,12 @@ public final class LoaderCercaPrenotazione extends Application  {
 	public void start(Stage scenaPrimaria) throws Exception {
 		final FXMLLoader caricatore = new FXMLLoader(getClass().getResource(PERC_SCENA));
 		final ControllerCercaPrenotazione cercaPrenotazione = new ControllerCercaPrenotazione(LoaderCercaPrenotazione.azione);
-		try {
-			caricatore.setController(cercaPrenotazione);
-			final Parent radice = caricatore.load();
-			final Scene miaScena = new Scene(radice);
-			scenaPrimaria.setScene(miaScena);
-			scenaPrimaria.setResizable(false);
-			scenaPrimaria.show();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		caricatore.setController(cercaPrenotazione);
+		final Parent radice = caricatore.load();
+		final Scene miaScena = new Scene(radice);
+		scenaPrimaria.setScene(miaScena);
+		scenaPrimaria.setResizable(false);
+		scenaPrimaria.show();
 	}
 
 }

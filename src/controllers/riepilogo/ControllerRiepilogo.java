@@ -12,6 +12,7 @@ import model.utili.AzioneUtente;
 import model.utili.Periodo;
 import model.utili.Utente;
 import view.adminuser.LoaderAdminUserSelection;
+import view.eccezioni.AlertEccezione;
 import view.piantina.LoaderTableView;
 
 public final class ControllerRiepilogo implements Initializable {
@@ -65,15 +66,20 @@ public final class ControllerRiepilogo implements Initializable {
 	}
 	
 	public void handlerFine() {
-		if(this.utente.equals(Utente.ADMIN)) {  //se ADMIN riporta alla mappa tavoli
-			final LoaderTableView piantinaTavoli = new LoaderTableView();
-			LoaderTableView.loaderTableView(this.utente);
-			piantinaTavoli.start(new Stage());
-		} else {  //se USER riporta alla selezione admin/utente
-			final LoaderAdminUserSelection viewSelectionUser = new LoaderAdminUserSelection();
-			viewSelectionUser.start(new Stage());
+		try {
+			if(this.utente.equals(Utente.ADMIN)) {  //se ADMIN riporta alla mappa tavoli
+				final LoaderTableView piantinaTavoli = new LoaderTableView();
+				LoaderTableView.loaderTableView(this.utente);
+				piantinaTavoli.start(new Stage());
+			} else {  //se USER riporta alla selezione admin/utente
+				final LoaderAdminUserSelection viewSelectionUser = new LoaderAdminUserSelection();
+				viewSelectionUser.start(new Stage());
+			}
+			this.spazioTitolo.getScene().getWindow().hide();
+		} catch (Exception e) {
+			final AlertEccezione avviso = new AlertEccezione();
+	    	avviso.err();
 		}
-		this.spazioTitolo.getScene().getWindow().hide();
 	}
 	
 }

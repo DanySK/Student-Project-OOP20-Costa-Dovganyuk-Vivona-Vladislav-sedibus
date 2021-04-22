@@ -28,32 +28,24 @@ public final class LoaderTableView extends Application {
 	
 	
 	@Override
-	public void start(Stage primaryStage) {
-		
-		try {
-            final FXMLLoader loader = new FXMLLoader(getClass().getResource(PATH_LAYOUT));
-            final Parent root = loader.load();
-            final Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
-            final int sw = (int) screen.getWidth();
-            final int sh = (int) screen.getHeight();
-            
-            final Scene scene = new Scene(root,sw/PROPORTION_WIDTH,sh/PROPORTION_HEIGHT);
-            
-            this.testoUtente = (Text) loader.getNamespace().get("testoUtente");
-            this.testoUtente.setText(LoaderTableView.utente.toString());
-            
-            primaryStage.setResizable(false);
-            primaryStage.setTitle("Visione Tavoli - " + LoaderTableView.utente);
-            primaryStage.centerOnScreen();
-            
-	        primaryStage.setScene(scene);
-	        primaryStage.show();
-	        
-	        
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-		
+	public void start(Stage primaryStage) throws Exception {
+		final FXMLLoader loader = new FXMLLoader(getClass().getResource(PATH_LAYOUT));
+        final Parent root = loader.load();
+        final Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+        final int sw = (int) screen.getWidth();
+        final int sh = (int) screen.getHeight();
+        
+        final Scene scene = new Scene(root,sw/PROPORTION_WIDTH,sh/PROPORTION_HEIGHT);
+        
+        this.testoUtente = (Text) loader.getNamespace().get("testoUtente");
+        this.testoUtente.setText(LoaderTableView.utente.toString());
+        
+        primaryStage.setResizable(false);
+        primaryStage.setTitle("Visione Tavoli - " + LoaderTableView.utente);
+        primaryStage.centerOnScreen();
+        
+        primaryStage.setScene(scene);
+        primaryStage.show();
 	}
 	
 }

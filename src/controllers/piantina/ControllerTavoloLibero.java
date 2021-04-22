@@ -27,7 +27,7 @@ public final class ControllerTavoloLibero {
 			view.start(new Stage());
 		} catch (Exception e) {
 			final AlertEccezione avviso = new AlertEccezione();
-	    	avviso.err(e.getMessage());
+	    	avviso.err();
 		}
 		closeCurrentStage();
 	}

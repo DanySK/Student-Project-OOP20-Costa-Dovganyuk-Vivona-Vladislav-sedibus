@@ -53,8 +53,7 @@ public final class ControllerCercaPrenotazione implements Initializable {
 				try {
 					modifica.start(new Stage());
 				} catch (Exception e) {
-					final AlertEccezione avviso = new AlertEccezione();
-			    	avviso.err(e.getMessage());
+					this.mostraErrore();
 				}
 			} else {  //altrimenti se ELIMINA
 				final ViewAlert alert = new ViewAlert();
@@ -63,7 +62,11 @@ public final class ControllerCercaPrenotazione implements Initializable {
 					if(this.modello.eliminaPrenotazione()) {
 						alert.alertConfermaEliminazione();
 						final LoaderAdminUserSelection viewSelectionUser = new LoaderAdminUserSelection();
-						viewSelectionUser.start(new Stage());
+						try {
+							viewSelectionUser.start(new Stage());
+						} catch (Exception e) {
+							this.mostraErrore();
+						}
 					} else {
 						alert.alertErrore("ERRORE - eliminazione non andata a buon fine..");
 					}
@@ -78,7 +81,11 @@ public final class ControllerCercaPrenotazione implements Initializable {
 	
 	public void handlerAnnulla() {
 		final LoaderUserDecision precedente = new LoaderUserDecision();
-		precedente.start(new Stage());
+		try {
+			precedente.start(new Stage());
+		} catch (Exception e) {
+			this.mostraErrore();
+		}
 		this.chiudiPagina();
 	}
 	
@@ -96,6 +103,11 @@ public final class ControllerCercaPrenotazione implements Initializable {
 	
 	private Optional<RadioButton> sceltaTurno() {
 		return Optional.ofNullable(this.turnoSelezionato());
+	}
+	
+	private void mostraErrore() {
+		final AlertEccezione avviso = new AlertEccezione();
+    	avviso.err();
 	}
 	
 }

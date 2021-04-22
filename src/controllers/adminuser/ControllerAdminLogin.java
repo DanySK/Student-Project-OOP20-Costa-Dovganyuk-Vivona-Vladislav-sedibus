@@ -1,6 +1,6 @@
 package controllers.adminuser;
 
-import javafx.application.Platform;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -42,7 +42,7 @@ public final class ControllerAdminLogin  {
 			currentStage.close();
 	     } catch (Exception e) {
 	    	 final AlertEccezione avviso = new AlertEccezione();
-	    	 avviso.err(e.getMessage());
+	    	 avviso.err();
 	     }
 	
 	  }
@@ -65,7 +65,7 @@ public final class ControllerAdminLogin  {
 				currentStage.close();
 		     } catch (Exception e) {
 		    	 final AlertEccezione avviso = new AlertEccezione();
-		    	 avviso.err(e.getMessage());
+		    	 avviso.err();
 		     }
 	 }
 

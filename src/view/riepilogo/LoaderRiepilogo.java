@@ -1,6 +1,5 @@
 package view.riepilogo;
 
-import java.io.IOException;
 import java.time.LocalDate;
 import controllers.riepilogo.ControllerRiepilogo;
 import javafx.application.Application;
@@ -34,16 +33,12 @@ public final class LoaderRiepilogo extends Application {
 		final FXMLLoader caricatore = new FXMLLoader(getClass().getResource(PERC_SCENA));
 		final ControllerRiepilogo riepilogo = new ControllerRiepilogo(this.utente, this.azione, 
 				this.periodoPrenotato, this.dataPrenotata, this.idTavoloPrenotato);
-		try {
-			caricatore.setController(riepilogo);
-			final Parent radice = caricatore.load();
-			final Scene miaScena = new Scene(radice);
-			scenaPrimaria.setScene(miaScena);
-			scenaPrimaria.setResizable(false);
-			scenaPrimaria.show();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		caricatore.setController(riepilogo);
+		final Parent radice = caricatore.load();
+		final Scene miaScena = new Scene(radice);
+		scenaPrimaria.setScene(miaScena);
+		scenaPrimaria.setResizable(false);
+		scenaPrimaria.show();
 	}
 	
 }
