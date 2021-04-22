@@ -1,5 +1,7 @@
 package view.piantina;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.time.LocalDate;
 
 import javafx.application.Application;
@@ -18,6 +20,8 @@ public final class LoaderTavoloVerdeLibero extends Application{
 	private static final String TITLE = "Tavolo LIBERO";
 	private static final String PATH_LAYOUT = "/layouts/TavoloVerdeLibero.fxml";
 	private static final double OPACITY = 0.95;
+	private final double PROPORTION_WIDTH = 3.2;
+	private final double PROPORTION_HEIGTH = 4.5;
 	
 	private Text testoSuperiore;
 	private Text testoPeriodo;
@@ -47,7 +51,12 @@ public final class LoaderTavoloVerdeLibero extends Application{
 			
             final FXMLLoader loader = new FXMLLoader(getClass().getResource(PATH_LAYOUT));
             final Parent root = loader.load();
-            final Scene scene = new Scene(root);
+            
+            final Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+            final int sw = (int) screen.getWidth();
+            final int sh = (int) screen.getHeight();
+            
+            final Scene scene = new Scene(root,sw/PROPORTION_WIDTH,sh/PROPORTION_HEIGTH);
             
             
             this.testoSuperiore = (Text) loader.getNamespace().get("testoSuperiore");
