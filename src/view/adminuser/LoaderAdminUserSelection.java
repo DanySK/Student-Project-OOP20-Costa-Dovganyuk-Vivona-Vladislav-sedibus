@@ -15,7 +15,8 @@ public final class LoaderAdminUserSelection extends Application {
 	GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
 	
 	private static final String PERC_ADMINUSER= "/layouts/AdminUserSelection.fxml";
-	private final double resize= 2.6;
+	private double ResizeWidth;
+	private double ResizeHeight;
 	private int width = gd.getDisplayMode().getWidth();
 	private int height = gd.getDisplayMode().getHeight();
 	
@@ -27,8 +28,11 @@ public final class LoaderAdminUserSelection extends Application {
 	@Override
     public void start(Stage stage) throws Exception {
 		final Parent root = FXMLLoader.load(getClass().getResource(PERC_ADMINUSER));
+		
+		ResizeWidth=width/stage.getWidth();
+		ResizeHeight=height/stage.getHeight();
 	
-		final Scene scene = new Scene(root, width/resize, height/resize);
+		final Scene scene = new Scene(root, width/ResizeWidth, height/ResizeHeight);
 
 		stage.setTitle("Sedibus");
 		stage.setScene(scene);

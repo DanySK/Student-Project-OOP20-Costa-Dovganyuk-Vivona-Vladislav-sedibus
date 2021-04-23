@@ -14,13 +14,19 @@ public final class LoaderUserDecision extends Application{
 	GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
 	
 	private static final String PER_USERDECISION= "/layouts/UserDecision.fxml";
-	private final double resize= 2.6;
+	private double ResizeWidth;
+	private double ResizeHeight;
 	private int width = gd.getDisplayMode().getWidth();
 	private int height = gd.getDisplayMode().getHeight();
 	
 	public void start(Stage stage) throws Exception {
 		final Parent root = FXMLLoader.load(getClass().getResource(PER_USERDECISION));
-		final Scene scene = new Scene(root,width/resize, height/resize);
+		
+		ResizeWidth=width/stage.getWidth();
+		ResizeHeight=height/stage.getHeight();
+	
+		final Scene scene = new Scene(root, width/ResizeWidth, height/ResizeHeight);
+
 
 		stage.setTitle("Sedibus");
 		stage.setScene(scene);

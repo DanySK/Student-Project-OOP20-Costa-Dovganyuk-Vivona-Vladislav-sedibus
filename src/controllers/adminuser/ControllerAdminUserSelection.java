@@ -1,9 +1,11 @@
 package controllers.adminuser;
 
 import javafx.fxml.FXML;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.stage.Stage;
 import view.adminuser.LoaderAdminLogin;
+import view.adminuser.LoaderAdminUserSelection;
 import view.adminuser.LoaderUserDecision;
 import view.eccezioni.AlertEccezione;
 import javafx.scene.control.Button;
@@ -37,6 +39,12 @@ public final class ControllerAdminUserSelection  {
 	    	final AlertEccezione avviso = new AlertEccezione();
 			avviso.err();
 	    }
+	}
+	
+	@FXML
+	public void applicationStop (ActionEvent event) {
+		
+		Platform.exit();
 	}
 }
 	
