@@ -39,8 +39,8 @@ public final class LoaderTavoloRossoOccupato extends Application {
 	private String periodo;
 	private String data;
 	
-	private final double PROPORTION_WIDTH = 3.2;
-	private final double PROPORTION_HEIGHT = 2.8;
+	private double PROPORTION_WIDTH ;
+	private double PROPORTION_HEIGHT ;
 	
 	public LoaderTavoloRossoOccupato(String idTavolo, 
 			String codicePrenotazione, String cognomeNomeCliente,
@@ -68,6 +68,10 @@ public final class LoaderTavoloRossoOccupato extends Application {
             final Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
             final int sw = (int) screen.getWidth();
             final int sh = (int) screen.getHeight();
+            
+            PROPORTION_WIDTH = sw/primaryStage.getWidth();
+			PROPORTION_HEIGHT = sh/primaryStage.getHeight();
+            
             
             final Scene scene = new Scene(root, sw/PROPORTION_WIDTH, sh/PROPORTION_HEIGHT);
             

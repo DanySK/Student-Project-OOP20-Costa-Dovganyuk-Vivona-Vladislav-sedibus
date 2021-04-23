@@ -20,8 +20,8 @@ public final class LoaderTavoloVerdeLibero extends Application{
 	private static final String TITLE = "Tavolo LIBERO";
 	private static final String PATH_LAYOUT = "/layouts/TavoloVerdeLibero.fxml";
 	private static final double OPACITY = 0.95;
-	private final double PROPORTION_WIDTH = 3.2;
-	private final double PROPORTION_HEIGTH = 4.5;
+	private double PROPORTION_WIDTH ;
+	private double PROPORTION_HEIGHT;
 	
 	private Text testoSuperiore;
 	private Text testoPeriodo;
@@ -56,7 +56,10 @@ public final class LoaderTavoloVerdeLibero extends Application{
             final int sw = (int) screen.getWidth();
             final int sh = (int) screen.getHeight();
             
-            final Scene scene = new Scene(root,sw/PROPORTION_WIDTH,sh/PROPORTION_HEIGTH);
+            PROPORTION_WIDTH = sw/primaryStage.getWidth();
+			PROPORTION_HEIGHT = sh/primaryStage.getHeight();
+            
+            final Scene scene = new Scene(root,sw/PROPORTION_WIDTH,sh/PROPORTION_HEIGHT);
             
             
             this.testoSuperiore = (Text) loader.getNamespace().get("testoSuperiore");

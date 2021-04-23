@@ -11,7 +11,7 @@
 
 <AnchorPane fx:id="panePrincipale" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.piantina.Controller">
    <children>
-      <VBox>
+      <VBox AnchorPane.bottomAnchor="0.0">
          <children>
             <AnchorPane fx:id="paneData" style="-fx-background-color: White; -fx-border-color: Grey;">
                <children>
@@ -89,6 +89,9 @@
                </padding>
             </AnchorPane>
          </children>
+         <padding>
+            <Insets bottom="20.0" />
+         </padding>
       </VBox>
    </children>
 </AnchorPane>
