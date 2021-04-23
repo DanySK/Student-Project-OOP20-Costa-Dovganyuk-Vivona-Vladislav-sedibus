@@ -1,5 +1,8 @@
 package view.cercaprenotazione;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
+
 import controllers.cercaprenotazione.ControllerCercaPrenotazione;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -25,7 +28,10 @@ public final class LoaderCercaPrenotazione extends Application  {
 		final ControllerCercaPrenotazione cercaPrenotazione = new ControllerCercaPrenotazione(LoaderCercaPrenotazione.azione);
 		caricatore.setController(cercaPrenotazione);
 		final Parent radice = caricatore.load();
-		final Scene miaScena = new Scene(radice);
+		final Dimension dimSchermo = Toolkit.getDefaultToolkit().getScreenSize();
+		final double larghezza = dimSchermo.getWidth() / scenaPrimaria.getWidth();
+		final double altezza = dimSchermo.getHeight() / scenaPrimaria.getHeight();
+		final Scene miaScena = new Scene(radice, larghezza, altezza);
 		scenaPrimaria.setScene(miaScena);
 		scenaPrimaria.setResizable(false);
 		scenaPrimaria.show();

@@ -1,5 +1,7 @@
 package view.creaprenotazione;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.time.LocalDate;
 import controllers.creaprenotazione.ControllerPrenotazione;
 import javafx.application.Application;
@@ -64,7 +66,10 @@ public final class LoaderPrenotazione extends Application {
 			this.idTavolo, this.codicePrenotazione, this.data, this.periodo, this.vecchiPosti);
 		caricatore.setController(crea);
 		final Parent radice = caricatore.load();
-		final Scene miaScena = new Scene(radice);
+		final Dimension dimSchermo = Toolkit.getDefaultToolkit().getScreenSize();
+		final double larghezza = dimSchermo.getWidth() / scenaPrimaria.getWidth();
+		final double altezza = dimSchermo.getHeight() / scenaPrimaria.getHeight();
+		final Scene miaScena = new Scene(radice, larghezza, altezza);
 		scenaPrimaria.setScene(miaScena);
 		scenaPrimaria.setResizable(false);
 		
