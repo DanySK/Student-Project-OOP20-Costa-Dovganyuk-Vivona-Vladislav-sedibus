@@ -67,8 +67,7 @@ public final class ControllerTavoloOccupato implements Initializable  {
 		try {
 			viewPrenotazione.start(new Stage());
 		} catch (Exception e) {
-			final AlertEccezione avviso = new AlertEccezione();
-	    	avviso.err(e.getMessage());
+			this.mostraErrore();
 		}
 		closeCurrentStage();
 		this.stageMappaTavoli.close();
@@ -103,7 +102,11 @@ public final class ControllerTavoloOccupato implements Initializable  {
 	private void openCloseMappaTavoli() {
 		final LoaderTableView mappaTavoli = new LoaderTableView();
 		LoaderTableView.loaderTableView(Utente.ADMIN);
-		mappaTavoli.start(stageMappaTavoli);
+		try {
+			mappaTavoli.start(stageMappaTavoli);
+		} catch (Exception e) {
+			this.mostraErrore();
+		}
 	}
 	
 	private void closeCurrentStage() {
@@ -121,6 +124,11 @@ public final class ControllerTavoloOccupato implements Initializable  {
 		this.idTavolo = this.model.getIdTavolo(this.codicePrenotazione);	
 		this.prenotazione = this.model.getPrenotazione(this.codicePrenotazione);
 		this.cliente = this.prenotazione.getCliente();          
+	}
+	
+	private void mostraErrore() {
+		final AlertEccezione avviso = new AlertEccezione();
+    	avviso.err();
 	}
 	
 }

@@ -19,18 +19,14 @@ public final class LoaderAdminLogin extends Application{
 	private int height = gd.getDisplayMode().getHeight();
 	
 	@Override
-	public void start(Stage stage)  {
-		try {
-			final Parent root = FXMLLoader.load(getClass().getResource(PER_ADMINLOGIN));
-			
-	        final Scene scene = new Scene(root,width/resize, height/resize);
-	        
-	        stage.setTitle("Sedibus");
-	        stage.setScene(scene);
-	        stage.show();
-	    } catch(Exception e) {
-	    	e.printStackTrace();
-		}
+	public void start(Stage stage) throws Exception {
+		final Parent root = FXMLLoader.load(getClass().getResource(PER_ADMINLOGIN));
+		
+        final Scene scene = new Scene(root,width/resize, height/resize);
+        
+        stage.setTitle("Sedibus");
+        stage.setScene(scene);
+        stage.show();
 	}
 	
 

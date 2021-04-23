@@ -1,12 +1,5 @@
 package controllers.adminuser;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
-
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,9 +12,8 @@ import view.adminuser.LoaderAdminUserSelection;
 import view.eccezioni.AlertEccezione;
 import view.piantina.LoaderTableView;
 
+
 public final class ControllerAdminLogin  {
-	
-	private static final String LOGIN_FILE_PATH = "logindata.json";
 	
 	@FXML
 	private TextField user;
@@ -30,20 +22,6 @@ public final class ControllerAdminLogin  {
 	@FXML
 	private Label failedLabel;
 	private static Utente utente;
-	
-	private String fileUser;
-	private String filePassword;
-	
-	/**
-	 * loginData sets the fileUser and filePassword fields, which will be used for login, by reading the logindata.json file
-	 */
-	private void loginData () {
-		final InputStream res = ClassLoader.getSystemResourceAsStream(LOGIN_FILE_PATH);
-		final Reader reader = new BufferedReader(new InputStreamReader(res));//creo il file reader per il file logindata.json
-		final JsonObject jobj = new Gson().fromJson(reader,JsonObject.class);//creo il JsonObject da cui andro a leggere i dati presenti su file 
-		this.fileUser = jobj.get("utente").getAsString();//uso il metodo getAsString invece di toString in modo che la stringa restituita non abbia i quote marks
-		this.filePassword = jobj.get("password").getAsString();
-	}
 
 	/**
 	 * loadTableViewAdmin compares the username and password entered by the user with those present in the logindata.json file.
@@ -52,12 +30,9 @@ public final class ControllerAdminLogin  {
 	 @FXML
 	 public void loadTableViewAdmin(ActionEvent event) {
 		 
-		 loginData();
-
-	     
-	  if (pass.getText().equals(filePassword) && user.getText().equals(fileUser))//confronto i dati inseriti dall'utente con quelli sul file
+	  if (pass.getText().equals(model.utili.Admin.getPassword()) && user.getText().equals(model.utili.Admin.getUser()))//confronto i dati inseriti dall'utente con quelli sul file logindata.json usando i metodi della model admin
 	  {	
-		utente=Utente.ADMIN;
+		utente=Utente.ADMIN;//imposto il tipo di utente su amministratore
 		
 		final LoaderTableView view = new LoaderTableView();
     	final Stage currentStage = (Stage) this.user.getScene().getWindow();
@@ -67,14 +42,18 @@ public final class ControllerAdminLogin  {
 			currentStage.close();
 	     } catch (Exception e) {
 	    	 final AlertEccezione avviso = new AlertEccezione();
-	    	 avviso.err(e.getMessage());
+	    	 avviso.err();
 	     }
 	
 	  }
 	  
-	  else failedLabel.setText("Nome Utente o Password Errati");
-      }
+	  else 
+		  failedLabel.setText("Nome Utente o Password Errati");
+		  
+	 }
+     
 	 
+	  
 	 @FXML
 	 public void goBack (ActionEvent event){
 		 
@@ -86,7 +65,7 @@ public final class ControllerAdminLogin  {
 				currentStage.close();
 		     } catch (Exception e) {
 		    	 final AlertEccezione avviso = new AlertEccezione();
-		    	 avviso.err(e.getMessage());
+		    	 avviso.err();
 		     }
 	 }
 

@@ -59,35 +59,30 @@ public final class LoaderTavoloRossoOccupato extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		final FXMLLoader loader = new FXMLLoader(getClass().getResource(PATH_LAYOUT));
-		
-		try {
-			final ControllerTavoloOccupato controller = new ControllerTavoloOccupato(this.previousStage);
-			loader.setController(controller);
-            final Parent root = loader.load();
-            
-            final Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
-            final int sw = (int) screen.getWidth();
-            final int sh = (int) screen.getHeight();
-            
-            PROPORTION_WIDTH = sw/primaryStage.getWidth();
-			PROPORTION_HEIGHT = sh/primaryStage.getHeight();
-            
-            
-            final Scene scene = new Scene(root, sw/PROPORTION_WIDTH, sh/PROPORTION_HEIGHT);
-            
-            setAllTexts(loader);
-            
-            primaryStage.setResizable(false);
-            primaryStage.initModality(Modality.APPLICATION_MODAL);
-            primaryStage.setOpacity(OPACITY);
-            primaryStage.setTitle(TITLE);
-	        primaryStage.setScene(scene);
-	        primaryStage.show();
-	        
-	        
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+
+		final ControllerTavoloOccupato controller = new ControllerTavoloOccupato(this.previousStage);
+		loader.setController(controller);
+        final Parent root = loader.load();
+        
+        final Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+        final int sw = (int) screen.getWidth();
+        final int sh = (int) screen.getHeight();
+        
+
+        PROPORTION_WIDTH = sw/primaryStage.getWidth();
+		PROPORTION_HEIGHT = sh/primaryStage.getHeight();
+        
+        final Scene scene = new Scene(root, sw/PROPORTION_WIDTH, sh/PROPORTION_HEIGHT);
+        
+        setAllTexts(loader);
+        
+        primaryStage.setResizable(false);
+        primaryStage.initModality(Modality.APPLICATION_MODAL);
+        primaryStage.setOpacity(OPACITY);
+        primaryStage.setTitle(TITLE);
+        primaryStage.setScene(scene);
+        primaryStage.show();
+
 	}
 	
 	private void setAllTexts(FXMLLoader loader) {

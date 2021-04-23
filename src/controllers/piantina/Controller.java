@@ -113,7 +113,7 @@ public final class Controller implements Initializable {
     				try {
 						tavoloRossoView.start(new Stage());
 					} catch (Exception exception) {
-						this.errore(exception.getMessage());
+						this.mostraErrore();
 					}
     			}else{
     				if(this.listRedButton.contains(b)) {
@@ -124,7 +124,7 @@ public final class Controller implements Initializable {
         				try {
     						tavoloVerdeView.start(new Stage());
     					} catch (Exception exception) {
-    						this.errore(exception.getMessage());
+    						this.mostraErrore();
     					}
     				}
     				
@@ -171,7 +171,7 @@ public final class Controller implements Initializable {
 			view.start(new Stage());
 			currentStage.close();
 		} catch (Exception e) {
-			this.errore(e.getMessage());
+			this.mostraErrore();
 		}
     }
     
@@ -179,9 +179,9 @@ public final class Controller implements Initializable {
     	this.testoOrario.setText(testo);
     }
     
-    private void errore(String mex) {
+    private void mostraErrore() {
     	final AlertEccezione avviso = new AlertEccezione();
-    	avviso.err(mex);
+    	avviso.err();
     }
     
 }

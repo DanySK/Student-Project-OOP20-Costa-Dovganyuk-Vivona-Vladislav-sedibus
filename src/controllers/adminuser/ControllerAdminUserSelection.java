@@ -14,7 +14,7 @@ public final class ControllerAdminUserSelection  {
 	private Button Admin;
 	
 	@FXML
-	public void loadAdminLogin (ActionEvent event ){
+	public void loadAdminLogin (ActionEvent event) {
 		final LoaderAdminLogin view = new LoaderAdminLogin();
     	final Stage currentStage = (Stage) this.Admin.getScene().getWindow();
     	try { 
@@ -22,12 +22,12 @@ public final class ControllerAdminUserSelection  {
     		currentStage.close();
 	    } catch (Exception e) {
 	    	final AlertEccezione avviso = new AlertEccezione();
-			avviso.err(e.getMessage());
+			avviso.err();
 	    }
 	}
 	
 	@FXML
-	public void loadUserDecision (ActionEvent event ){
+	public void loadUserDecision (ActionEvent event) {
 		final LoaderUserDecision view = new LoaderUserDecision();
     	final Stage currentStage = (Stage) this.Admin.getScene().getWindow();
 		try {
@@ -35,7 +35,7 @@ public final class ControllerAdminUserSelection  {
 			currentStage.close();
 	    } catch (Exception e) {
 	    	final AlertEccezione avviso = new AlertEccezione();
-			avviso.err(e.getMessage());
+			avviso.err();
 	    }
 	}
 }
