@@ -35,8 +35,9 @@ public final class LoaderTableView extends Application {
         final int sw = (int) screen.getWidth();
         final int sh = (int) screen.getHeight();
         
+        
         PROPORTION_WIDTH = sw/primaryStage.getWidth();
-		PROPORTION_HEIGHT = sh/primaryStage.getHeight();
+    	PROPORTION_HEIGHT = sh/primaryStage.getHeight();
         
         final Scene scene = new Scene(root,sw/PROPORTION_WIDTH,sh/PROPORTION_HEIGHT);
         

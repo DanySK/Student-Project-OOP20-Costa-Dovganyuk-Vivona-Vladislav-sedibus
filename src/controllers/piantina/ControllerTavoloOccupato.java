@@ -103,7 +103,8 @@ public final class ControllerTavoloOccupato implements Initializable  {
 		final LoaderTableView mappaTavoli = new LoaderTableView();
 		LoaderTableView.loaderTableView(Utente.ADMIN);
 		try {
-			mappaTavoli.start(stageMappaTavoli);
+			this.stageMappaTavoli.close();
+			mappaTavoli.start(new Stage());
 		} catch (Exception e) {
 			this.mostraErrore();
 		}

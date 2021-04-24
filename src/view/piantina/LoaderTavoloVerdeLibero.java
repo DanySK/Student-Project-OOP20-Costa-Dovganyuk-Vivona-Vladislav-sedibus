@@ -20,7 +20,7 @@ public final class LoaderTavoloVerdeLibero extends Application{
 	private static final String TITLE = "Tavolo LIBERO";
 	private static final String PATH_LAYOUT = "/layouts/TavoloVerdeLibero.fxml";
 	private static final double OPACITY = 0.95;
-	private double PROPORTION_WIDTH ;
+	private double PROPORTION_WIDTH;
 	private double PROPORTION_HEIGHT;
 	
 	private Text testoSuperiore;
