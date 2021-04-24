@@ -9,11 +9,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public final class LoaderUserDecision extends Application{
+public final class LoaderUserAction extends Application{
 	
 	GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
 	
-	private static final String PER_USERDECISION= "/layouts/UserDecision.fxml";
+	private static final String PER_USERDECISION= "/layouts/UserAction.fxml";
 	private double ResizeWidth;
 	private double ResizeHeight;
 	private int width = gd.getDisplayMode().getWidth();

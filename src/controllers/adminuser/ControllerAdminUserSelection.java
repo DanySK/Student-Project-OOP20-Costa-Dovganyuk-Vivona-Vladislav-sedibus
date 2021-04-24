@@ -5,7 +5,7 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.stage.Stage;
 import view.adminuser.LoaderAdminLogin;
-import view.adminuser.LoaderUserDecision;
+import view.adminuser.LoaderUserAction;
 import view.eccezioni.AlertEccezione;
 import javafx.scene.control.Button;
 
@@ -29,7 +29,7 @@ public final class ControllerAdminUserSelection  {
 	
 	@FXML
 	public void loadUserDecision (ActionEvent event) {
-		final LoaderUserDecision view = new LoaderUserDecision();
+		final LoaderUserAction view = new LoaderUserAction();
     	final Stage currentStage = (Stage) this.Admin.getScene().getWindow();
 		try {
 			view.start(new Stage());

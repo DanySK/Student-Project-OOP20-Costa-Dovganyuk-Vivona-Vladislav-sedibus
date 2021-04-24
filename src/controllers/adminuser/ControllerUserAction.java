@@ -11,7 +11,7 @@ import view.eccezioni.AlertEccezione;
 import view.piantina.LoaderTableView;
 import model.utili.AzioneUtente;
 
-public final class ControllerUserDecision {
+public final class ControllerUserAction {
 	
 	private static Utente utente;
 	private static AzioneUtente azioneUtente;

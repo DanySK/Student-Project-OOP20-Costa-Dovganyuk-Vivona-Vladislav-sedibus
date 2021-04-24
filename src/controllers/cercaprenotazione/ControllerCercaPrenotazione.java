@@ -14,7 +14,7 @@ import model.utili.AzioneUtente;
 import model.utili.Periodo;
 import model.utili.Utente;
 import view.adminuser.LoaderAdminUserSelection;
-import view.adminuser.LoaderUserDecision;
+import view.adminuser.LoaderUserAction;
 import view.creaprenotazione.LoaderPrenotazione;
 import view.eccezioni.AlertEccezione;
 import view.eliminaprenotazione.ViewAlert;
@@ -80,7 +80,7 @@ public final class ControllerCercaPrenotazione implements Initializable {
 	}
 	
 	public void handlerAnnulla() {
-		final LoaderUserDecision precedente = new LoaderUserDecision();
+		final LoaderUserAction precedente = new LoaderUserAction();
 		try {
 			precedente.start(new Stage());
 		} catch (Exception e) {
